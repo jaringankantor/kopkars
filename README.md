@@ -6,4 +6,4 @@
     <br>
 </p>
 
-Aplikasi Anggota Koperasi karyawan berbasis web saat ini masih dalam masa pengembangan oleh [jaringankantor.com](http://www.jaringankantor.com/), dikembangkan menggunakan framework YII2.
+Aplikasi Koperasi karyawan berbasis web saat ini masih dalam masa pengembangan oleh [jaringankantor.com](http://www.jaringankantor.com/), dikembangkan menggunakan framework YII2.
