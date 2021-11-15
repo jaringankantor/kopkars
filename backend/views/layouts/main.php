@@ -1,0 +1,128 @@
+<?php
+
+/* @var $this \yii\web\View */
+/* @var $content string */
+
+use backend\assets\AppAsset;
+use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
+use common\widgets\Alert;
+
+AppAsset::register($this);
+?>
+<?php $this->beginPage() ?>
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>">
+<head>
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php $this->registerCsrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <?php $this->head() ?>
+</head>
+<body>
+<?php $this->beginBody() ?>
+
+<div  class="container-fluid" style="margin-top:60px">
+    <?php
+    NavBar::begin([
+        'brandLabel' => Yii::$app->name,
+        'brandUrl' => Yii::$app->homeUrl,
+        'innerContainerOptions' => ['class' => 'container-fluid'],
+        'options' => [
+            'class' => 'navbar navbar-default navbar-fixed-top',
+        ],
+    ]);
+
+    $menuItems = [];
+
+    if (Yii::$app->user->can('All Pengaturan Sistem')) {
+        $menuItems[] =
+        [
+            'label' => 'Sistem',
+            'items' => [
+                ['label' => 'GII', 'url' => ['/gii']],
+                ['label' => 'RBAC Rule', 'url' => ['/rbac/rule']],
+                ['label' => 'RBAC Route', 'url' => ['/rbac/route']],
+                ['label' => 'RBAC Permission', 'url' => ['/rbac/permission']],
+                ['label' => 'RBAC Role', 'url' => ['/rbac/role']],
+                ['label' => 'RBAC Assignment', 'url' => ['/rbac/assignment']],
+            ]
+        ];
+    }
+
+    if (Yii::$app->user->can('All Manajemen Anggota')) {
+        $menuItems[] =
+        [
+            'label' => 'Manajemen Anggota',
+            'items' => [
+                ['label' => 'Pemberian Nomor', 'url' => ['/anggota/beri-nomor']],
+                ['label' => 'Anggota Resmi', 'url' => ['/anggota']],
+            ],
+        ];
+    }
+
+    if (Yii::$app->user->can('All Anggota Simpanan')) {
+        $menuItems[] =
+        [
+            'label' => 'Simpanan Anggota',
+            'items' => [
+                ['label' => 'List Simpanan Anggota', 'url' => ['/anggota-simpanan']],
+            ],
+        ];
+    }
+
+    if (Yii::$app->user->can('All Transaksi')) {
+        $menuItems[] =
+        [
+            'label' => 'Transaksi',
+            'items' => [
+                ['label' => 'List Transaksi', 'url' => ['/transaksi']],
+                ['label' => 'Import Transaksi Zahir', 'url' => ['/transaksi/import-zahir']],
+            ],
+        ];
+    }
+
+    if (Yii::$app->user->isGuest) {
+        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+    } else {
+        $menuItems[] = '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->email . ')',
+                ['class' => 'btn btn-link logout']
+            )
+            . Html::endForm()
+            . '</li>';
+    }
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => $menuItems,
+    ]);
+    NavBar::end();
+    ?>
+
+    <div class="container-fluid">
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <?= Alert::widget() ?>
+        <?= $content ?>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container-fluid">
+        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+
+        <p class="pull-right">Powered by <?=Html::a('JaringanKantor','https://www.jaringankantor.com/')?></p>
+    </div>
+</footer>
+
+<?php $this->endBody() ?>
+</body>
+</html>
+<?php $this->endPage() ?>
