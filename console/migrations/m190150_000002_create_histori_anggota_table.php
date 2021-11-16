@@ -15,7 +15,7 @@ class m190150_000002_create_histori_anggota_table extends Migration
             'anggota_kolom' => $this->string(50),
             'value_old' => $this->string(255),
             'value_new' => $this->string(255),
-            'tanggal_update' => $this->dateTime()->notNull()->defaultExpression('now()'),
+            'waktu_update' => $this->dateTime()->notNull()->defaultExpression('now()'),
         ]);        
     }
 

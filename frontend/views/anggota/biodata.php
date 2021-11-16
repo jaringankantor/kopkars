@@ -43,8 +43,8 @@ $this->title = 'Biodata '.$model->nama_lengkap;
                 'alamat_rumah',
                 'nomor_npwp',
                 //'keterangan',
-                //'tanggal_daftar:date',
-                //'tanggal_update:date',
+                //'waktu_daftar:date',
+                //'waktu_update:date',
             ],
         ]) ?>
         </div>

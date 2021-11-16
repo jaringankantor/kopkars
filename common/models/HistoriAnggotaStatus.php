@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property int|null $anggota_id
  * @property string|null $anggota_status
- * @property string $tanggal_update
+ * @property string $waktu_update
  *
  * @property Anggota $anggota
  */
@@ -32,7 +32,7 @@ class HistoriAnggotaStatus extends \yii\db\ActiveRecord
         return [
             [['anggota_id'], 'default', 'value' => null],
             [['anggota_id'], 'integer'],
-            [['tanggal_update'], 'safe'],
+            [['waktu_update'], 'safe'],
             [['anggota_status'], 'string', 'max' => 20],
             [['anggota_id'], 'exist', 'skipOnError' => true, 'targetClass' => Anggota::className(), 'targetAttribute' => ['anggota_id' => 'id']],
         ];
@@ -47,7 +47,7 @@ class HistoriAnggotaStatus extends \yii\db\ActiveRecord
             'id' => 'ID',
             'anggota_id' => 'Anggota ID',
             'anggota_status' => 'Anggota Status',
-            'tanggal_update' => 'Tanggal Update',
+            'waktu_update' => 'Waktu Update',
         ];
     }
 

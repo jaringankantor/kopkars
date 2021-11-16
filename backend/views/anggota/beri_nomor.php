@@ -33,16 +33,16 @@ $this->title = 'Pemberian Nomor Anggota';
                 'value'=>function($model, $key, $index)
                 {return 'Email: '.$model->email.'<br>No HP: '.$model->nomor_hp;},
             ],
-            'tanggal_daftar:datetime',
+            'waktu_daftar:datetime',
 
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{approved} {tolak}',
                 'buttons' => [
                     'approved' => function ($url,$model) {
-                        if (empty($model->tanggal_approve)) return Html::a('<span class="glyphicon glyphicon-ok"></span> Berikan Nomor', ['ok-beri-nomor','id'=>$model->id], ['id'=>'approved-button'.$model->id,'class' => 'btn btn-success','data' => ['confirm' => 'Apakah sudah melakukan approval data dan menyetujui keanggotaan ini?','method' => 'post']]);
+                        if (empty($model->waktu_approve)) return Html::a('<span class="glyphicon glyphicon-ok"></span> Berikan Nomor', ['ok-beri-nomor','id'=>$model->id], ['id'=>'approved-button'.$model->id,'class' => 'btn btn-success','data' => ['confirm' => 'Apakah sudah melakukan approval data dan menyetujui keanggotaan ini?','method' => 'post']]);
                         },
                     'tolak' => function ($url,$model) {
-                        if (empty($model->tanggal_approve)) return Html::a('<span class="glyphicon glyphicon-remove"></span> Tolak Keanggotaan', ['delete','id'=>$model->id], ['id'=>'tolak-button'.$model->id,'class' => 'btn btn-danger','data' => ['confirm' => 'Yakin tolak keanggotaan ini?','method' => 'post']]);
+                        if (empty($model->waktu_approve)) return Html::a('<span class="glyphicon glyphicon-remove"></span> Tolak Keanggotaan', ['delete','id'=>$model->id], ['id'=>'tolak-button'.$model->id,'class' => 'btn btn-danger','data' => ['confirm' => 'Yakin tolak keanggotaan ini?','method' => 'post']]);
                         },
                 ],
             ],

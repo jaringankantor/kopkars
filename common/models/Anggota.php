@@ -38,10 +38,10 @@ use yii\web\IdentityInterface;
  * @property string|null $alamat_rumah
  * @property string|null $nomor_npwp
  * @property string|null $keterangan
- * @property string $tanggal_daftar
- * @property string|null $tanggal_update
- * @property string|null $tanggal_login
- * @property string|null $tanggal_approve
+ * @property string $waktu_daftar
+ * @property string|null $waktu_update
+ * @property string|null $waktu_login
+ * @property string|null $waktu_approve
  * @property string|null $approved_by
  * @property string|null $auth_key
  * @property string|null $password_hash
@@ -80,8 +80,8 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             [
                 'class' => TimestampBehavior::className(),
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['tanggal_daftar'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['tanggal_update'],
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['waktu_daftar'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['waktu_update'],
                 ],
                  'value' => 'now()'
             ],
@@ -203,7 +203,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['foto'], 'file', 'extensions' => 'png,jpg,jpeg', 'mimeTypes'=>'image/jpeg,image/png','maxSize'=>2097152],
-            [['tanggal_lahir', 'tanggal_daftar', 'tanggal_update', 'tanggal_login', 'tanggal_approve'], 'safe'],
+            [['tanggal_lahir', 'waktu_daftar', 'waktu_update', 'waktu_login', 'waktu_approve'], 'safe'],
             [['status', 'status_karyawan', 'nomor_anggota', 'nomor_pegawai', 'agama', 'pendidikanterakhir'], 'string', 'max' => 20],
             [['nomor_hp', 'nama_lengkap', 'tempat_lahir', 'email', 'approved_by'], 'string', 'max' => 50],
             [['password_default'], 'string', 'max' => 150],
@@ -269,10 +269,10 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             'alamat_rumah' => 'Alamat Rumah',
             'nomor_npwp' => 'Nomor NPWP',
             'keterangan' => 'Keterangan',
-            'tanggal_daftar' => 'Tanggal Daftar',
-            'tanggal_update' => 'Tanggal Update',
-            'tanggal_login' => 'Tanggal Login',
-            'tanggal_approve' => 'Tanggal Approve',
+            'waktu_daftar' => 'Tanggal Daftar',
+            'waktu_update' => 'Tanggal Update',
+            'waktu_login' => 'Tanggal Login',
+            'waktu_approve' => 'Waktu Approve',
             'approved_by' => 'Approved By',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
