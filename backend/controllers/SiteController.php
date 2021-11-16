@@ -6,7 +6,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 //use yii\filters\AccessControl;
 use yii2mod\rbac\filters\AccessControl;
-use frontend\models\LoginForm;
+use backend\models\LoginForm;
 
 /**
  * Site controller

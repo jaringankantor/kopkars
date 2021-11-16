@@ -18,17 +18,28 @@ return [
         ],
     ],
     'components' => [
-        'errorHandler' => [
-            'errorAction' => 'site/error',
-        ],
         'i18n' => [
             'translations' => [
                 '*' => [ // This config applies to all translations
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/messages'
                 ],
+                'yii2mod.rbac' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@yii2mod/rbac/messages',
+                ],
             ],
-        ], 
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest', 'user'],
+        ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
+        'errorHandler' => [
+            'errorAction' => 'site/error',
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -45,16 +56,16 @@ return [
             // this is the name of the session cookie used for login on the backend
             'name' => 'advanced-backend',
         ],
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
+        //'urlManager' => [
+        //    'enablePrettyUrl' => true,
+        //    'showScriptName' => false,
+            //'suffix' => '.html',
+        //    'rules' => [
+        //        'produk-foto/<kode_toko:[\w\-]*>/<sku:[\w\-]*>-<ke:[\w\-]*>.jpg' => 'produk/view-foto',
+        //    ]
+        //],
         'user' => [
-            'identityClass' => 'common\models\Anggota',
+            'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],

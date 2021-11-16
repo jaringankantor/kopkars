@@ -7,7 +7,7 @@ $this->title = 'Admin';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Hallo, <?=Yii::$app->user->identity->nama_lengkap?>!</h1>
+        <h1>Hallo, <?=Yii::$app->user->identity->kode_toko?>!</h1>
 
         <p class="lead">Selamat datang di halaman admin KOPKARS Politeknik Negeri Jakarta</p>
 

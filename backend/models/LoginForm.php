@@ -1,19 +1,19 @@
 <?php
-namespace frontend\models;
+namespace backend\models;
 
 use Yii;
+use common\models\User;
 use yii\base\Model;
-use common\models\Anggota;
 
 /**
  * Login form
  */
 class LoginForm extends Model
 {
-    public $email;
+    public $username;
     public $password;
-    public $captcha;
     public $rememberMe = true;
+    public $captcha;
 
     private $_user;
 
@@ -24,9 +24,11 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            [['email', 'password', 'captcha'], 'required'],
-            ['email', 'email'],
+            // username and password are both required
+            [['username', 'password'], 'required'],
+            // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
+            // password is validated by validatePassword()
             ['password', 'validatePassword'],
             ['captcha', 'captcha'],
         ];
@@ -44,7 +46,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Email atau Password salah.');
+                $this->addError($attribute, 'Incorrect username or password.');
             }
         }
     }
@@ -71,7 +73,7 @@ class LoginForm extends Model
     protected function getUser()
     {
         if ($this->_user === null) {
-            $this->_user = Anggota::findByEmail($this->email);
+            $this->_user = User::findByEmail($this->username);
         }
 
         return $this->_user;

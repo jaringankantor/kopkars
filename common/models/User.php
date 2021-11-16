@@ -12,6 +12,7 @@ use yii\web\IdentityInterface;
  *
  * @property integer $id
  * @property string $username
+ * @property string $password_default
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $verification_token
@@ -21,12 +22,26 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+* @property string|null $skuprefix1
+ * @property string|null $skuprefix2
+ * @property string|null $skuprefix3
+ * @property string|null $skuprefix4
+ * @property string|null $skuprefix5
+ * @property string|null $skuprefix6
+ * @property string|null $skuprefix7
+ * @property string|null $skuprefix8
+ * @property string|null $skuprefix9
+ * @property string|null $skuprefix10
  */
 class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
+
+    public $username;
+	public $re_password;
+	public $captcha;
 
 
     /**
@@ -47,15 +62,72 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            //if ($this->isNewRecord) {
+                $this->generateAuthKey();
+                $this->setPassword($this->password_default);
+            //}
+            return true;
+        }
+        return false;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
+            [['kode_toko','email','password_default','re_password'], 'required'],
+            ['kode_toko', 'string', 'max' => 50],
+            ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
+            ['email', 'email'],
+            ['re_password', 'compare', 'compareAttribute'=>'password_default', 'skipOnEmpty' => false, 'message'=>'Re-Password aplikasi tidak sama'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            [['auth_key'], 'string', 'max' => 32],
+            [['password_hash','password_reset_token'], 'string', 'max' => 255],
+            [['skuprefix1', 'skuprefix2', 'skuprefix3', 'skuprefix4', 'skuprefix5', 'skuprefix6', 'skuprefix7', 'skuprefix8', 'skuprefix9', 'skuprefix10'], 'string', 'max' => 10],
+            [['email'], 'unique'],
+            ['captcha', 'captcha']
         ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'kode_toko' => 'Kode Toko',
+            'status_aktif' => 'Status Aktif',
+            'email' => 'Email',
+            'password_default' => 'Password',
+            're_password' => 'Ulangi Password',
+            'skuprefix1' => 'SKU Prefix1',
+            'skuprefix2' => 'SKU Prefix2',
+            'skuprefix3' => 'SKU Prefix3',
+            'skuprefix4' => 'SKU Prefix4',
+            'skuprefix5' => 'SKU Prefix5',
+            'skuprefix6' => 'SKU Prefix6',
+            'skuprefix7' => 'SKU Prefix7',
+            'skuprefix8' => 'SKU Prefix8',
+            'skuprefix9' => 'SKU Prefix9',
+            'skuprefix10' => 'SKU Prefix10',
+        ];
+    }
+
+    public static function findUser()
+    {
+        return self::find()
+            ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko]);
+    }
+
+    public static function findOneUser($email)
+    {
+        return self::findUser()
+            ->andWhere(['email'=>$email])
+            ->one();
     }
 
     /**
@@ -74,15 +146,14 @@ class User extends ActiveRecord implements IdentityInterface
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
 
-    /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
-    public static function findByUsername($username)
+    public static function findByEmail($email)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    public static function findByEmailAssignment($email)
+    {
+        return static::find(['email' => $email, 'status_aktif' => self::STATUS_ACTIVE])->innerJoin('auth_assignment', 'user.id = auth_assignment.user_id::integer')->one();
     }
 
     /**
@@ -208,5 +279,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function getKodeToko()
+    {
+        return $this->hasOne(Toko::className(), ['kode' => 'kode_toko']);
     }
 }
