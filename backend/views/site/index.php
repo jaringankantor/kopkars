@@ -11,6 +11,6 @@ $this->title = 'Admin';
 
         <p class="lead">Selamat datang di halaman admin KOPKARS Politeknik Negeri Jakarta</p>
 
-        <p><a class="btn btn-lg btn-success" href="<?php echo yii\helpers\Url::toRoute('anggota')?>>Manajemen Anggota</a></p>
+        <p><a class="btn btn-lg btn-success" href="<?php echo yii\helpers\Url::toRoute('anggota')?>">Manajemen Anggota</a></p>
     </div>
 </div>
