@@ -55,7 +55,7 @@ class AnggotaController extends Controller
     public function actionBeriNomor()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Anggota::find()->where('nomor_anggota IS NULL OR tanggal_approve IS NULL'),
+            'query' => Anggota::find()->where('nomor_anggota IS NULL OR waktu_approve IS NULL'),
             'sort'=> ['defaultOrder' => ['id'=>SORT_ASC]]
         ]);
 
@@ -71,7 +71,7 @@ class AnggotaController extends Controller
         //BELUM BERES, seharusnya ini mengikuti parameter kopkar
         $model->status = 'Aktif';
         $model->nomor_anggota = Anggota::find()->max('nomor_anggota')+1;
-        $model->tanggal_approve = date('Y-m-d H:i:s');
+        $model->waktu_approve = date('Y-m-d H:i:s');
         $model->approved_by = Yii::$app->user->identity->email;
 
         if ($model->save()) {

@@ -108,15 +108,14 @@ class ProdukController extends Controller
     {
         $model = $this->findModelProduk($sku);
 
-        $current_foto_1 = $model->foto_1;
-        $current_foto_2 = $model->foto_2;
-        $current_foto_3 = $model->foto_3;
-        $current_foto_4 = $model->foto_4;
-        $current_foto_5 = $model->foto_5;
-        $current_foto_6 = $model->foto_6;
-        $current_foto_7 = $model->foto_7;
-
         if ($model->load(Yii::$app->request->post())) {
+            $current_foto_1 = $model->foto_1;
+            $current_foto_2 = $model->foto_2;
+            $current_foto_3 = $model->foto_3;
+            $current_foto_4 = $model->foto_4;
+            $current_foto_5 = $model->foto_5;
+            $current_foto_6 = $model->foto_6;
+            $current_foto_7 = $model->foto_7;
             
             $upload = UploadedFile::getInstance($model, 'foto_1');
             if(!empty($upload)){
@@ -182,8 +181,8 @@ class ProdukController extends Controller
     }
 
     public function actionUpdateEditableJson() {
+        $model = Produk::findOneProduk(Json::decode(Yii::$app->request->post('editableKey'))['sku']); // your model can be loaded here
         if (isset($_POST['hasEditable'])) {
-            $model = Produk::findOneProduk(Json::decode(Yii::$app->request->post('editableKey'))['sku']); // your model can be loaded here
 
             Yii::$app->response->format = Response::FORMAT_JSON;
             

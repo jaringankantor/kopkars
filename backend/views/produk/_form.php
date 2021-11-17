@@ -29,7 +29,7 @@ $text_skuprefix = rtrim($text_skuprefix,', ');
 
     <?php $form = ActiveForm::begin(['type' => ActiveForm::TYPE_HORIZONTAL,'formConfig' => ['labelSpan' => 3, 'deviceSize' => ActiveForm::SIZE_SMALL],'options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'sku')->textInput(['placeholder'=>'Contoh: '.$text_skuprefix,'maxlength' => true]) ?>
+    <?= $form->field($model, 'sku')->textInput(['maxlength' => true])->hint('Contoh: '.$text_skuprefix) ?>
 
     <?php
     $model->status_aktif = true;
