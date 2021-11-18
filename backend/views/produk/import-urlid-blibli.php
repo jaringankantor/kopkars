@@ -13,7 +13,7 @@ $worksheet_update = 'Data';
 
 $row_mulai = 2;
 $column_urlid = 'A';
-$column_sku = 'D';
+$column_sku = 'E';
 
 ?>
 
