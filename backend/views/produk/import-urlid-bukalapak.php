@@ -9,7 +9,7 @@ use common\models\Toko;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
 
-$worksheet_update = 'Ubah Sekaligus';
+$worksheet_update = 'Sheet1';
 
 $row_mulai = 4;
 $column_urlid = 'R';
