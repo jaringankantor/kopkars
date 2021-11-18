@@ -17,7 +17,7 @@ $row_mulai = 4;
 $column_sku = 'C';
 $column_harga = 'D';
 $column_stok = 'E';
-$column_deskripsi = 'F';
+$column_deskripsi = 'G';
 
 
 $column_sku_angka = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($column_sku);
