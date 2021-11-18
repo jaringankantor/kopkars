@@ -1,0 +1,30 @@
+#https://aaronfrancis.com/2014/hosting-an-advanced-yii2-application-on-heroku
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    RewriteEngine On
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    #RewriteCond %{SERVER_PORT} 80
+    #RewriteRule (.*) https://%{SERVER_NAME}/$1 [R,L]
+
+    # deal with backend first
+    RewriteCond %{REQUEST_URI} ^/(backend)
+    RewriteRule ^backend/assets/(.*)$ backend/web/assets/$1 [L]
+    RewriteRule ^backend/public/css/(.*)$ backend/web/public/css/$1 [L]
+
+    RewriteCond %{REQUEST_URI} !^/backend/web/(assets|public)/
+    RewriteCond %{REQUEST_URI} ^/(backend)
+    RewriteRule ^.*$ backend/web/index.php [L]
+
+
+    RewriteCond %{REQUEST_URI} ^/(assets|css)
+    RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
+    RewriteRule ^public/css/(.*)$ frontend/web/public/css/$1 [L]
+
+    RewriteCond %{REQUEST_URI} !^/(frontend|backend)/web/(assets|public)/
+    RewriteCond %{REQUEST_URI} !index.php
+    RewriteCond %{REQUEST_FILENAME} !-f [OR]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^.*$ frontend/web/index.php
+</IfModule>

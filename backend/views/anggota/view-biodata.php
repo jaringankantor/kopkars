@@ -16,10 +16,6 @@ $this->title = 'Biodata '.$model->nama_lengkap;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-    <?= Html::a('<span class="glyphicon glyphicon-envelope"></span> Update Email', ['update-email'], ['class' => 'btn btn-success']) ?> <?= Html::a('<span class="glyphicon glyphicon-phone"></span> Update Nomor HP', ['update-hp'], ['class' => 'btn btn-success']) ?> <?= Html::a('<span class="glyphicon glyphicon-user"></span>  Update Biodata', ['update'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <div class="row">
         <div class="col-xs-12 col-md-8">
         <?= DetailView::widget([
@@ -41,7 +37,9 @@ $this->title = 'Biodata '.$model->nama_lengkap;
                 'pendidikanterakhir',
                 'alamat_rumah',
                 'nomor_npwp',
+                'keterangan',
                 'waktu_login:date',
+                'waktu_update:date',
             ],
         ]) ?>
         </div>
@@ -55,7 +53,6 @@ $this->title = 'Biodata '.$model->nama_lengkap;
             }
             echo $foto_profil;
             ?>
-            <?= Html::a('<span class="glyphicon glyphicon-camera"></span> Update Foto', ['update-foto'], ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 

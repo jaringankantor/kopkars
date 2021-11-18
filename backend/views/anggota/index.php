@@ -84,7 +84,7 @@ $this->title = 'Anggota';
                 ],
                 'urlCreator' => function ($action, $model, $key, $index) {
                     if ($action === 'view') {
-                        return ['anggota/view-detail','id'=>$model->id];
+                        return ['anggota/view-biodata','id'=>$model->id];
                     }
                     if ($action === 'update') {
                         return ['anggota/update','id'=>$model->id];

@@ -7,12 +7,6 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'modules' => [
-        'rbac' => [
-            'class' => 'yii2mod\rbac\Module',
-        ],
-        'rbacconsole' => [
-            'class' => 'yii2mod\rbac\ConsoleModule'
-        ]
     ],
     'components' => [
         'assetManager' => [
@@ -29,6 +23,5 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        
     ],
 ];

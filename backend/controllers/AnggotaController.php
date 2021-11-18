@@ -92,6 +92,13 @@ class AnggotaController extends Controller
         ]);
     }
 
+    public function actionViewBiodata($id)
+    {
+        return $this->render('view-biodata', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
     /**
      * Creates a new Anggota model.
      * If creation is successful, the browser will be redirected to the 'view' page.

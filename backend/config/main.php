@@ -16,6 +16,12 @@ return [
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
         ],
+        'rbac' => [
+            'class' => 'yii2mod\rbac\Module',
+        ],
+        'rbacconsole' => [
+            'class' => 'yii2mod\rbac\ConsoleModule'
+        ]
     ],
     'components' => [
         'i18n' => [
@@ -51,18 +57,22 @@ return [
         ],
         'request' => [
             'csrfParam' => '_csrf-backend',
+            //setting jika menggunakan Cloud Server
+            'class' => 'common\components\Request',
+            'web'=> '/backend/web',
+            'adminUrl' => '/backend'
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
             'name' => 'advanced-backend',
         ],
         'urlManager' => [
-            //'enablePrettyUrl' => true,
-            //'showScriptName' => false,
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
             //'suffix' => '.html',
-            //'rules' => [
-            //    'produk-foto/<kode_toko:[\w\-]*>/<sku:[\w\-]*>-<ke:[\w\-]*>.jpg' => 'produk/view-foto',
-            //]
+            'rules' => [
+                'produk-foto/<kode_toko:[\w\-]*>/<sku:[\w\-]*>-<ke:[\w\-]*>.jpg' => 'produk/view-foto',
+            ]
         ],
         'user' => [
             'identityClass' => 'common\models\User',
