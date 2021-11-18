@@ -56,14 +56,14 @@ return [
             // this is the name of the session cookie used for login on the backend
             'name' => 'advanced-backend',
         ],
-        //'urlManager' => [
-        //    'enablePrettyUrl' => true,
-        //    'showScriptName' => false,
+        'urlManager' => [
+            //'enablePrettyUrl' => true,
+            //'showScriptName' => false,
             //'suffix' => '.html',
-        //    'rules' => [
-        //        'produk-foto/<kode_toko:[\w\-]*>/<sku:[\w\-]*>-<ke:[\w\-]*>.jpg' => 'produk/view-foto',
-        //    ]
-        //],
+            //'rules' => [
+            //    'produk-foto/<kode_toko:[\w\-]*>/<sku:[\w\-]*>-<ke:[\w\-]*>.jpg' => 'produk/view-foto',
+            //]
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

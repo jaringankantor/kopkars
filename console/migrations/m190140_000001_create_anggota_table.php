@@ -44,7 +44,7 @@ class m190140_000001_create_anggota_table extends Migration
             'password_hash' => $this->string(255),
             'password_reset_token' => $this->string(255),
             'verification_token' => $this->string(255),
-            'nomor_zahir' => $this->string(20)->unique(), //hanya sementara selama proses migrasi data, nanti di zahir semua akan diganti jadi nomor_anggota
+            'nomor_zahir' => $this->string(50)->unique(), //hanya sementara selama proses migrasi data, nanti di zahir semua akan diganti jadi nomor_anggota
         ]);
 
         $this->addForeignKey('anggota_variabel_status_fkey', 'anggota', 'status', 'variabel_status', 'status', 'RESTRICT', 'CASCADE');

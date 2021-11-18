@@ -166,7 +166,7 @@ class ProdukController extends Controller
 				$model->foto_7 = $current_foto_7;
 			}
 
-            if ($model->validate() && $model->save()) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect([
                     'index'
                 ]);
