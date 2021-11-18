@@ -6,7 +6,7 @@ use common\models\Produk;
 use common\models\SettingMarketplaceEtalase;
 use common\models\SettingMarketplaceKategori;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/hiiphooray-tani/template-export-zobaze/Zobaze 2.0 Import Excel - Sheet1.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-zobaze/Zobaze 2.0 Import Excel - Sheet1.xlsx';
 
 $marketplace = 'zbz';
 

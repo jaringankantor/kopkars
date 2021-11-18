@@ -8,7 +8,7 @@
 use common\models\Produk;
 use common\models\Toko;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/template-export-blibli/bulk-update-product-template.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/template-export-blibli/bulk-update-product-template.xlsx';
 
 $worksheet_update = 'Data';
 $row_mulai = 2;

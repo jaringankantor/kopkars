@@ -6,7 +6,7 @@ use common\models\Produk;
 use common\models\SettingMarketplaceEtalase;
 use common\models\SettingMarketplaceKategori;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/hiiphooray-tani/template-export-tokopedia/tambah-sekaligus(9146765)-20210917.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-tokopedia/tambah-sekaligus(9146765)-20210917.xlsx';
 
 $marketplace = 'tkp';
 

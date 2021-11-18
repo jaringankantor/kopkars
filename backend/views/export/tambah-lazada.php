@@ -7,7 +7,7 @@ use common\models\SettingMarketplace;
 use common\models\SettingMarketplaceKategori;
 use common\models\VariabelMarketplaceKategori;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/hiiphooray-tani/template-export-lazada/newPublish400602186105export1613147575173_0213-00-32-55.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-lazada/newPublish400602186105export1613147575173_0213-00-32-55.xlsx';
 
 $marketplace = 'lzd';
 

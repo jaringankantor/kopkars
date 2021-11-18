@@ -7,7 +7,7 @@ use common\models\SettingMarketplace;
 use common\models\SettingMarketplaceKategori;
 use common\models\VariabelMarketplaceKategori;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/hiiphooray-tani/template-export-bukalapak/Template-130221.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-bukalapak/Template-130221.xlsx';
 
 $marketplace = 'bkl';
 

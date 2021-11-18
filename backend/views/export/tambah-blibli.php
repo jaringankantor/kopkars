@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use common\models\Produk;
 use common\models\SettingMarketplace;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/hiiphooray-tani/template-export-blibli/Perlengkapan_Taman_Lainnya_template.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-blibli/Perlengkapan_Taman_Lainnya_template.xlsx';
 
 $marketplace = 'bli';
 

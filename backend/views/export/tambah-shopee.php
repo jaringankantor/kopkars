@@ -7,7 +7,7 @@ use common\models\SettingMarketplace;
 use common\models\SettingMarketplaceEtalase;
 use common\models\SettingMarketplaceKategori;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/hiiphooray-tani/template-export-shopee/Shopee_mass_upload_27-05-2021_basic_template.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-shopee/Shopee_mass_upload_27-05-2021_basic_template.xlsx';
 
 $marketplace = 'shp';
 

@@ -6,7 +6,7 @@ use common\models\Produk;
 use common\models\SettingMarketplaceEtalase;
 use common\models\SettingMarketplaceKategori;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/hiiphooray-tani/template-export-jdid/BatchUploadPopProducts1613552058271.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-jdid/BatchUploadPopProducts1613552058271.xlsx';
 
 $marketplace = 'jdi';
 

@@ -7,7 +7,7 @@ use common\models\Produk;
 use common\models\SettingMarketplace;
 use common\models\SettingMarketplaceKategori;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/hiiphooray-tani/template-export-elevenia/bulk-upload-Ver1.2in.xls';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-elevenia/bulk-upload-Ver1.2in.xls';
 
 $marketplace = 'elv';
 

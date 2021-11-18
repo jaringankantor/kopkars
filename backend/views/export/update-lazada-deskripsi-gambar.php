@@ -8,7 +8,7 @@ use common\models\Produk;
 use common\models\SettingMarketplace;
 use common\models\Toko;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/hiiphooray-tani/template-export-lazada/basic400602186105export1630734241103_0904-13-44-01.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-lazada/basic400602186105export1630734241103_0904-13-44-01.xlsx';
 
 $worksheet_update = 'template';
 

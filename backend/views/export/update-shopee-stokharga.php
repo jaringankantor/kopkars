@@ -7,7 +7,7 @@
 use common\models\Produk;
 use common\models\Toko;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/template-export-shopee/mass_update_sales_info_hiiphooray_16-02-2021_1613461217325.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/template-export-shopee/mass_update_sales_info_hiiphooray_16-02-2021_1613461217325.xlsx';
 
 $row_mulai = 4;
 $column_stok = 'H';

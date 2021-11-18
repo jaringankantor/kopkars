@@ -5,7 +5,7 @@ use yii\helpers\Url;
 use common\models\Produk;
 use common\models\Toko;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/hiiphooray-tani/template-export-tokopedia/ubah-sekaligus-9146765-(1)-20210904124823.614.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-tokopedia/ubah-sekaligus-9146765-(1)-20210904124823.614.xlsx';
 
 $marketplace = 'tkp';
 

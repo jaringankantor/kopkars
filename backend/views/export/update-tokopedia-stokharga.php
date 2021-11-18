@@ -8,7 +8,7 @@
 use common\models\Produk;
 use common\models\Toko;
 
-$spreadsheet = Yii::getAlias('@app').'/web/assets/public/docs/template-export-tokopedia/ubah-sekaligus-1677559-(1)-20210221195410.962.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/template-export-tokopedia/ubah-sekaligus-1677559-(1)-20210221195410.962.xlsx';
 
 $row_mulai = 4;
 $column_status = 'I';

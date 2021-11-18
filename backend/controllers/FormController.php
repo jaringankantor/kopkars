@@ -82,7 +82,7 @@ class FormController extends Controller
             $model->file_type = $upload->type;
             
             if ($model->validate() && $model->save()) {
-                $file_path = Yii::getAlias('@app').'/web/assets/public/upload_templates/'.$model->kode.'.'.$model->file_extension;
+                $file_path = Yii::getAlias('@app').'/web/public/upload_templates/'.$model->kode.'.'.$model->file_extension;
                 $upload->saveAs($file_path);
                 $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader(ucfirst($upload->extension));
                 $spreadsheet = $reader->load($file_path);
@@ -144,7 +144,7 @@ class FormController extends Controller
 			}
 
             if ($model->validate() && $model->save()) {
-                $file_path = Yii::getAlias('@app').'/web/assets/public/upload_templates/'.$model->kode.'.'.$model->file_extension;
+                $file_path = Yii::getAlias('@app').'/web/public/upload_templates/'.$model->kode.'.'.$model->file_extension;
                 $upload->saveAs($file_path);
                 
                 return $this->redirect([
