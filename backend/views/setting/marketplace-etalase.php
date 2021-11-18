@@ -9,7 +9,7 @@ $this->title = VariabelMarketplace::findOneVariabelMarketplace(['kode' => Yii::$
 ?>
 
 <div class="col-md-3">
-<?
+<?php
 $fulldataarray = VariabelMarketplaceEtalase::findVariabelMarketplaceEtalase()->orderBy(['kode_variabel_marketplace'=>SORT_ASC,'marketplace_etalase'=>SORT_ASC])->all();
 
 
@@ -39,7 +39,6 @@ foreach($data as $key => $array_etalase) {
         'items' => $data_etalase,
     );
 }
-
 
 
 use kartik\sidenav\SideNav;
