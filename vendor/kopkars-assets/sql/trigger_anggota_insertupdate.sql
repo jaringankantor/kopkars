@@ -65,7 +65,7 @@ BEGIN
          WHERE id=NEW.id;
       END IF;
 
-      --Jika user mengubah nama_lengkap catat pada histori
+      --Jika user mengubah nama_lengkap catat pada histori.
       IF (NEW.nama_lengkap != OLD.nama_lengkap) THEN
          INSERT INTO histori_anggota (anggota_id,anggota_kolom,value_old,value_new)
          VALUES (NEW.id, 'nama_lengkap', OLD.nama_lengkap, NEW.nama_lengkap);
