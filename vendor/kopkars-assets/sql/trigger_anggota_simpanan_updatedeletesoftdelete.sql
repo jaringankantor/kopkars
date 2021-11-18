@@ -58,7 +58,7 @@ BEGIN
          VALUES (OLD.anggota_id, OLD.id, 'is_deleted', OLD.is_deleted, NEW.is_deleted, 'SOFTDELETE TRUE', last_time, NEW.last_softdelete_by);
       END IF;
 
-      --Jika update data is_deleted=false catat pada histori
+      --Jika update data is_deleted=false catat pada histori.
       IF ((NEW.is_deleted != OLD.is_deleted) AND (NEW.is_deleted = FALSE)) THEN
          INSERT INTO histori_anggota_simpanan (anggota_id,anggota_simpanan_id,anggota_simpanan_kolom,value_old,value_new,jenis_transaksi,waktu,by)
          VALUES (OLD.anggota_id, OLD.id, 'is_deleted', OLD.is_deleted, NEW.is_deleted, 'SOFTDELETE FALSE', last_time, NEW.last_softdelete_by);
