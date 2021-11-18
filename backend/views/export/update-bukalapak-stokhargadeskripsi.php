@@ -7,7 +7,7 @@
 use common\models\Produk;
 use common\models\Toko;
 
-$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-bukalapak/MultipleUpdateTemplate-270221 (3).xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-bukalapak/Edit-181121-2242-1.xlsx';
 
 $worksheet_update = 'Ubah Sekaligus';
 
