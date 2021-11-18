@@ -41,20 +41,20 @@ return [
             ],
         ],
         'request' => [
+            'class' => 'common\components\Request',
             'csrfParam' => '_csrf-frontend',
+            'web'=> '/frontend/web',
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
         'user' => [
             'identityClass' => 'common\models\Anggota',
             'enableAutoLogin' => true,
