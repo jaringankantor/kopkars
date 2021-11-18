@@ -1,6 +1,5 @@
 <?php
 use yii\data\ActiveDataProvider;
-use yii\helpers\Json;
 use yii\helpers\Url;
 
 use common\models\Produk;
