@@ -58,7 +58,7 @@ class AnggotaController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Anggota::find(),
+            'query' => Anggota::findAnggota(),
         ]);
 
         return $this->render('index', [

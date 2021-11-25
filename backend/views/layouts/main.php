@@ -53,6 +53,69 @@ AppAsset::register($this);
             ]
         ];
     }
+    if (Yii::$app->user->can('All Sistem Marketplace')) {
+        $menuItems[] =
+        [
+            'label' => 'Sistem Mkp',
+            'items' => [
+                ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
+                ['label' => 'Toko', 'url' => ['/toko']],
+                ['label' => 'User', 'url' => ['/user']],
+                ['label' => 'Field', 'url' => ['/field']],
+                ['label' => 'Form', 'url' => ['/form']],
+                ['label' => 'Form Field', 'url' => ['/form-field']],
+            ]
+        ];
+    }
+
+    if (Yii::$app->user->can('All Master Marketplace')) {
+        $menuItems[] =
+        [
+            'label' => 'Master Mkp',
+            'items' => [
+                ['label' => 'Kategori', 'url' => ['/variabel-marketplace-kategori']],
+                ['label' => 'Etalase', 'url' => ['/variabel-marketplace-etalase']],
+                ['label' => 'Produk', 'url' => ['/produk']],
+            ]
+        ];
+    }
+
+    if (Yii::$app->user->can('All Setting Marketplace')) {
+        $menuItems[] =
+        [
+            'label' => 'Setting Mkp',
+            'items' => [
+                ['label' => 'Blibli', 'url' => ['/setting/blibli']],
+                ['label' => 'Bukalapak', 'url' => ['/setting/bukalapak']],
+                ['label' => 'Elevenia', 'url' => ['/setting/elevenia']],
+                ['label' => 'Facebook Catalog', 'url' => ['/setting/facebook-catalog']],
+                ['label' => 'JDID', 'url' => ['/setting/jdid']],
+                ['label' => 'Lazada', 'url' => ['/setting/lazada']],
+                ['label' => 'Shopee', 'url' => ['/setting/shopee']],
+                ['label' => 'Tokopedia', 'url' => ['/setting/tokopedia']],
+                ['label' => 'Kategori Marketplace', 'url' => ['/setting/marketplace-kategori']],
+                ['label' => 'Etalase Marketplace', 'url' => ['/setting/marketplace-etalase']],
+            ]
+        ];
+    }
+
+    if (Yii::$app->user->can('All Export Marketplace')) {
+        $menuItems[] =
+        [
+            'label' => 'Eksport',
+            'items' => [
+                ['label' => 'Eksport Tambah', 'url' => ['/export/form-tambah']],
+                ['label' => 'Blibli: Stok dan Harga', 'url' => ['/export/update-blibli-stokharga']],
+                ['label' => 'Bukalapak: Stok, Harga, dan Deskripsi', 'url' => ['/export/update-bukalapak-stokhargadeskripsi']],
+                ['label' => 'Lazada: Deskripsi dan Gambar (saat ini hanya deskripsi saja)', 'url' => ['/export/update-lazada-deskripsi-gambar']],
+                ['label' => 'Lazada: Stok dan Harga', 'url' => ['/export/update-lazada-stokharga']],
+                ['label' => 'Shopee: Deskripsi', 'url' => ['/export/update-shopee-deskripsi']],
+                ['label' => 'Shopee: Stok dan Harga', 'url' => ['/export/update-shopee-stokharga']],
+                ['label' => 'Tokopedia: Deskripsi, Gambar, Video (saat ini hanya deskripsi dan video saja)', 'url' => ['/export/update-tokopedia-deskripsi-gambar-video']],
+                ['label' => 'Tokopedia: Stok dan Harga', 'url' => ['/export/update-tokopedia-stokharga']],
+            ]
+        ];
+    }
 
     if (Yii::$app->user->can('All Manajemen Anggota')) {
         $menuItems[] =
@@ -85,67 +148,6 @@ AppAsset::register($this);
             ],
         ];
     }
-
-        $menuItems[] =
-        [
-            'label' => 'Sistem',
-            'items' => [
-                ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
-                ['label' => 'Toko', 'url' => ['/toko']],
-                ['label' => 'User', 'url' => ['/user']],
-                ['label' => 'Field', 'url' => ['/field']],
-                ['label' => 'Form', 'url' => ['/form']],
-                ['label' => 'Form Field', 'url' => ['/form-field']],
-                ['label' => 'RBAC Rule', 'url' => ['/rbac/rule']],
-                ['label' => 'RBAC Route', 'url' => ['/rbac/route']],
-                ['label' => 'RBAC Permission', 'url' => ['/rbac/permission']],
-                ['label' => 'RBAC Role', 'url' => ['/rbac/role']],
-                ['label' => 'RBAC Assignment', 'url' => ['/rbac/assignment']],
-            ]
-        ];
-        $menuItems[] =
-        [
-            'label' => 'Master',
-            'items' => [
-                ['label' => 'Kategori', 'url' => ['/variabel-marketplace-kategori']],
-                ['label' => 'Etalase', 'url' => ['/variabel-marketplace-etalase']],
-                ['label' => 'Produk', 'url' => ['/produk']],
-            ]
-        ];
-        $menuItems[] =
-        [
-            'label' => 'Setting',
-            'items' => [
-                ['label' => 'Blibli', 'url' => ['/setting/blibli']],
-                ['label' => 'Bukalapak', 'url' => ['/setting/bukalapak']],
-                ['label' => 'Elevenia', 'url' => ['/setting/elevenia']],
-                ['label' => 'Facebook Catalog', 'url' => ['/setting/facebook-catalog']],
-                ['label' => 'JDID', 'url' => ['/setting/jdid']],
-                ['label' => 'Lazada', 'url' => ['/setting/lazada']],
-                ['label' => 'Shopee', 'url' => ['/setting/shopee']],
-                ['label' => 'Tokopedia', 'url' => ['/setting/tokopedia']],
-                ['label' => 'Kategori Marketplace', 'url' => ['/setting/marketplace-kategori']],
-                ['label' => 'Etalase Marketplace', 'url' => ['/setting/marketplace-etalase']],
-            ]
-        ];
-        $menuItems[] =
-        [
-            'label' => 'Eksport Tambah', 'url' => ['/export/form-tambah'],
-        ];
-        $menuItems[] =
-        [
-            'label' => 'Eksport Update',
-            'items' => [
-                ['label' => 'Blibli: Stok dan Harga', 'url' => ['/export/update-blibli-stokharga']],
-                ['label' => 'Bukalapak: Stok, Harga, dan Deskripsi', 'url' => ['/export/update-bukalapak-stokhargadeskripsi']],
-                ['label' => 'Lazada: Deskripsi dan Gambar (saat ini hanya deskripsi saja)', 'url' => ['/export/update-lazada-deskripsi-gambar']],
-                ['label' => 'Lazada: Stok dan Harga', 'url' => ['/export/update-lazada-stokharga']],
-                ['label' => 'Shopee: Deskripsi', 'url' => ['/export/update-shopee-deskripsi']],
-                ['label' => 'Shopee: Stok dan Harga', 'url' => ['/export/update-shopee-stokharga']],
-                ['label' => 'Tokopedia: Deskripsi, Gambar, Video (saat ini hanya deskripsi dan video saja)', 'url' => ['/export/update-tokopedia-deskripsi-gambar-video']],
-                ['label' => 'Tokopedia: Stok dan Harga', 'url' => ['/export/update-tokopedia-stokharga']],
-            ]
-        ];
 
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

@@ -85,7 +85,7 @@ class Produk extends \yii\db\ActiveRecord
         return [
             [['kode_toko','sku', 'nama_produk', 'brand', 'warna', 'deskripsi', 'harga_async', 'stok_async', 'berat'], 'required'],
             ['kode_toko', 'string', 'max' => 50],
-            ['kode_toko', 'match' ,'pattern'=>'/^\[A-Za-z0-9._-\]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
+            ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['status_aktif'], 'boolean'],
             [['harga_async', 'stok_async', 'berat'], 'default', 'value' => null],
             [['harga_async', 'stok_async', 'berat'], 'integer'],

@@ -1,15 +1,14 @@
 <?php
-
-use yii\helpers\Html;
-//use yii\widgets\ActiveForm;
-use kartik\widgets\ActiveForm;
+use common\models\Anggota;
+use common\models\Transaksi;
 use kartik\widgets\FileInput;
-use common\models\Produk;
-use common\models\Toko;
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
+//use yii\widgets\ActiveForm;
+use kartik\widgets\ActiveForm;
 
-$worksheet_update = 'Page 1';
+$worksheet_update = 'Page1';
 
 $row_mulai = 6;
 $column_tanggal = 'A';
@@ -52,40 +51,48 @@ $this->title = 'Import Transaksi Zahir';
             $highestColumn = $worksheet->getHighestColumn();
             $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn);
 
+            $sum_error = 0;
             //inilah looping untuk membaca cell dalam file excel,perkolom
             for ($row = $row_mulai; $row <= $highestRow; ++$row) { //$row = 2 artinya baris kedua yang dibaca dulu(header kolom diskip disesuaikan saja)
                 //for ($col = 1; $col <= $highestColumnIndex; ++$col) {
-                $tanggal = $worksheet->getCell($column_tanggal.$row)->getValue();
-                $reference = $worksheet->getCell($column_reference.$row)->getValue();
-                $nopesanan = $worksheet->getCell($column_nopesanan.$row)->getValue();
-                $pelanggan = $worksheet->getCell($column_pelanggan.$row)->getValue();
-                $matauang = $worksheet->getCell($column_matauang.$row)->getValue();
-                $subtotal = $worksheet->getCell($column_subtotal.$row)->getValue();
-                $diskon = $worksheet->getCell($column_diskon.$row)->getValue();
-                $pajak = $worksheet->getCell($column_pajak.$row)->getValue();
-                $totalpenjualan = $worksheet->getCell($column_totalpenjualan.$row)->getValue(); 
-                $pembayaran = $worksheet->getCell($column_pembayaran.$row)->getValue();
-                $saldo = $worksheet->getCell($column_saldo.$row)->getValue();
-            
-                //BELUM BERES
-                $model = Produk::findOneProduk($sku);
-                $model->scenario = 'backend-import-zahir';
-                $model->kanal_transaksi = 'zahir';
-                $model->nomor_referensi = $reference;
-                $model->nomor_pesanan = $nopesanan;
-                $model->anggota_id integer,
-                $model->anggota_nomor_zahir character varying(20) COLLATE pg_catalog."default",
-                $model->nama_pelanggan = $pelanggan;
-                $model->mata_uang = $matauang;
-                $model->subtotal = $subtotal;
-                $model->diskon = $diskon;
-                $model->pajak = $pajak;
-                $model->total_penjualan = $totalpenjualan;
-                $model->pembayaran = $pembayaran;
-                $model->saldo = $saldo;
-                $model->save();
+                $tanggal = trim($worksheet->getCell($column_tanggal.$row)->getValue());
+                $reference = trim($worksheet->getCell($column_reference.$row)->getValue());
+                $nopesanan = trim($worksheet->getCell($column_nopesanan.$row)->getValue());
+                $pelanggan = trim($worksheet->getCell($column_pelanggan.$row)->getValue());
+                $matauang = trim($worksheet->getCell($column_matauang.$row)->getValue());
+                $subtotal = trim($worksheet->getCell($column_subtotal.$row)->getValue());
+                $diskon = trim($worksheet->getCell($column_diskon.$row)->getValue());
+                $pajak = trim($worksheet->getCell($column_pajak.$row)->getValue());
+                $totalpenjualan = trim($worksheet->getCell($column_totalpenjualan.$row)->getValue()); 
+                $pembayaran = trim($worksheet->getCell($column_pembayaran.$row)->getValue());
+                $saldo = trim($worksheet->getCell($column_saldo.$row)->getValue());
+
+                if(substr($reference,0,4)=='KSR-' AND strlen($reference)>7) {
+                    $jumlah_transaksi = Transaksi::findTransaksiByKanal('zahir',$reference)->count();
+                    if($jumlah_transaksi==0) {
+                        $anggota_id = Anggota::findOneAnggotaByNomorZahir($pelanggan)->id;
+                        $model = new Transaksi();
+                        $model->scenario = 'backend-import-zahir';
+                        $model->kode_toko=Yii::$app->user->identity->kode_toko;
+                        $model->kanal_transaksi = 'zahir';
+                        $model->nomor_referensi = $reference;
+                        $model->nomor_pesanan = $nopesanan;
+                        $model->anggota_nomor_zahir= $pelanggan;
+                        $model->anggota_id = $anggota_id;
+                        $model->nama_pelanggan = $pelanggan;
+                        $model->mata_uang = $matauang;
+                        $model->subtotal = $subtotal;
+                        $model->diskon = $diskon;
+                        $model->pajak = $pajak;
+                        $model->total_penjualan = $totalpenjualan;
+                        $model->pembayaran = $pembayaran;
+                        $model->saldo = $saldo;
+                        $model->insert_by = Yii::$app->user->identity->email;
+                        if (!$model->save()) $sum_error++;
+                    }
+                }
             }
-            Yii::$app->session->setFlash('success', "Import Selesai, lihat List Transaksi"); 
+            Yii::$app->session->setFlash('success', "Import Selesai, lihat List Transaksi. Jumlah error: ".$sum_error); 
         }
     }
     ?>

@@ -123,6 +123,7 @@ class SiteController extends Controller
         $model->scenario = 'frontend-create-anggota';
 
         if ($model->load(Yii::$app->request->post())) {
+            $model->kode_toko = Yii::$app->params['kode_toko'];
             $model->setPassword($model->password_default);
             $model->generateAuthKey();
             $model->generateEmailVerificationToken();

@@ -33,6 +33,7 @@ use yii2tech\ar\softdelete\SoftDeleteQueryBehavior;
  * @property bool|null $is_deleted
  * @property string|null $deleted_at
  * @property string|null $last_softdelete_by
+ * @property Toko $kodeToko
  *
  * @property Anggota $anggota
  * @property VariabelKanalTransaksi $kanalTransaksi
@@ -61,7 +62,9 @@ class Transaksi extends \yii\db\ActiveRecord
             'softDeleteBehavior' => [
                 'class' => SoftDeleteBehavior::className(),
                 'softDeleteAttributeValues' => [
-                    'is_deleted' => true
+                    'is_deleted' => true,
+                    'deleted_at' => date("Y-m-d H:i:s"),
+                    'last_softdelete_by' => Yii::$app->user->identity->email,
                 ],
                 'replaceRegularDelete' => true // mutate native `delete()` method
             ],
@@ -74,15 +77,18 @@ class Transaksi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['kanal_transaksi'], 'required'],
+            [['kode_toko','kanal_transaksi'], 'required'],
+            ['kode_toko', 'string', 'max' => 50],
+            ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['anggota_id', 'subtotal', 'diskon', 'pajak', 'total_penjualan', 'pembayaran', 'saldo'], 'default', 'value' => null],
             [['anggota_id', 'subtotal', 'diskon', 'pajak', 'total_penjualan', 'pembayaran', 'saldo'], 'integer'],
             [['waktu', 'last_waktu_update', 'deleted_at'], 'safe'],
             [['is_deleted'], 'boolean'],
-            [['kanal_transaksi', 'nomor_referensi', 'nomor_pesanan', 'anggota_nomor_zahir', 'nama_pelanggan'], 'string', 'max' => 20],
+            [['kanal_transaksi', 'nomor_referensi', 'nomor_pesanan'], 'string', 'max' => 20],
+            ['nomor_referensi', 'unique', 'targetAttribute' => ['kode_toko', 'kanal_transaksi', 'nomor_referensi']],
             [['mata_uang'], 'string', 'max' => 6],
             [['keterangan'], 'string', 'max' => 255],
-            [['insert_by', 'last_update_by', 'last_softdelete_by'], 'string', 'max' => 50],
+            [['anggota_nomor_zahir', 'nama_pelanggan','insert_by', 'last_update_by', 'last_softdelete_by'], 'string', 'max' => 50],
             [['anggota_id'], 'exist', 'skipOnError' => true, 'targetClass' => Anggota::className(), 'targetAttribute' => ['anggota_id' => 'id']],
             [['kanal_transaksi'], 'exist', 'skipOnError' => true, 'targetClass' => VariabelKanalTransaksi::className(), 'targetAttribute' => ['kanal_transaksi' => 'kanal_transaksi']],
         ];
@@ -95,6 +101,7 @@ class Transaksi extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'kode_toko' => 'Kode Toko',
             'kanal_transaksi' => 'Kanal Transaksi',
             'nomor_referensi' => 'Nomor Referensi',
             'nomor_pesanan' => 'Nomor Pesanan',
@@ -123,7 +130,7 @@ class Transaksi extends \yii\db\ActiveRecord
     {
         $scenarios = parent::scenarios();
         $scenarios['default'] = [];
-        $scenarios['backend-import-zahir'] = ['kanal_transaksi','nomor_referensi','nomor_pesanan','anggota_nomor_zahir','nama_pelanggan','mata_uang','subtotal','diskon','pajak','total_penjualan','pembayaran','saldo'];
+        $scenarios['backend-import-zahir'] = ['kode_toko','kanal_transaksi','nomor_referensi','nomor_pesanan','anggota_nomor_zahir','nama_pelanggan','mata_uang','subtotal','diskon','pajak','total_penjualan','pembayaran','saldo'];
         return $scenarios;
     }
 
@@ -132,9 +139,14 @@ class Transaksi extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery|AnggotaQuery
      */
-    public function getAnggota()
+    public function getAnggotaById()
     {
         return $this->hasOne(Anggota::className(), ['id' => 'anggota_id']);
+    }
+
+    public function getAnggotaByNoZahir()
+    {
+        return $this->hasOne(Anggota::className(), ['nomor_zahir' => 'anggota_nomor_zahir']);
     }
 
     /**
@@ -156,9 +168,31 @@ class Transaksi extends \yii\db\ActiveRecord
         return new TransaksiQuery(get_called_class());
     }
 
-    public static function findAnggotaTransaksi()
+    public static function findTransaksi()
     {
         return self::find()
-            ->where(['anggota_id'=>Yii::$app->user->identity->id]);
+            ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko]);
+    }
+
+    public static function findTransaksiByKanal($kanal_transaksi,$nomor_referensi)
+    {
+        return self::findTransaksi()
+            ->andWhere(['kanal_transaksi'=>$kanal_transaksi])
+            ->andWhere(['nomor_referensi'=>$nomor_referensi]);
+    }
+
+    public static function findOneTransaksiByKanal($kanal_transaksi,$nomor_referensi)
+    {
+        return self::findTransaksi()
+            ->andWhere(['kanal_transaksi'=>$kanal_transaksi])
+            ->andWhere(['nomor_referensi'=>$nomor_referensi])
+            ->one();
+    }
+
+    public static function findAnggotaTransaksi($kode_toko='kopkars-pnj')
+    {
+        return self::find()
+        ->andWhere(['kode_toko'=>$kode_toko])
+        ->andWhere(['anggota_id'=>Yii::$app->user->identity->id]);
     }
 }

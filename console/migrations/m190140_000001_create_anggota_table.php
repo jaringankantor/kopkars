@@ -11,6 +11,7 @@ class m190140_000001_create_anggota_table extends Migration
     {
         $this->createTable('anggota', [
             'id' => $this->primaryKey(),
+            'kode_toko' => $this->string(50)->notNull(),
             'status' => $this->string(20),
             'status_karyawan' => $this->string(20),
             'nomor_anggota' => $this->string(20)->unique(),
@@ -46,6 +47,8 @@ class m190140_000001_create_anggota_table extends Migration
             'verification_token' => $this->string(255),
             'nomor_zahir' => $this->string(50)->unique(), //hanya sementara selama proses migrasi data, nanti di zahir semua akan diganti jadi nomor_anggota
         ]);
+
+        $this->addForeignKey('anggota_toko_fkey', 'anggota', 'kode_toko', 'toko', 'kode', 'RESTRICT', 'CASCADE');
 
         $this->addForeignKey('anggota_variabel_status_fkey', 'anggota', 'status', 'variabel_status', 'status', 'RESTRICT', 'CASCADE');
 
