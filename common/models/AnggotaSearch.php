@@ -42,7 +42,7 @@ class AnggotaSearch extends Anggota
      */
     public function search($params)
     {
-        $query = Anggota::findAnggota()->where('nomor_anggota IS NOT NULL OR waktu_approve IS NOT NULL');
+        $query = Anggota::findAnggota()->andWhere('nomor_anggota IS NOT NULL OR waktu_approve IS NOT NULL');
 
         // add conditions that should always apply here
 
