@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 use yii2tech\ar\softdelete\SoftDeleteBehavior;
 use yii2tech\ar\softdelete\SoftDeleteQueryBehavior;
 
@@ -10,6 +12,7 @@ use yii2tech\ar\softdelete\SoftDeleteQueryBehavior;
  * This is the model class for table "anggota_simpanan".
  *
  * @property int $id
+ * @property string $kode_toko
  * @property int $anggota_id
  * @property string $simpanan
  * @property string $debitkredit
@@ -39,10 +42,20 @@ class AnggotaSimpanan extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['waktu'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['last_waktu_update'],
+                ],
+                 'value' => 'now()'
+            ],
             'softDeleteBehavior' => [
                 'class' => SoftDeleteBehavior::className(),
                 'softDeleteAttributeValues' => [
-                    'is_deleted' => true
+                    'is_deleted' => true,
+                    'deleted_at' => date("Y-m-d H:i:s"),
+                    'last_softdelete_by' => Yii::$app->user->identity->email,
                 ],
                 'replaceRegularDelete' => true // mutate native `delete()` method
             ],
@@ -61,7 +74,9 @@ class AnggotaSimpanan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['anggota_id', 'simpanan', 'debitkredit', 'rupiah'], 'required'],
+            ['kode_toko', 'string', 'max' => 50],
+            ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
+            [['kode_toko', 'anggota_id', 'simpanan', 'debitkredit', 'rupiah'], 'required'],
             [['anggota_id'], 'default', 'value' => null],
             [['anggota_id', 'rupiah'], 'integer'],
             [['waktu', 'last_waktu_update', 'deleted_at'], 'safe'],
@@ -82,6 +97,7 @@ class AnggotaSimpanan extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'kode_toko' => 'Kode Toko',
             'anggota_id' => 'Anggota ID',
             'simpanan' => 'Jenis Simpanan',
             'debitkredit' => 'Debit/Kredit',
@@ -129,6 +145,26 @@ class AnggotaSimpanan extends \yii\db\ActiveRecord
     public static function findAnggotaSimpanan()
     {
         return self::find()
-            ->where(['anggota_id'=>Yii::$app->user->identity->id]);
+            ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko]);
     }
+
+    public static function findOneAnggotaSimpanan()
+    {
+        return self::findAnggotaSimpanan()
+            ->one();
+    }
+
+    public static function findFrontendAnggotaSimpanan()
+    {
+        return self::find()
+            ->where(['kode_toko'=>Yii::$app->params['kode_toko']])
+            ->andWhere(['anggota_id'=>Yii::$app->user->identity->id]);
+    }
+
+    public static function findOneFrontendAnggotaSimpanan()
+    {
+        return self::findFrontendAnggotaSimpanan()
+            ->one();
+    }
+
 }

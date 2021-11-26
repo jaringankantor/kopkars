@@ -6,10 +6,9 @@ use kartik\widgets\ActiveForm;
 use kartik\widgets\FileInput;
 use common\models\Produk;
 use common\models\Toko;
-use yii\helpers\Url;
 use yii\web\UploadedFile;
 
-$worksheet_update = 'Sheet1';
+$worksheet_update = 'inventory';
 
 $column_harga = 'E';
 $column_stok = 'G';

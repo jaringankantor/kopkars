@@ -59,7 +59,7 @@ class TransaksiController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModelTransaksi($id),
         ]);
     }
 
@@ -88,18 +88,18 @@ class TransaksiController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
+    //public function actionUpdate($id)
+    //{
+    //    $model = $this->findModelTransaksi($id);
+    //
+    //    if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    //        return $this->redirect(['view', 'id' => $model->id]);
+    //    }
+    //
+    //    return $this->render('update', [
+    //        'model' => $model,
+    //    ]);
+    //}
 
     /**
      * Deletes an existing Transaksi model.
@@ -110,7 +110,7 @@ class TransaksiController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findModelTransaksi($id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -132,6 +132,15 @@ class TransaksiController extends Controller
     protected function findModel($id)
     {
         if (($model = Transaksi::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findModelTransaksi($id)
+    {
+        if (($model = Transaksi::findOneTransaksi($id)) !== null) {
             return $model;
         }
 

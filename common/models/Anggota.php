@@ -14,6 +14,7 @@ use yii\web\IdentityInterface;
  * This is the model class for table "anggota".
  *
  * @property int $id
+ * @property string $kode_toko
  * @property string|null $status
  * @property string|null $status_karyawan
  * @property string|null $nomor_anggota
@@ -376,6 +377,13 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko]);
     }
 
+    public static function findOneAnggota()
+    {
+        return self::find()
+            ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko])
+            ->one();
+    }
+
     public static function findAnggotaByNomorZahir($nomor_zahir)
     {
         return self::findAnggota()
@@ -385,6 +393,19 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
     public static function findOneAnggotaByNomorZahir($nomor_zahir)
     {
         return self::findAnggotaByNomorZahir($nomor_zahir)
+            ->one();
+    }
+
+    public static function findFrontendAnggota()
+    {
+        return self::find()
+            ->where(['kode_toko'=>Yii::$app->params['kode_toko']])
+            ->andWhere(['anggota_id'=>Yii::$app->user->identity->id]);
+    }
+
+    public static function findOneFrontendAnggota()
+    {
+        return self::findFrontendAnggota()
             ->one();
     }
 

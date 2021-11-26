@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Transaksi */
 
-$this->title = $model->id;
+$this->title = $model->kanal_transaksi.'-'.$model->nomor_referensi;
 $this->params['breadcrumbs'][] = ['label' => 'Transaksis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'kanal_transaksi',
             'nomor_referensi',
             'nomor_pesanan',
@@ -45,12 +45,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'saldo',
             'keterangan',
             'waktu',
-            'last_waktu_update',
             'insert_by',
+            'last_waktu_update',
             'last_update_by',
-            'is_deleted:boolean',
-            'deleted_at',
-            'last_softdelete_by',
+            //'is_deleted:boolean',
+            //'deleted_at',
+            ///'last_softdelete_by',
         ],
     ]) ?>
 

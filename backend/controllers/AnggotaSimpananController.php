@@ -58,7 +58,7 @@ class AnggotaSimpananController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModelAnggotaSimpanan($id),
         ]);
     }
 
@@ -89,7 +89,7 @@ class AnggotaSimpananController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModelAnggotaSimpanan($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -109,7 +109,7 @@ class AnggotaSimpananController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findModelAnggotaSimpanan($id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -124,6 +124,15 @@ class AnggotaSimpananController extends Controller
     protected function findModel($id)
     {
         if (($model = AnggotaSimpanan::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findModelAnggotaSimpanan($id)
+    {
+        if (($model = AnggotaSimpanan::findOneAnggotaSimpanan($id)) !== null) {
             return $model;
         }
 

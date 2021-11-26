@@ -12,6 +12,7 @@ use yii2tech\ar\softdelete\SoftDeleteQueryBehavior;
  * This is the model class for table "transaksi".
  *
  * @property int $id
+ * @property string $kode_toko
  * @property string $kanal_transaksi
  * @property string|null $nomor_referensi
  * @property string|null $nomor_pesanan
@@ -172,6 +173,13 @@ class Transaksi extends \yii\db\ActiveRecord
     {
         return self::find()
             ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko]);
+    }
+
+    public static function findOneTransaksi()
+    {
+        return self::find()
+            ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko])
+            ->one();
     }
 
     public static function findTransaksiByKanal($kanal_transaksi,$nomor_referensi)

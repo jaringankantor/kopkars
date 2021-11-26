@@ -51,38 +51,10 @@ class AnggotaController extends Controller
         ];
     }
 
-    /**
-     * Lists all Anggota models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Anggota::findAnggota(),
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Anggota model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
     public function actionBiodata()
     {
         return $this->render('biodata', [
-            'model' => $this->findModel(Yii::$app->user->identity->id),
+            'model' => $this->findModelAnggota(Yii::$app->user->identity->id),
         ]);
     }
 
@@ -120,7 +92,7 @@ class AnggotaController extends Controller
      */
     public function actionUpdate()
     {
-        $model = $this->findModel(Yii::$app->user->identity->id);
+        $model = $this->findModelAnggota(Yii::$app->user->identity->id);
         $model->scenario = 'frontend-update-anggota';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -134,7 +106,7 @@ class AnggotaController extends Controller
 
     public function actionUpdateEmail()
     {
-        $model = $this->findModel(Yii::$app->user->identity->id);
+        $model = $this->findModelAnggota(Yii::$app->user->identity->id);
         $model->scenario = 'frontend-update-anggota-email';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -148,7 +120,7 @@ class AnggotaController extends Controller
 
     public function actionUpdateFoto()
     {
-        $model = $this->findModel(Yii::$app->user->identity->id);
+        $model = $this->findModelAnggota(Yii::$app->user->identity->id);
 
         $model->scenario = 'frontend-update-anggota-foto';
 
@@ -180,7 +152,7 @@ class AnggotaController extends Controller
 
     public function actionUpdateHp()
     {
-        $model = $this->findModel(Yii::$app->user->identity->id);
+        $model = $this->findModelAnggota(Yii::$app->user->identity->id);
         $model->scenario = 'frontend-update-anggota-hp';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -201,7 +173,7 @@ class AnggotaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findModelAnggota($id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -216,6 +188,15 @@ class AnggotaController extends Controller
     protected function findModel($id)
     {
         if (($model = Anggota::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findModelAnggota($id)
+    {
+        if (($model = Anggota::findOneFrontendAnggota($id)) !== null) {
             return $model;
         }
 

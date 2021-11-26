@@ -33,7 +33,7 @@ class AnggotaSimpananController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => AnggotaSimpanan::findAnggotaSimpanan(),
+            'query' => AnggotaSimpanan::findFrontendAnggotaSimpanan(),
         ]);
 
         return $this->render('index', [
@@ -52,6 +52,15 @@ class AnggotaSimpananController extends Controller
     protected function findModel($id)
     {
         if (($model = AnggotaSimpanan::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findModelAnggotaSimpanan($id)
+    {
+        if (($model = AnggotaSimpanan::findOneFrontendAnggotaSimpanan($id)) !== null) {
             return $model;
         }
 

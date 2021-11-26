@@ -66,7 +66,7 @@ class AnggotaController extends Controller
 
     public function actionOkBeriNomor($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModelAnggota($id);
 
         //BELUM BERES, seharusnya ini mengikuti parameter kopkar
         $model->status = 'Aktif';
@@ -88,14 +88,14 @@ class AnggotaController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModelAnggota($id),
         ]);
     }
 
     public function actionViewBiodata($id)
     {
         return $this->render('view-biodata', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModelAnggota($id),
         ]);
     }
 
@@ -127,7 +127,7 @@ class AnggotaController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModelAnggota($id);
 
         $model->scenario = 'frontend-update-anggota';
 
@@ -142,7 +142,7 @@ class AnggotaController extends Controller
 
     public function actionUpdateemailEditableJson() {
         if (isset($_POST['hasEditable'])) {
-            $model = $this->findModel(Yii::$app->request->post('editableKey'));
+            $model = $this->findModelAnggota(Yii::$app->request->post('editableKey'));
             $model->scenario = 'backend-updateemail-anggota';
 
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -165,7 +165,7 @@ class AnggotaController extends Controller
 
     public function actionUpdatehpEditableJson() {
         if (isset($_POST['hasEditable'])) {
-            $model = $this->findModel(Yii::$app->request->post('editableKey'));
+            $model = $this->findModelAnggota(Yii::$app->request->post('editableKey'));
             $model->scenario = 'backend-updatehp-anggota';
 
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -196,7 +196,7 @@ class AnggotaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findModelAnggota($id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -211,6 +211,15 @@ class AnggotaController extends Controller
     protected function findModel($id)
     {
         if (($model = Anggota::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findModelAnggota($id)
+    {
+        if (($model = Anggota::findOneAnggota($id)) !== null) {
             return $model;
         }
 

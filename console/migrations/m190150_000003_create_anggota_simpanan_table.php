@@ -11,6 +11,7 @@ class m190150_000003_create_anggota_simpanan_table extends Migration
     {
         $this->createTable('anggota_simpanan', [
             'id' => $this->primaryKey(),
+            'kode_toko' => $this->string(50)->notNull(),
             'anggota_id' => $this->integer()->notNull(),
             'simpanan' => $this->string(20)->notNull(),
             'debitkredit' => $this->string(6)->notNull(),
@@ -24,6 +25,8 @@ class m190150_000003_create_anggota_simpanan_table extends Migration
             'deleted_at' => $this->dateTime(),
             'last_softdelete_by' => $this->string(50),
         ]);
+
+        $this->addForeignKey('anggota_simpanan_toko_fkey', 'anggota_simpanan', 'kode_toko', 'toko', 'kode', 'RESTRICT', 'CASCADE');
 
         $this->addForeignKey('anggota_simpanan_anggota_fkey', 'anggota_simpanan', 'anggota_id', 'anggota', 'id', 'RESTRICT', 'CASCADE');
 
