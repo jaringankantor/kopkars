@@ -18,7 +18,7 @@ $this->title = 'Simpanan Anggota';
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'anggota_id',
+            ['label'=>'Nama Anggota Kopkars', 'value'=>function ($model, $index, $widget) { return $model->anggota->nama_lengkap; }],
             'simpanan',
             'debitkredit',
             'rupiah',

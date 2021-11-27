@@ -23,6 +23,7 @@ $this->title = 'Transaksi';
             //'nomor_pesanan',
             //'anggota_id',
             //'anggota_nomor_zahir',
+            ['label'=>'Nama Anggota Kopkars', 'value'=>function ($model, $index, $widget) { return $model->anggotaById->nama_lengkap; }],
             'nama_pelanggan',
             //'mata_uang',
             //'subtotal',
