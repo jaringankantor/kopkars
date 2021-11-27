@@ -217,6 +217,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             ['kode_toko', 'string', 'max' => 50],
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
+            [['nomor_ktp', 'nomor_npwp', 'nomor_hp'], 'match' ,'pattern'=>'/^[0-9]+$/u','message'=> 'Hanya boleh angka'],
             [['foto'], 'file', 'extensions' => 'png,jpg,jpeg', 'mimeTypes'=>'image/jpeg,image/png','maxSize'=>2097152],
             [['tanggal_lahir', 'waktu_daftar', 'waktu_update', 'waktu_login', 'waktu_approve'], 'safe'],
             [['status', 'status_karyawan', 'nomor_anggota', 'nomor_pegawai', 'agama', 'pendidikanterakhir'], 'string', 'max' => 20],
@@ -253,6 +254,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
         $scenarios['frontend-update-anggota-email'] = ['email', 'captcha'];
         $scenarios['frontend-update-anggota-foto'] = ['foto'];
         $scenarios['frontend-update-anggota-hp'] = ['nomor_hp', 'captcha'];
+        $scenarios['updateallpassword'] = ['auth_key','password_hash','password_reset_token'];
         return $scenarios;
     }
 
@@ -380,7 +382,6 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
     public static function findOneAnggota()
     {
         return self::find()
-            ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko])
             ->one();
     }
 
@@ -400,7 +401,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return self::find()
             ->where(['kode_toko'=>Yii::$app->params['kode_toko']])
-            ->andWhere(['anggota_id'=>Yii::$app->user->identity->id]);
+            ->andWhere(['id'=>Yii::$app->user->identity->id]);
     }
 
     public static function findOneFrontendAnggota()

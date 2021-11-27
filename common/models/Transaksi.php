@@ -114,8 +114,8 @@ class Transaksi extends \yii\db\ActiveRecord
             'diskon' => 'Diskon',
             'pajak' => 'Pajak',
             'total_penjualan' => 'Total Penjualan',
-            'pembayaran' => 'Pembayaran',
-            'saldo' => 'Saldo',
+            'pembayaran' => 'Tunai',
+            'saldo' => 'Hutang',
             'keterangan' => 'Keterangan',
             'waktu' => 'Waktu',
             'last_waktu_update' => 'Last Waktu Update',
@@ -197,10 +197,16 @@ class Transaksi extends \yii\db\ActiveRecord
             ->one();
     }
 
-    public static function findAnggotaTransaksi($kode_toko='kopkars-pnj')
+    public static function findFrontendTransaksi()
     {
         return self::find()
-        ->andWhere(['kode_toko'=>$kode_toko])
+        ->where(['kode_toko'=>Yii::$app->params['kode_toko']])
         ->andWhere(['anggota_id'=>Yii::$app->user->identity->id]);
+    }
+
+    public static function findOneFrontendTransaksi()
+    {
+        return self::findFrontendTransaksi()
+        ->one();
     }
 }

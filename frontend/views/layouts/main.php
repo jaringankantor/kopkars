@@ -42,8 +42,8 @@ AppAsset::register($this);
     } else {
         $menuItems = [
             ['label' => 'Biodata', 'url' => ['/anggota/biodata']],
-            ['label' => 'Simpanan', 'url' => ['/anggota-simpanan']],
-            ['label' => 'List Transaksi'],
+            ['label' => 'Simpanan', 'url' => ['/anggota-simpanan/index']],
+            ['label' => 'Transaksi', 'url' => ['/transaksi/index']],
         ];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')

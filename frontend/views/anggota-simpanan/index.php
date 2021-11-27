@@ -16,22 +16,14 @@ $this->title = 'Dana Simpanan Anggota';
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
             'simpanan',
             'debitkredit',
             'rupiah',
-            //'keterangan',
-            'waktu',
-            //'last_waktu_update',
-            //'insert_by',
-            //'last_update_by',
-            //'is_deleted:boolean',
-            //'deleted_at',
-            //'last_softdelete_by',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'waktu:date',
         ],
+        'options'=>['class'=>'box-body table-responsive no-padding'],
     ]); ?>
 
 

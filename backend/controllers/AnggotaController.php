@@ -37,6 +37,11 @@ class AnggotaController extends Controller
         ];
     }
 
+    //public function actionUpdateall()
+    //{
+    //    return $this->render('updateallpassword');
+    //}
+
     /**
      * Lists all Anggota models.
      * @return mixed
