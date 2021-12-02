@@ -3,7 +3,7 @@
 use common\models\Produk;
 use common\models\Toko;
 
-$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-shopee/mass_update_basic_info_hiiphooray_tani_27-02-2021_1614438950973.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-shopee/mass_update_basic_info_hiiphooray_tani_03-12-2021_1638467245644.xlsx';
 
 $marketplace = 'shp';
 
