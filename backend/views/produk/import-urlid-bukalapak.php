@@ -60,6 +60,9 @@ $column_sku = 'B';
                 }
                 if(in_array(substr($sku,0,5),$skuprefix)) {
                     $model = Produk::findOneProduk($sku);
+                    if($model===NULL){
+                        continue;
+                    }
                     $model->scenario = 'backend-import-urlid';
                     $model->urlid_bkl = $urlid;
                     echo $urlid;
