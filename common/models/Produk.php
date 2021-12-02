@@ -291,7 +291,7 @@ class Produk extends \yii\db\ActiveRecord
                 return 'http://blibli.com/product-detail-'.substr(str_replace('-','.',self::findOneProduk($sku)->urlid_bli),0,15).'.html';
                 break;
             case 'lzd';
-                return 'https://www.lazada.co.id/products/i'.self::findOneProduk($sku)->urlid_lzd.'.html';
+                return '<a href="https://www.lazada.co.id/products/i'.self::findOneProduk($sku)->urlid_lzd.'.html">https://www.lazada.co.id/products/i'.self::findOneProduk($sku)->urlid_lzd.'.html</a>';
                 break;
             case 'shp';
                 $idtoko = SettingMarketplace::parameter('shp')->shp_idtoko;
