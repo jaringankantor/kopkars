@@ -58,7 +58,7 @@ for ($row = $row_mulai; $row <= $highestRow; ++$row) {
 }
 
 $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
-$namafile = $marketplace.'-stokharga-'.date("YmdHis").'.xlsx';
+$namafile = $marketplace.'-stokhargadeskripsivideo-'.date("YmdHis").'.xlsx';
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment; filename="'. urlencode($namafile).'"');
