@@ -36,6 +36,7 @@ if (Yii::$app->request->isPost) {
         $highestColumn = $worksheet->getHighestColumn();
         $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn);
 
+        $sum_error = 0;
         //inilah looping untuk membaca cell dalam file excel,perkolom
         for ($row = 2; $row <= $highestRow; ++$row) { //$row = 2 artinya baris kedua yang dibaca dulu(header kolom diskip disesuaikan saja)
             //for ($col = 1; $col <= $highestColumnIndex; ++$col) {
@@ -53,13 +54,16 @@ if (Yii::$app->request->isPost) {
             }
             if(in_array(substr($sku,0,5),$skuprefix)) {
                 $model = Produk::findOneProduk($sku);
+                if($model===NULL){
+                    continue;
+                }
                 $model->scenario = 'backend-import-hargastok';
                 $model->harga_async = $harga;
                 $model->stok_async = $stok;
-                $model->save();
+                if (!$model->save()) $sum_error++;
             }
         }
-        Yii::$app->session->setFlash('success', "Import Selesai, cek master produk."); 
+        Yii::$app->session->setFlash('success', "Import Selesai, cek master produk. Jumlah error: ".$sum_error);
     }
 }
 ?>
