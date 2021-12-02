@@ -65,6 +65,7 @@ $column_sku = 'B';
                     }
                     $model->scenario = 'backend-import-urlid';
                     $model->urlid_bkl = $urlid;
+                    echo $urlid;
                     if (!$model->save()) $sum_error++;
                 }
             }
