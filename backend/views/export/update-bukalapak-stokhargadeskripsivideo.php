@@ -18,6 +18,7 @@ $column_sku = 'C';
 $column_harga = 'D';
 $column_stok = 'E';
 $column_deskripsi = 'G';
+$column_url1 = 'Q';
 
 
 $column_sku_angka = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($column_sku);
@@ -52,6 +53,7 @@ for ($row = $row_mulai; $row <= $highestRow; ++$row) {
         $worksheet->getCell($column_harga.$row)->setValue($model->harga_async);
         $worksheet->getCell($column_stok.$row)->setValue($model->stok_async);
         $worksheet->getCell($column_deskripsi.$row)->setValue($deskripsi);
+        $worksheet->getCell($column_url1.$row)->setValue($model->video_url_1);
     }
 }
 

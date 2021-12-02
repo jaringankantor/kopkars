@@ -85,9 +85,9 @@ class ExportController extends \yii\web\Controller
         return $this->renderPartial('update-blibli-stokharga');
     }
 
-    public function actionUpdateBukalapakStokhargadeskripsi()
+    public function actionUpdateBukalapakStokhargadeskripsivideo()
     {
-        return $this->renderPartial('update-bukalapak-stokhargadeskripsi');
+        return $this->renderPartial('update-bukalapak-stokhargadeskripsivideo');
     }
 
     public function actionFbmarketplace()
