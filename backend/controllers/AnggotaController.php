@@ -75,7 +75,6 @@ class AnggotaController extends Controller
 
         //BELUM BERES, seharusnya ini mengikuti parameter kopkar
         $model->status = 'Aktif';
-        $model->nomor_anggota = Anggota::findAnggota()->max('nomor_anggota')+1;
         $model->waktu_approve = date('Y-m-d H:i:s');
         $model->approved_by = Yii::$app->user->identity->email;
 

@@ -9,7 +9,7 @@ DECLARE
   nomor_anggota_boolean BOOLEAN;
 BEGIN
    IF (TG_OP = 'INSERT') THEN
-      UPDATE TG_TABLE_NAME
+      UPDATE anggota
       SET email_last_lock=NEW.email, email_last_lock_verified=FALSE,
       nomor_hp_last_lock=NEW.nomor_hp, nomor_hp_last_lock_verified=FALSE
       WHERE id=NEW.id;
@@ -40,14 +40,14 @@ BEGIN
 
             IF nomor_anggota_boolean THEN
                -- User supplied ID but it violates the PK unique constraint
-               RAISE 'ID % already exists in table %', key, TG_TABLE_NAME;
+               RAISE 'ID % already exists in table %', key, anggota;
             END IF;
 
             -- We haven't EXITed yet, so return to the top of the LOOP
             -- and try again.
          END LOOP;
 
-         UPDATE TG_TABLE_NAME
+         UPDATE anggota
          SET nomor_anggota=key
          WHERE id=NEW.id;
 
@@ -55,14 +55,14 @@ BEGIN
 
       --Jika user mengubah email
       IF ((NEW.email != OLD.email) AND (NEW.email != OLD.email_last_lock)) THEN
-         UPDATE TG_TABLE_NAME
+         UPDATE anggota
          SET email_last_lock_verified=FALSE
          WHERE id=NEW.id;
       END IF;
 
       --Jika user tidak jadi mengubah email
       IF ((NEW.email != OLD.email) AND (NEW.email = OLD.email_last_lock)) THEN
-         UPDATE TG_TABLE_NAME
+         UPDATE anggota
          SET email_last_lock_verified=TRUE
          WHERE id=NEW.id;
       END IF;
@@ -77,21 +77,21 @@ BEGIN
             VALUES (NEW.id, 'email', OLD.email_last_lock, NEW.email_last_lock);
          END IF;
 
-         UPDATE TG_TABLE_NAME
+         UPDATE anggota
          SET email_last_lock=NEW.email
          WHERE id=NEW.id;
       END IF;
 
       --Jika user mengubah nomor_hp
       IF ((NEW.nomor_hp != OLD.nomor_hp) AND (NEW.nomor_hp != OLD.nomor_hp_last_lock)) THEN
-         UPDATE TG_TABLE_NAME
+         UPDATE anggota
          SET nomor_hp_last_lock_verified=FALSE
          WHERE id=NEW.id;
       END IF;
 
       --Jika user tidak jadi mengubah nomor_hp
       IF ((NEW.nomor_hp != OLD.nomor_hp) AND (NEW.nomor_hp = OLD.nomor_hp_last_lock)) THEN
-         UPDATE TG_TABLE_NAME
+         UPDATE anggota
          SET nomor_hp_last_lock_verified=TRUE
          WHERE id=NEW.id;
       END IF;
@@ -105,7 +105,7 @@ BEGIN
             VALUES (NEW.id, 'nomor_hp', OLD.nomor_hp_last_lock, NEW.nomor_hp_last_lock);
          END IF;
 
-         UPDATE TG_TABLE_NAME
+         UPDATE anggota
          SET nomor_hp_last_lock=NEW.nomor_hp
          WHERE id=NEW.id;
       END IF;
