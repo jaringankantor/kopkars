@@ -18,7 +18,7 @@ BEGIN
       --Jika admin mengapprove anggota menjadi 'Aktif', lalu sistem akan memberikan nomor
       IF((NEW.status = 'Aktif') AND (NEW.status != OLD.status)) THEN
 
-         qry := 'SELECT nomor_anggota FROM ' || quote_ident(TG_TABLE_NAME) || ' WHERE nomor_anggota=';
+         qry := 'SELECT nomor_anggota FROM anggota WHERE nomor_anggota=';
 
          LOOP
             FOR i in 1..8 LOOP
