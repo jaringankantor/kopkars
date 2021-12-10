@@ -6,6 +6,9 @@ use kartik\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+
+$this->title = 'List Produk';
+
 ?>
 
 <div class="col-md-3">
