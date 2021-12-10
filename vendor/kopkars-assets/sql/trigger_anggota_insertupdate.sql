@@ -21,12 +21,12 @@ BEGIN
          qry := 'SELECT nomor_anggota FROM anggota WHERE nomor_anggota=';
 
          LOOP
+            nomor_anggota_boolean := TRUE;
             FOR i in 1..8 LOOP
                result_chars := result_chars || chars[1+random()*(array_length(chars, 1)-1)];
             END LOOP;
 
             key := result_chars;
-            nomor_anggota_boolean := FALSE;
 
             EXECUTE qry || quote_literal(key) INTO found;
 
@@ -36,11 +36,13 @@ BEGIN
             IF found IS NULL THEN
                -- If we didn't find a collision then leave the LOOP.
                EXIT;
+            ELSE
+               nomor_anggota_boolean = FALSE;
             END IF;
 
             IF nomor_anggota_boolean THEN
                -- User supplied ID but it violates the PK unique constraint
-               RAISE 'ID % already exists in table %', key, anggota;
+               RAISE 'ID % already exists in table %', key, TG_TABLE_NAME;
             END IF;
 
             -- We haven't EXITed yet, so return to the top of the LOOP
