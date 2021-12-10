@@ -230,6 +230,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             [['nomor_ktp'], 'string', 'length' => 16],
             [['nomor_npwp'], 'string', 'length' => 15],
             [['jenis_kelamin'], 'string', 'max' => 1],
+            [['nomor_hp'], 'string', 'min' => 10],
             [['nomor_hp'], 'string', 'max' => 12],
             [['alamat_rumah', 'keterangan', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
