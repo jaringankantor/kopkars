@@ -4,7 +4,7 @@ DECLARE
   chars text[] := '{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}';
   result_chars text := '';
   key TEXT;
-  qry TEXT;
+  query TEXT;
   found TEXT;
   nomor_anggota_boolean BOOLEAN;
 BEGIN
@@ -18,29 +18,30 @@ BEGIN
       --Jika admin mengapprove anggota menjadi 'Aktif', lalu sistem akan memberikan nomor
       IF((NEW.status = 'Aktif') AND (NEW.status != OLD.status) AND (OLD.nomor_anggota IS NULL) AND (OLD.waktu_approve IS NULL)) THEN
 
-         qry := 'SELECT nomor_anggota FROM anggota WHERE nomor_anggota=';
+         query := 'SELECT id FROM anggota WHERE nomor_anggota=';
 
          LOOP
-            nomor_anggota_boolean := TRUE;
+            nomor_anggota_boolean := FALSE;
             FOR i in 1..5 LOOP
                result_chars := result_chars || chars[1+random()*(array_length(chars, 1)-1)];
             END LOOP;
 
             key := result_chars;
 
-            EXECUTE qry || quote_literal(key) INTO found;
+            EXECUTE query || quote_literal(key) INTO found;
 
             -- Check to see if found is NULL.
             -- If we checked to see if found = NULL it would always be FALSE
             -- because (NULL = NULL) is always FALSE.
             IF found IS NULL THEN
                -- If we didn't find a collision then leave the LOOP.
+               nomor_anggota_boolean = TRUE;
                EXIT;
             ELSE
                nomor_anggota_boolean = FALSE;
             END IF;
 
-            IF nomor_anggota_boolean THEN
+            IF !nomor_anggota_boolean THEN
                -- User supplied ID but it violates the PK unique constraint
                RAISE 'ID % already exists in table %', key, TG_TABLE_NAME;
             END IF;
