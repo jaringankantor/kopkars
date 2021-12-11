@@ -175,10 +175,10 @@ class Transaksi extends \yii\db\ActiveRecord
             ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko]);
     }
 
-    public static function findOneTransaksi()
+    public static function findOneTransaksi($id)
     {
         return self::find()
-            ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko])
+            ->andWhere(['id'=>$id])
             ->one();
     }
 
@@ -204,9 +204,10 @@ class Transaksi extends \yii\db\ActiveRecord
         ->andWhere(['anggota_id'=>Yii::$app->user->identity->id]);
     }
 
-    public static function findOneFrontendTransaksi()
+    public static function findOneFrontendTransaksi($id)
     {
         return self::findFrontendTransaksi()
+        ->andWhere(['id'=>$id])
         ->one();
     }
 }

@@ -148,9 +148,10 @@ class AnggotaSimpanan extends \yii\db\ActiveRecord
             ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko]);
     }
 
-    public static function findOneAnggotaSimpanan()
+    public static function findOneAnggotaSimpanan($id)
     {
         return self::findAnggotaSimpanan()
+            ->andWhere(['id'=>$id])
             ->one();
     }
 
@@ -161,9 +162,10 @@ class AnggotaSimpanan extends \yii\db\ActiveRecord
             ->andWhere(['anggota_id'=>Yii::$app->user->identity->id]);
     }
 
-    public static function findOneFrontendAnggotaSimpanan()
+    public static function findOneFrontendAnggotaSimpanan($id)
     {
         return self::findFrontendAnggotaSimpanan()
+            ->andWhere(['id'=>$id])
             ->one();
     }
 
