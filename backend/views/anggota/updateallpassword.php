@@ -12,7 +12,7 @@ foreach ($query as $row) {
 
     $model = Anggota::findOne($row['id']);
     $model->scenario = 'updateallpassword';
-    $model->generateAuthKey();
+    //$model->generateAuthKey();
     $model->setPassword($row['password_default']);
 
     $model->save();
