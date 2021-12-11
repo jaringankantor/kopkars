@@ -10,9 +10,9 @@ foreach ($query as $row) {
 
     $cu_id = $row['nama_lengkap'];
 
-    $model = Anggota::findOne($row['id']);
+    $model = Anggota::findOneAnggota($row['id']);
     $model->scenario = 'updateallpassword';
-    //$model->generateAuthKey();
+    $model->generateAuthKey();
     $model->setPassword($row['password_default']);
 
     $model->save();
