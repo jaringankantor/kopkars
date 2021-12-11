@@ -378,12 +378,12 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
     public static function findAnggota()
     {
         return self::find()
-            ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko]);
+            ->andWhere(['kode_toko'=>Yii::$app->user->identity->kode_toko]);
     }
 
     public static function findOneAnggota()
     {
-        return self::find()
+        return self::findAnggota()
             ->one();
     }
 
