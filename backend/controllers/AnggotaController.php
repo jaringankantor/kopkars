@@ -79,9 +79,6 @@ class AnggotaController extends Controller
         $model->waktu_approve = date('Y-m-d H:i:s');
         $model->approved_by = Yii::$app->user->identity->email;
 
-        print_r($model);
-        exit();
-
         if ($model->save()) {
             return $this->redirect(Yii::$app->request->referrer);
         }
