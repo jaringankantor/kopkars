@@ -71,7 +71,7 @@ class AnggotaController extends Controller
 
     public function actionOkBeriNomor($id)
     {
-        $model = $this->findModelAnggota($id);
+        $model = $this->findModelAnggota($id+1);
 
         //BELUM BERES, seharusnya ini mengikuti parameter kopkar
         $model->scenario = 'backend-nomor_anggota-anggota';
