@@ -73,6 +73,9 @@ class AnggotaController extends Controller
     {
         $model = $this->findModelAnggota($id);
 
+        print_r($model);
+        exit();
+
         //BELUM BERES, seharusnya ini mengikuti parameter kopkar
         $model->scenario = 'backend-nomor_anggota-anggota';
         $model->status = 'Aktif';
