@@ -16,13 +16,13 @@ BEGIN
 
    ELSIF (TG_OP = 'UPDATE') THEN
       --Jika admin mengapprove anggota menjadi 'Aktif', lalu sistem akan memberikan nomor
-      IF((NEW.status = 'Aktif') AND (NEW.status != OLD.status)) THEN
+      IF((NEW.status = 'Aktif') AND (NEW.status != OLD.status) AND (OLD.nomor_anggota IS NULL) AND (OLD.waktu_approve IS NULL)) THEN
 
          qry := 'SELECT nomor_anggota FROM anggota WHERE nomor_anggota=';
 
          LOOP
             nomor_anggota_boolean := TRUE;
-            FOR i in 1..8 LOOP
+            FOR i in 1..5 LOOP
                result_chars := result_chars || chars[1+random()*(array_length(chars, 1)-1)];
             END LOOP;
 
@@ -110,6 +110,12 @@ BEGIN
          UPDATE anggota
          SET nomor_hp_last_lock=NEW.nomor_hp
          WHERE id=NEW.id;
+      END IF;
+
+      --Jika data nomor_anggota berubah catat pada histori
+      IF ((NEW.nomor_anggota != OLD.nomor_anggota) AND (OLD.nomor_anggota IS NOT NULL)) THEN
+         INSERT INTO histori_anggota (anggota_id,anggota_kolom,value_old,value_new)
+         VALUES (NEW.id, 'nomor_anggota', OLD.nomor_anggota, NEW.nomor_anggota);
       END IF;
 
       --Jika user mengubah nama_lengkap catat pada histori

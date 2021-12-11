@@ -74,6 +74,7 @@ class AnggotaController extends Controller
         $model = $this->findModelAnggota($id);
 
         //BELUM BERES, seharusnya ini mengikuti parameter kopkar
+        $model->scenario = 'backend-nomor_anggota-anggota';
         $model->status = 'Aktif';
         $model->waktu_approve = date('Y-m-d H:i:s');
         $model->approved_by = Yii::$app->user->identity->email;
