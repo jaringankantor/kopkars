@@ -12,7 +12,7 @@ $marketplace = 'fbc';
 
 $worksheet_update = 'Sheet1';
 
-$row_mulai = 3;
+$row_mulai = 2;
 $column_sku = 'A';
 $column_nama = 'B';
 $column_deskripsi = 'C';

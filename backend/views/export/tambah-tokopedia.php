@@ -60,7 +60,7 @@ if(count($dataProvider->models)>0) {
 
         $worksheet->getCell($column_nomoretalase.$row_mulai)->setValue(SettingMarketplaceEtalase::findOneEtalase($marketplace,$model->sku)->kode_variabel_marketplace_etalase);
 
-	$worksheet->getCell($column_kondisi.$row_mulai)->setValue('Baru');
+	    $worksheet->getCell($column_kondisi.$row_mulai)->setValue('Baru');
 
         $worksheet->getCell($column_gambar1.$row_mulai)->setValue(Url::toRoute(['produk/view-foto','kode_toko'=>$model->kode_toko,'sku'=>$model->sku,'ke'=>1],true));
         $worksheet->getCell($column_gambar2.$row_mulai)->setValue(Url::toRoute(['produk/view-foto','kode_toko'=>$model->kode_toko,'sku'=>$model->sku,'ke'=>2],true));
@@ -76,7 +76,7 @@ if(count($dataProvider->models)>0) {
         $worksheet->getCell($column_stok.$row_mulai)->setValue($model->stok_async);
         $worksheet->getCell($column_harga.$row_mulai)->setValue($model->harga_async);
 
-	$worksheet->getCell($column_asuransi.$row_mulai)->setValue('opsional');
+	    $worksheet->getCell($column_asuransi.$row_mulai)->setValue('opsional');
 
         $row_mulai++;
     }
