@@ -45,11 +45,11 @@ if(count($dataProvider->models)>0) {
     
     foreach ($dataProvider->models as $model) {
         ///Harus diubah sesuai FBP
-        $deskripsi = Produk::deskripsiProdukWithAllMarketplaceLink($marketplace,$model->sku);
+        //$deskripsi = Produk::deskripsiProdukWithAllMarketplaceLink($marketplace,$model->sku);
 
         $worksheet->getCell($column_sku.$row_mulai)->setValue($model->sku);
         $worksheet->getCell($column_nama.$row_mulai)->setValue($model->nama_produk);
-        $worksheet->getCell($column_deskripsi.$row_mulai)->setValue($deskripsi);
+        //$worksheet->getCell($column_deskripsi.$row_mulai)->setValue($deskripsi);
         $worksheet->getCell($column_status.$row_mulai)->setValue($model->stok_async>0?'in stock':'out of stock');
         $worksheet->getCell($column_kondisi.$row_mulai)->setValue('new');
         $worksheet->getCell($column_harga.$row_mulai)->setValue($model->harga_async*1.05);

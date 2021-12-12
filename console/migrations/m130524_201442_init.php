@@ -6,6 +6,8 @@ class m130524_201442_init extends Migration
 {
     public function up()
     {
+        $sql = file_get_contents(Yii::getAlias('@kopkars-assets/sql/function_random_text.sql'));
+        $this->execute($sql);
 
         $this->createTable('toko', [
             'kode' => $this->string(50)->notNull(),
