@@ -46,6 +46,7 @@ if(count($dataProvider->models)>0) {
     foreach ($dataProvider->models as $model) {
         ///Harus diubah sesuai FBP
         //$deskripsi = Produk::deskripsiProdukWithAllMarketplaceLink($marketplace,$model->sku);
+        echo 'asdf';
 
         $worksheet->getCell($column_sku.$row_mulai)->setValue($model->sku);
         $worksheet->getCell($column_nama.$row_mulai)->setValue($model->nama_produk);
