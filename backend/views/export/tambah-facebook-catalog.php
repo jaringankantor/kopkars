@@ -56,6 +56,7 @@ if(count($dataProvider->models)>0) {
         $worksheet->getCell($column_gambar2345.$row_mulai)->setValue(Url::toRoute(['produk/view-foto','kode_toko'=>$model->kode_toko,'sku'=>$model->sku,'ke'=>2],true).','.Url::toRoute(['produk/view-foto','kode_toko'=>$model->kode_toko,'sku'=>$model->sku,'ke'=>3],true).','.Url::toRoute(['produk/view-foto','kode_toko'=>$model->kode_toko,'sku'=>$model->sku,'ke'=>4],true).','.Url::toRoute(['produk/view-foto','kode_toko'=>$model->kode_toko,'sku'=>$model->sku,'ke'=>5],true));
         $worksheet->getCell($column_merk.$row_mulai)->setValue($model->brand);
         $worksheet->getCell($column_stok.$row_mulai)->setValue($model->stok_async);
+        $worksheet->getCell($column_google_product_category.$row_mulai)->setValue('Home & Garden > Lawn & Garden');
 
         $row_mulai++;
     }
