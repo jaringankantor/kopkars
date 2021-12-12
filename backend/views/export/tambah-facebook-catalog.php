@@ -35,7 +35,7 @@ $worksheet = $spreadsheet->getSheetByName($worksheet_update);
 $requestPost = Produk::findProduk();
 
 $dataProvider = new ActiveDataProvider([
-    'query' => $requestPost->select(['sku','nama_produk','stok_async','harga_async','urlid_tkp']),
+    'query' => $requestPost->select(['sku','nama_produk','stok_async','harga_async','urlid_tkp','kode_toko','brand']),
     'pagination' => false,
 ]);
 
