@@ -46,7 +46,6 @@ if(count($dataProvider->models)>0) {
     foreach ($dataProvider->models as $model) {
         ///Harus diubah sesuai FBP
         //$deskripsi = Produk::deskripsiProdukWithAllMarketplaceLink($marketplace,$model->sku);
-        echo 'asdf';
 
         $worksheet->getCell($column_sku.$row_mulai)->setValue($model->sku);
         $worksheet->getCell($column_nama.$row_mulai)->setValue($model->nama_produk);
@@ -56,7 +55,7 @@ if(count($dataProvider->models)>0) {
         //$worksheet->getCell($column_harga.$row_mulai)->setValue($model->harga_async*1.05);
         //$worksheet->getCell($column_url_marketplace.$row_mulai)->setValue(!empty($model->urlid_tkp)?$model->urlid_tkp:'https://www.kebunbuah.com/p/contact-us.html');
 
-        $row_mulai++;
+        echo $row_mulai++;
     }
 }
 exit();
