@@ -218,7 +218,7 @@ class Produk extends \yii\db\ActiveRecord
     }
 
     public static function deskripsiProdukWithAllMarketplaceLink($marketplace,$sku){
-        return self::headerProduk($marketplace).self::findOneProduk($sku)->deskripsi.self::rekomendasiProduk($marketplace,$sku).self::allMarketplaceLinkProduk($sku).self::footerProduk($marketplace);
+        return self::headerProduk($marketplace).self::findOneProduk($sku)->deskripsi.self::rekomendasiProduk($marketplace,$sku).strip_tags(self::allMarketplaceLinkProduk($sku)).self::footerProduk($marketplace);
     }
 
     public static function allMarketplaceLinkProduk($sku){
