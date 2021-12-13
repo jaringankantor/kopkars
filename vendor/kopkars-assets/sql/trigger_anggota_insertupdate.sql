@@ -4,7 +4,6 @@ DECLARE
   result_chars character varying(20);
   query TEXT;
   found TEXT;
-  nomor_anggota_boolean BOOLEAN;
 BEGIN
    IF (TG_OP = 'INSERT') THEN
       UPDATE anggota
@@ -21,7 +20,6 @@ BEGIN
 
          LOOP
             result_chars := '';
-            nomor_anggota_boolean := FALSE;
             SELECT INTO result_chars random_text(5);
 
             EXECUTE query || quote_literal(result_chars) INTO found;
@@ -31,7 +29,6 @@ BEGIN
             -- because (NULL = NULL) is always FALSE.
             IF found IS NULL THEN
                -- If we didn't find a collision then leave the LOOP.
-               nomor_anggota_boolean = TRUE;
                EXIT;
             END IF;
 

@@ -230,6 +230,8 @@ class AnggotaController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        $model->createCommand()->getRawSql();
+
+        //throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
