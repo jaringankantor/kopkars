@@ -248,7 +248,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $scenarios = parent::scenarios();
         $scenarios['default'] = [];
-        $scenarios['backend-nomor_anggota-anggota'] = ['status', 'waktu_approve','approved_by'];
+        $scenarios['backend-nomor_anggota-anggota'] = [];
         $scenarios['backend-updateemail-anggota'] = ['email'];
         $scenarios['backend-updatehp-anggota'] = ['nomor_hp'];
         $scenarios['frontend-create-anggota'] = ['kode_toko', 'email','password_default','re_password','nomor_hp', 'nomor_hp_last_lock', 'nomor_hp_last_lock_verified', 'nomor_pegawai'];
