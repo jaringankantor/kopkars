@@ -15,7 +15,7 @@ BEGIN
    ELSIF (TG_OP = 'UPDATE') THEN
       --Jika admin mengapprove anggota menjadi 'Aktif', lalu sistem akan memberikan nomor
       --IF((NEW.status = 'Aktif') AND (NEW.status != OLD.status) AND (OLD.nomor_anggota IS NULL) AND (OLD.waktu_approve IS NULL)) THEN
-      IF((NEW.status = 'Aktif') AND (NEW.status != OLD.status) AND (OLD.nomor_anggota IS NULL) AND (OLD.waktu_approve IS NULL)) THEN
+      IF((NEW.status = 'Aktif') AND (OLD.status IS NULL) AND (OLD.nomor_anggota IS NULL) AND (OLD.waktu_approve IS NULL)) THEN
 
          query := 'SELECT id FROM anggota WHERE nomor_anggota=';
 
