@@ -383,9 +383,9 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
 
     public static function findOneAnggota($id)
     {
-        return self::findAnggota()
-            ->andWhere(['id'=>$id])
-            ->one();
+         self::findAnggota()
+            ->andWhere(['id'=>$id])->createCommand()->getRawSql();
+            //->one();
     }
 
     public static function findAnggotaByNomorZahir($nomor_zahir)

@@ -230,8 +230,6 @@ class AnggotaController extends Controller
             return $model;
         }
 
-        print_r($model);
-
-        //throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
