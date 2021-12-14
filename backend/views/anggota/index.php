@@ -10,7 +10,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\AnggotaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Anggota';
+$this->title = 'Anggota Resmi';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="anggota-index">
