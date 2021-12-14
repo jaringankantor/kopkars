@@ -13,6 +13,7 @@ use Yii;
  * @property string $sku
  * @property bool $status_aktif
  * @property string $nama_produk
+ * @property string $nama_produk_pendek
  * @property string $brand
  * @property string $warna
  * @property string $deskripsi

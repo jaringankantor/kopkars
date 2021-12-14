@@ -30,7 +30,6 @@ $this->title = 'List Produk';
             'sku',
             'status_aktif:boolean',
             'nama_produk',
-            'nama_produk_pendek',
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'nama_produk_pendek',
