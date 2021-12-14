@@ -38,6 +38,8 @@ $text_skuprefix = rtrim($text_skuprefix,', ');
 
     <?= $form->field($model, 'nama_produk')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'nama_produk_pendek')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'brand')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'warna')->dropDownList(['Multicolor' => 'Multicolor', 'Merah' => 'Merah', 'Kuning' => 'Kuning', 'Hijau' => 'Hijau', 'Biru' => 'Biru', 'Putih' => 'Putih', 'Hitam' => 'Hitam', 'Ungu' => 'Ungu']) ?>

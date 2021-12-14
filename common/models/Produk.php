@@ -83,7 +83,7 @@ class Produk extends \yii\db\ActiveRecord
         $text_skuprefix = rtrim($text_skuprefix,'|');
 
         return [
-            [['kode_toko','sku', 'nama_produk', 'brand', 'warna', 'deskripsi', 'harga_async', 'stok_async', 'berat'], 'required'],
+            [['kode_toko','sku', 'nama_produk', 'nama_produk_pendek', 'brand', 'warna', 'deskripsi', 'harga_async', 'stok_async', 'berat'], 'required'],
             ['kode_toko', 'string', 'max' => 50],
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['status_aktif'], 'boolean'],
@@ -91,7 +91,7 @@ class Produk extends \yii\db\ActiveRecord
             [['harga_async', 'stok_async', 'berat'], 'integer'],
             [['foto_1', 'foto_2', 'foto_3', 'foto_4', 'foto_5', 'foto_6', 'foto_7'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg', 'mimeTypes'=>'image/jpeg'],
             [['urlid_bli', 'urlid_bkl', 'urlid_fbc', 'urlid_fbm', 'urlid_jdi', 'urlid_lzd', 'urlid_shp', 'urlid_tkp'], 'string'],
-            [['sku','warna','id_tkp'], 'string', 'max' => 20],
+            [['nama_produk_pendek','sku','warna','id_tkp'], 'string', 'max' => 20],
             [['nama_produk','brand'], 'string', 'max' => 70],
             [['deskripsi'], 'string', 'max' => 2000],
             [['video_url_1', 'video_url_2', 'video_url_3', 'video_url_4', 'video_url_5', 'rekomendasi_1', 'rekomendasi_2', 'rekomendasi_3', 'rekomendasi_4', 'rekomendasi_5'], 'string', 'max' => 250],
@@ -126,6 +126,7 @@ class Produk extends \yii\db\ActiveRecord
             'sku' => 'SKU',
             'status_aktif' => 'Status Aktif',
             'nama_produk' => 'Nama Produk',
+            'nama_produk_pendek' => 'Nama Pendek',
             'brand' => 'Brand',
             'warna' => 'Warna',
             'deskripsi' => 'Deskripsi',

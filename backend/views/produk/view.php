@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'sku',
             'status_aktif:boolean',
             'nama_produk',
+            'nama_produk_pendek',
             [
                 'label'=>'Deskripsi',
                 'format'=>'raw',

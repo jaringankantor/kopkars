@@ -15,6 +15,7 @@ class m200001_000004_produk extends Migration
             'sku' => $this->string(20)->notNull(),
             'status_aktif'=> $this->boolean()->defaultValue(true)->notNull(),
             'nama_produk' => $this->string(70)->notNull(),
+            'nama_produk_pendek' => $this->string(20)->notNull(),
             'brand' => $this->string(70)->notNull(),
             'warna'  => $this->string(20)->notNull(),
             'deskripsi' => $this->string(2000),
