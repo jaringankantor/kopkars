@@ -73,14 +73,11 @@ class AnggotaController extends Controller
     {
         $model = $this->findModelAnggota($id);
 
-        //BELUM BERES, seharusnya ini mengikuti parameter kopkar
         $model->scenario = 'backend-nomor_anggota-anggota';
         $model->status = 'Aktif';
         $model->waktu_approve = date('Y-m-d H:i:s');
         $model->approved_by = Yii::$app->user->identity->email;
 
-        print_r($model);
-        exit();
         if ($model->save()) {
             return $this->redirect(Yii::$app->request->referrer);
         }
@@ -229,9 +226,6 @@ class AnggotaController extends Controller
         if (($model = Anggota::findOneAnggota($id)) !== null) {
             return $model;
         }
-        
-        print_r(Anggota::findAnggota());
-            exit();
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
