@@ -229,9 +229,8 @@ class AnggotaController extends Controller
         if (($model = Anggota::findOneAnggota($id)) !== null) {
             return $model;
         }
-
-        $model = Anggota::findOneAnggota($id);
-        print_r($model);
+        
+        print_r(Anggota::findOneAnggota($id));
             exit();
 
         throw new NotFoundHttpException('The requested page does not exist.');
