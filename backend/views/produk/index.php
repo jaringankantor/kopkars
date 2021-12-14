@@ -30,8 +30,16 @@ $this->title = 'List Produk';
             'sku',
             'status_aktif:boolean',
             'nama_produk',
-            //'deskripsi',
-            //'stok_async',
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'nama_produk_pendek',
+                'editableOptions' => [
+                    'formOptions' => [
+                        'action' => Url::to(['/produk/update-editable-json']),
+                    ],
+                    'inputType' => Editable::INPUT_TEXT,
+                ],
+            ],
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'stok_async',
