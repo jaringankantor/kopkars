@@ -41,7 +41,7 @@ class ProdukSearch extends Produk
      */
     public function search($params)
     {
-        $query = Produk::findProduk()->orderBy(['id'=>SORT_DESC]);
+        $query = Produk::findProduk()->orderBy(['sku'=>SORT_DESC]);
 
         // add conditions that should always apply here
 

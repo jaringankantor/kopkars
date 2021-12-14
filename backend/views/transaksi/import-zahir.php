@@ -57,7 +57,8 @@ $this->title = 'Import Transaksi Zahir';
                 //for ($col = 1; $col <= $highestColumnIndex; ++$col) {
                 $tanggal = trim($worksheet->getCell($column_tanggal.$row)->getValue());
                 $reference = trim($worksheet->getCell($column_reference.$row)->getValue());
-                $nopesanan = trim($worksheet->getCell($column_nopesanan.$row)->getValue());
+                $nopesanan_get = trim($worksheet->getCell($column_nopesanan.$row)->getValue());
+                $nopesanan = empty($nopesanan_get)?NULL:$nopesanan_get;
                 $pelanggan = trim($worksheet->getCell($column_pelanggan.$row)->getValue());
                 $matauang = trim($worksheet->getCell($column_matauang.$row)->getValue());
                 $subtotal = trim($worksheet->getCell($column_subtotal.$row)->getValue());

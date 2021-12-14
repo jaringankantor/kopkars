@@ -21,14 +21,14 @@ use yii\web\IdentityInterface;
  * @property string|null $nomor_pegawai
  * @property string|null $email
  * @property string|null $email_last_lock
- * @property string|null $email_last_lock_verified
+ * @property bool|null $email_last_lock_verified
  * @property string|null $password_default
  * @property resource|null $foto
  * @property resource|null $foto_thumbnail
  * @property string|null $unit
  * @property string|null $nomor_hp
  * @property string|null $nomor_hp_last_lock
- * @property string|null $nomor_hp_last_lock_verified
+ * @property bool|null $nomor_hp_last_lock_verified
  * @property string|null $nomor_ktp
  * @property string|null $nama_lengkap
  * @property string|null $tempat_lahir
@@ -219,6 +219,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['nomor_ktp', 'nomor_npwp', 'nomor_hp'], 'match' ,'pattern'=>'/^[0-9]+$/u','message'=> 'Hanya boleh angka'],
             [['foto'], 'file', 'extensions' => 'png,jpg,jpeg', 'mimeTypes'=>'image/jpeg,image/png','maxSize'=>2097152],
+            [['email_last_lock_verified', 'nomor_hp_last_lock_verified'], 'boolean'],
             [['tanggal_lahir', 'waktu_daftar', 'waktu_update', 'waktu_login', 'waktu_approve'], 'safe'],
             [['status', 'status_karyawan', 'nomor_anggota', 'nomor_pegawai', 'agama', 'pendidikanterakhir'], 'string', 'max' => 20],
             [['nomor_hp', 'nama_lengkap', 'tempat_lahir', 'email', 'approved_by'], 'string', 'max' => 50],

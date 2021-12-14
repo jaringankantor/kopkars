@@ -41,9 +41,9 @@ class m190150_000005_transaksi extends Migration
 
         $this->addForeignKey('transaksi_anggota_fkey', 'transaksi', 'anggota_id', 'anggota', 'id', 'RESTRICT', 'CASCADE');
 
-        $this->createIndex('transaksi_kanal_transaksi_nomor_referensi_idx', 'transaksi', ['kanal_transaksi','nomor_referensi'], true);
+        $this->createIndex('transaksi_kode_toko_kanal_transaksi_nomor_referensi_idx', 'transaksi', ['kode_toko', 'kanal_transaksi','nomor_referensi'], true);
 
-        $this->createIndex('transaksi_kanal_transaksi_nomor_pesanan_idx', 'transaksi', ['kanal_transaksi','nomor_pesanan'], true);
+        $this->createIndex('transaksi_kode_toko_kanal_transaksi_nomor_pesanan_idx', 'transaksi', ['kode_toko', 'kanal_transaksi','nomor_pesanan'], true);
 
     }
 
