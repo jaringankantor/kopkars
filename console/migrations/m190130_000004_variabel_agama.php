@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m190130_000004_create_variabel_agama_table extends Migration
+class m190130_000004_variabel_agama extends Migration
 {
     /**
      * {@inheritdoc}

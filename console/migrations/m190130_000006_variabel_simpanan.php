@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m190130_000006_create_variabel_simpanan extends Migration
+class m190130_000006_variabel_simpanan extends Migration
 {
     /**
      * {@inheritdoc}

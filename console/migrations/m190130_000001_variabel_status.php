@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m190130_000001_create_variabel_status_table extends Migration
+class m190130_000001_variabel_status extends Migration
 {
     /**
      * {@inheritdoc}

@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m190130_000007_create_variabel_kanal_transaksi_table extends Migration
+class m190130_000007_variabel_kanal_transaksi extends Migration
 {
     /**
      * {@inheritdoc}

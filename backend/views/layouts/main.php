@@ -107,6 +107,7 @@ AppAsset::register($this);
                 ['label' => 'Eksport Tambah', 'url' => ['/export/form-tambah']],
                 ['label' => 'Blibli: Stok dan Harga', 'url' => ['/export/update-blibli-stokharga']],
                 ['label' => 'Bukalapak: Stok, Harga, Deskripsi, Video', 'url' => ['/export/update-bukalapak-stokhargadeskripsivideo']],
+                ['label' => 'Facebook Catalog: All', 'url' => ['/export/tambah-facebook-catalog']],
                 ['label' => 'Lazada: Deskripsi dan Gambar (saat ini hanya deskripsi saja)', 'url' => ['/export/update-lazada-deskripsi-gambar']],
                 ['label' => 'Lazada: Stok dan Harga', 'url' => ['/export/update-lazada-stokharga']],
                 ['label' => 'Shopee: Deskripsi', 'url' => ['/export/update-shopee-deskripsi']],

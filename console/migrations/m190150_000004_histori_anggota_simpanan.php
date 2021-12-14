@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m190150_000004_create_histori_anggota_simpanan_table extends Migration
+class m190150_000004_histori_anggota_simpanan extends Migration
 {
     /**
      * {@inheritdoc}

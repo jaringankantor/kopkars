@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m190150_000005_create_transaksi_table extends Migration
+class m190150_000005_transaksi extends Migration
 {
     /**
      * {@inheritdoc}

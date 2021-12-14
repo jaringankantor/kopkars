@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m190130_000005_create_variabel_pendidikanterakhir_table extends Migration
+class m190130_000005_variabel_pendidikanterakhir extends Migration
 {
     /**
      * {@inheritdoc}

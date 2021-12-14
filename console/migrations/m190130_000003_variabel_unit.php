@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m190130_000003_create_variabel_unit_table extends Migration
+class m190130_000003_variabel_unit extends Migration
 {
     /**
      * {@inheritdoc}
