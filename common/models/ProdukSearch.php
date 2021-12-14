@@ -67,25 +67,8 @@ class ProdukSearch extends Produk
 
         $query->andFilterWhere(['ilike', 'sku', $this->sku])
             ->andFilterWhere(['ilike', 'nama_produk', $this->nama_produk])
-            ->andFilterWhere(['ilike', 'nama_produk_pendek', $this->nama_produk])
-            ->andFilterWhere(['ilike', 'deskripsi', $this->deskripsi])
-            ->andFilterWhere(['ilike', 'foto_1', $this->foto_1])
-            ->andFilterWhere(['ilike', 'foto_2', $this->foto_2])
-            ->andFilterWhere(['ilike', 'foto_3', $this->foto_3])
-            ->andFilterWhere(['ilike', 'foto_4', $this->foto_4])
-            ->andFilterWhere(['ilike', 'foto_5', $this->foto_5])
-            ->andFilterWhere(['ilike', 'foto_6', $this->foto_6])
-            ->andFilterWhere(['ilike', 'foto_7', $this->foto_7])
-            ->andFilterWhere(['ilike', 'video_url_1', $this->video_url_1])
-            ->andFilterWhere(['ilike', 'video_url_2', $this->video_url_2])
-            ->andFilterWhere(['ilike', 'video_url_3', $this->video_url_3])
-            ->andFilterWhere(['ilike', 'video_url_4', $this->video_url_4])
-            ->andFilterWhere(['ilike', 'video_url_5', $this->video_url_5])
-            ->andFilterWhere(['ilike', 'rekomendasi_1', $this->rekomendasi_1])
-            ->andFilterWhere(['ilike', 'rekomendasi_2', $this->rekomendasi_2])
-            ->andFilterWhere(['ilike', 'rekomendasi_3', $this->rekomendasi_3])
-            ->andFilterWhere(['ilike', 'rekomendasi_4', $this->rekomendasi_4])
-            ->andFilterWhere(['ilike', 'rekomendasi_5', $this->rekomendasi_5]);
+            ->andFilterWhere(['ilike', 'nama_produk_pendek', $this->nama_produk_pendek])
+            ->andFilterWhere(['ilike', 'deskripsi', $this->deskripsi]);
 
         return $dataProvider;
     }
