@@ -17,7 +17,7 @@ class ProdukSearch extends Produk
     public function rules()
     {
         return [
-            [['sku', 'nama_produk', 'nama_produk_pendek', 'deskripsi', 'foto_1', 'foto_2', 'foto_3', 'foto_4', 'foto_5', 'foto_6', 'foto_7', 'video_url_1', 'video_url_2', 'video_url_3', 'video_url_4', 'video_url_5', 'rekomendasi_1', 'rekomendasi_2', 'rekomendasi_3', 'rekomendasi_4', 'rekomendasi_5'], 'safe'],
+            [['sku', 'nama_produk', 'nama_produk_pendek', 'deskripsi'], 'safe'],
             [['status_aktif'], 'boolean'],
             [['harga_async', 'stok_async', 'berat'], 'integer'],
         ];
