@@ -25,11 +25,12 @@ $this->title = 'List Produk';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
             'sku',
             'status_aktif:boolean',
             'nama_produk',
+            'nama_produk_pendek',
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'nama_produk_pendek',
