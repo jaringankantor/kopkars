@@ -17,7 +17,7 @@ class ProdukSearch extends Produk
     public function rules()
     {
         return [
-            [['sku', 'nama_produk', 'deskripsi'], 'safe'],
+            [['sku', 'nama_produk', 'deskripsi', 'foto_1', 'foto_2', 'foto_3', 'foto_4', 'foto_5', 'foto_6', 'foto_7', 'video_url_1', 'video_url_2', 'video_url_3', 'video_url_4', 'video_url_5', 'rekomendasi_1', 'rekomendasi_2', 'rekomendasi_3', 'rekomendasi_4', 'rekomendasi_5'], 'safe'],
             [['status_aktif'], 'boolean'],
             [['harga_async', 'stok_async', 'berat'], 'integer'],
         ];
@@ -67,6 +67,7 @@ class ProdukSearch extends Produk
 
         $query->andFilterWhere(['ilike', 'sku', $this->sku])
             ->andFilterWhere(['ilike', 'nama_produk', $this->nama_produk])
+            ->andFilterWhere(['ilike', 'nama_produk_pendek', $this->nama_produk])
             ->andFilterWhere(['ilike', 'deskripsi', $this->deskripsi])
             ->andFilterWhere(['ilike', 'foto_1', $this->foto_1])
             ->andFilterWhere(['ilike', 'foto_2', $this->foto_2])
