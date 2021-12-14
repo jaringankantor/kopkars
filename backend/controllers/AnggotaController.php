@@ -227,6 +227,8 @@ class AnggotaController extends Controller
     protected function findModelAnggota($id)
     {
         if (($model = Anggota::findOneAnggota($id)) !== null) {
+            print_r($model);
+            exit();
             return $model;
         }
 
