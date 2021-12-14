@@ -48,7 +48,7 @@ class ProdukController extends Controller
     public function actionIndex()
     {
         $searchModel = new ProdukSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams)->orderBy(['sku'=>SORT_DESC]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
