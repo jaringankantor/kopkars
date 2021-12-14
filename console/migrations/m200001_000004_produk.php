@@ -54,6 +54,12 @@ class m200001_000004_produk extends Migration
 
         $this->addForeignKey('produk_toko_fkey', 'produk', 'kode_toko', 'toko', 'kode', 'RESTRICT', 'CASCADE');
 
+        $this->createIndex('produk_kode_toko_sku_idx', 'produk', ['kode_toko','sku'], true);
+
+        $this->createIndex('produk_kode_toko_nama_produk_idx', 'produk', ['kode_toko','nama_produk'], true);
+
+        $this->createIndex('produk_kode_toko_nama_produk_pendek_idx', 'produk', ['kode_toko','nama_produk_pendek'], true);
+
         $this->batchInsert('produk', ['kode_toko','sku','nama_produk','harga_async','stok_async','berat','video_url_1','video_url_2','video_url_3','rekomendasi_1','rekomendasi_2','rekomendasi_3','rekomendasi_4','rekomendasi_5','brand','warna'],
         [
             ['hiiphooray-tani','SKUHT0001','Bakteri Baik EM4 1 Liter Perikanan dan Tambak',22500,15,1300,NULL,NULL,NULL,'SKUHT0068','SKUHT0078','SKUHT0077','SKUHT0039','SKUHT0067','EM4','Multicolor'],

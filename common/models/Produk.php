@@ -96,6 +96,8 @@ class Produk extends \yii\db\ActiveRecord
             [['deskripsi'], 'string', 'max' => 2000],
             [['video_url_1', 'video_url_2', 'video_url_3', 'video_url_4', 'video_url_5', 'rekomendasi_1', 'rekomendasi_2', 'rekomendasi_3', 'rekomendasi_4', 'rekomendasi_5'], 'string', 'max' => 250],
             ['sku', 'match' ,'pattern'=>'/^('.$text_skuprefix.')[0-9]{4}/','message'=> 'Format SKU harus sesuai contoh'],
+            ['nama_produk', 'unique', 'targetAttribute' => ['kode_toko', 'nama_produk']],
+            ['nama_produk_pendek', 'unique', 'targetAttribute' => ['kode_toko', 'nama_produk_pendek']],
             ['sku', 'unique', 'targetAttribute' => ['kode_toko', 'sku']],
             [['rekomendasi_1'], 'exist', 'skipOnError' => true, 'targetClass' => Produk::className(), 'targetAttribute' => ['rekomendasi_1' => 'sku']],
             [['rekomendasi_2'], 'exist', 'skipOnError' => true, 'targetClass' => Produk::className(), 'targetAttribute' => ['rekomendasi_2' => 'sku']],

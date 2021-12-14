@@ -14,17 +14,17 @@ class m190140_000001_anggota extends Migration
             'kode_toko' => $this->string(50)->notNull(),
             'status' => $this->string(20),
             'status_karyawan' => $this->string(20),
-            'nomor_anggota' => $this->string(20)->unique(),
-            'nomor_pegawai' => $this->string(20)->unique(),
-            'email' => $this->string(50)->unique(),
-            'email_last_lock' => $this->string(50)->unique(),
+            'nomor_anggota' => $this->string(20),
+            'nomor_pegawai' => $this->string(20),
+            'email' => $this->string(50),
+            'email_last_lock' => $this->string(50),
             'email_last_lock_verified' => $this->boolean()->defaultValue(false),
             'password_default' => $this->string(150),
             'foto' => $this->binary(),
             'foto_thumbnail' => $this->binary(),
             'unit' => $this->string(100),
-            'nomor_hp' => $this->string(50)->unique(),
-            'nomor_hp_last_lock' => $this->string(20)->unique(),
+            'nomor_hp' => $this->string(50),
+            'nomor_hp_last_lock' => $this->string(20),
             'nomor_hp_last_lock_verified' => $this->boolean()->defaultValue(false),
             'nomor_ktp' => $this->string(16),
             'nama_lengkap' => $this->string(50),
@@ -45,7 +45,7 @@ class m190140_000001_anggota extends Migration
             'password_hash' => $this->string(255),
             'password_reset_token' => $this->string(255),
             'verification_token' => $this->string(255),
-            'nomor_zahir' => $this->string(50)->unique(), //hanya sementara selama proses migrasi data, nanti di zahir semua akan diganti jadi nomor_anggota
+            'nomor_zahir' => $this->string(50), //hanya sementara selama proses migrasi data, nanti di zahir semua akan diganti jadi nomor_anggota
         ]);
 
         $this->addForeignKey('anggota_toko_fkey', 'anggota', 'kode_toko', 'toko', 'kode', 'RESTRICT', 'CASCADE');
@@ -63,6 +63,20 @@ class m190140_000001_anggota extends Migration
         $this->createIndex('anggota_nomor_anggota_idx', 'anggota', 'nomor_anggota');
        
         $this->createIndex('anggota_nama_lengkap_idx', 'anggota', 'nama_lengkap');
+
+        $this->createIndex('anggota_kode_toko_nomor_anggota_idx', 'anggota', ['kode_toko','nomor_anggota'], true);
+
+        $this->createIndex('anggota_kode_toko_nomor_pegawai_idx', 'anggota', ['kode_toko','nomor_pegawai'], true);
+
+        $this->createIndex('anggota_kode_toko_email_idx', 'anggota', ['kode_toko','email'], true);
+
+        $this->createIndex('anggota_kode_toko_email_last_lock_idx', 'anggota', ['kode_toko','email_last_lock'], true);
+
+        $this->createIndex('anggota_kode_toko_nomor_hp_idx', 'anggota', ['kode_toko','nomor_hp'], true);
+
+        $this->createIndex('anggota_kode_toko_nomor_hp_last_lock_idx', 'anggota', ['kode_toko','nomor_hp_last_lock'], true);
+        
+        $this->createIndex('anggota_kode_toko_nomor_zahir_idx', 'anggota', ['kode_toko','nomor_zahir'], true);
 
         $sql = file_get_contents(Yii::getAlias('@kopkars-assets/sql/trigger_anggota_insertupdate.sql'));
         $this->execute($sql);

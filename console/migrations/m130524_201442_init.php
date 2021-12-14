@@ -64,6 +64,8 @@ class m130524_201442_init extends Migration
 
         $this->addForeignKey('{%user}_toko_fkey', '{{%user}}', 'kode_toko', 'toko', 'kode', 'RESTRICT', 'CASCADE');
 
+        $this->createIndex('{%user}_kode_toko_email_idx', '{{%user}}', ['kode_toko','email'], true);
+
         $this->createTable('session', [
             'id' => $this->string(40),
             'expire' => $this->integer(),
