@@ -3,6 +3,8 @@ use yii\helpers\Html;
 //use yii\grid\GridView;
 use kartik\grid\GridView;
 
+$this->title = 'Export Data Marketplace';
+
 ?>
 
 <div class="produk-index">
