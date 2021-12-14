@@ -385,7 +385,8 @@ class Produk extends \yii\db\ActiveRecord
     public static function findProduk()
     {
         return self::find()
-            ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko]);
+            ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko])
+            ->orderBy(['sku' => SORT_DESC]);
     }
 
     public static function findOneProduk($sku)
