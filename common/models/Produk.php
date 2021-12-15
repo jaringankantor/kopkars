@@ -213,6 +213,9 @@ class Produk extends \yii\db\ActiveRecord
         $deskripsi_produk = self::headerProduk($marketplace).self::findOneProduk($sku)->deskripsi.self::rekomendasiProduk($marketplace,$sku).self::footerProduk($marketplace);
         
         switch ($marketplace) {
+            case 'bkl':
+                $deskripsi_produk = self::headerProduk($marketplace).self::findOneProduk($sku)->deskripsi.self::rekomendasiProdukPendek($marketplace,$sku).self::footerProduk($marketplace);
+                break;
             case 'lzd':
                 $deskripsi_produk = nl2br($deskripsi_produk);
                 break;
@@ -276,11 +279,36 @@ class Produk extends \yii\db\ActiveRecord
         return empty($nama_produk) ? null : $nama_produk;
     }
 
+    public static function namaProdukPendek($marketplace,$sku){
+        $nama_produk_pendek = self::findOneProduk($sku)->nama_produk_pendek;
+
+        return empty($nama_produk_pendek) ? null : $nama_produk_pendek;
+    }
+
     public static function rekomendasiProduk($marketplace,$sku){
         $rekomendasi = null;
         for ($i=1; $i <= 5 ; $i++) { 
             $rekomendasi_ke = 'rekomendasi_'.$i;
-            $rekomendasi .= empty(self::findOneProduk($sku)->$rekomendasi_ke) ? null : '* '.self::namaProduk($marketplace,self::findOneProduk($sku)->$rekomendasi_ke).' '.self::urlProduk($marketplace,self::findOneProduk($sku)->$rekomendasi_ke)."\n";
+            switch ($marketplace) {
+                case 'bkl' or 'shp':
+                    $nama_produk = self::namaProdukPendek($marketplace,self::findOneProduk($sku)->$rekomendasi_ke);
+                    break;
+                default:
+                    $nama_produk = self::namaProduk($marketplace,self::findOneProduk($sku)->$rekomendasi_ke);
+                    break;
+            }
+
+            $rekomendasi .= empty(self::findOneProduk($sku)->$rekomendasi_ke) ? null : '* '.$nama_produk.' '.self::urlProduk($marketplace,self::findOneProduk($sku)->$rekomendasi_ke)."\n";
+        }
+ 
+        return empty($rekomendasi) ? null : "\n\n".'Rekomendasi barang lainnya:'."\n".$rekomendasi."\n";
+    }
+
+    public static function rekomendasiProdukPendek($marketplace,$sku){
+        $rekomendasi = null;
+        for ($i=1; $i <= 5 ; $i++) { 
+            $rekomendasi_ke = 'rekomendasi_'.$i;
+            $rekomendasi .= empty(self::findOneProduk($sku)->$rekomendasi_ke) ? null : '* '.self::namaProdukPendek($marketplace,self::findOneProduk($sku)->$rekomendasi_ke).' '.self::urlProduk($marketplace,self::findOneProduk($sku)->$rekomendasi_ke)."\n";
         }
  
         return empty($rekomendasi) ? null : "\n\n".'Rekomendasi barang lainnya:'."\n".$rekomendasi."\n";
