@@ -46,8 +46,6 @@ class m400001_000003_transaksi_rincian extends Migration
             'last_softdelete_by' => $this->string(50),
         ]);
 
-        $this->addForeignKey('transaksi_rincian_transaksi_fkey', 'transaksi_rincian', 'transaksi_id', 'transaksi', 'id', 'RESTRICT', 'CASCADE');
-
         $this->addForeignKey('transaksi_rincian_toko_fkey', 'transaksi_rincian', 'kode_toko', 'toko', 'kode', 'RESTRICT', 'CASCADE');
 
         $this->addForeignKey('transaksi_rincian_variabel_kanal_transaksi_fkey', 'transaksi_rincian', 'kanal_transaksi', 'variabel_kanal_transaksi', 'kanal_transaksi', 'RESTRICT', 'CASCADE');
