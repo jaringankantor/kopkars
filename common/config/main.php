@@ -9,6 +9,9 @@ return [
     'modules' => [
     ],
     'components' => [
+        'kopkarstext' => [
+            'class' => 'common\components\Kopkarstext'
+        ],
         'assetManager' => [
             'bundles' => [
                 'yii\web\JqueryAsset' => [

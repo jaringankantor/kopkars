@@ -66,8 +66,8 @@ $this->title = 'Import Tokopedia';
 
                 $nama_produk = trim($worksheet->getCell($column_nama_produk.$row)->getValue());
                 $jumlah_barang = trim($worksheet->getCell($column_jumlah_barang.$row)->getValue());
-                $sku = trim($worksheet->getCell($column_sku.$row)->getValue());
-                $keterangan = trim($worksheet->getCell($column_keterangan.$row)->getValue());
+                $sku = Yii::$app->kopkarstext->textOrNull(trim($worksheet->getCell($column_sku.$row)->getValue()));
+                $keterangan = Yii::$app->kopkarstext->textOrNull(trim($worksheet->getCell($column_keterangan.$row)->getValue()));
 
                 $anggota_id = Anggota::findAnggotaByNomorAnggota($keterangan)->count()==1?Anggota::findOneAnggotaByNomorAnggota($keterangan)->id:null;
 
