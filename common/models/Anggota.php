@@ -19,6 +19,7 @@ use yii\web\IdentityInterface;
  * @property string|null $status_karyawan
  * @property string|null $nomor_anggota
  * @property string|null $nomor_pegawai
+ * @property string|null $nomor_zahir 
  * @property string|null $email
  * @property string|null $email_last_lock
  * @property bool|null $email_last_lock_verified
@@ -49,11 +50,11 @@ use yii\web\IdentityInterface;
  * @property string|null $password_reset_token
  * @property string|null $verification_token
  *
- * @property VariabelAgama $agama0
+ * @property VariabelAgama $agama
  * @property VariabelPendidikanterakhir $pendidikanTerakhir
- * @property VariabelStatus $status0
- * @property VariabelStatuskaryawan $statuskaryawan0
- * @property VariabelUnit $unit0
+ * @property VariabelStatus $status
+ * @property VariabelStatuskaryawan $statuskaryawan
+ * @property VariabelUnit $unit
  * @property HistoriAnggotaStatus[] $historiAnggotaStatuses
  */
 class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
@@ -215,14 +216,13 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['kode_toko', 'string', 'max' => 50],
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['nomor_ktp', 'nomor_npwp', 'nomor_hp'], 'match' ,'pattern'=>'/^[0-9]+$/u','message'=> 'Hanya boleh angka'],
             [['foto'], 'file', 'extensions' => 'png,jpg,jpeg', 'mimeTypes'=>'image/jpeg,image/png','maxSize'=>2097152],
             [['email_last_lock_verified', 'nomor_hp_last_lock_verified'], 'boolean'],
             [['tanggal_lahir', 'waktu_daftar', 'waktu_update', 'waktu_login', 'waktu_approve'], 'safe'],
             [['status', 'status_karyawan', 'nomor_anggota', 'nomor_pegawai', 'agama', 'pendidikanterakhir'], 'string', 'max' => 20],
-            [['nomor_hp', 'nama_lengkap', 'tempat_lahir', 'email', 'approved_by'], 'string', 'max' => 50],
+            [['kode_toko','nomor_hp', 'nama_lengkap', 'tempat_lahir', 'email', 'approved_by'], 'string', 'max' => 50],
             [['password_default'], 'string', 'max' => 150],
             [['kode_toko', 'foto', 'email', 'nomor_hp', 'nomor_pegawai', 'unit', 'status_karyawan', 'nomor_ktp', 'nama_lengkap', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama', 'pendidikanterakhir', 'alamat_rumah','nomor_npwp'], 'required'],
             [['password_default','re_password','captcha'], 'required','on' => 'frontend-create-anggota'],
@@ -235,13 +235,14 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             [['nomor_hp'], 'string', 'max' => 12],
             [['alamat_rumah', 'keterangan', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
-            ['email', 'unique', 'targetAttribute' => ['kode_toko', 'email'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
-            ['email_last_lock', 'unique', 'targetAttribute' => ['kode_toko', 'email_last_lock'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
-            ['nomor_anggota', 'unique', 'targetAttribute' => ['kode_toko', 'nomor_anggota'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
-            ['nomor_pegawai', 'unique', 'targetAttribute' => ['kode_toko', 'nomor_pegawai'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
-            ['nomor_hp', 'unique', 'targetAttribute' => ['kode_toko', 'nomor_hp'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
-            ['nomor_hp_last_lock', 'unique', 'targetAttribute' => ['kode_toko', 'nomor_hp_last_lock'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
-            ['nomor_zahir', 'unique', 'targetAttribute' => ['kode_toko', 'nomor_zahir'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
+            [['kode_toko', 'email'], 'unique', 'targetAttribute' => ['kode_toko', 'email'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
+            [['kode_toko', 'email_last_lock'], 'unique', 'targetAttribute' => ['kode_toko', 'email_last_lock'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
+            [['kode_toko', 'nomor_anggota'], 'unique', 'targetAttribute' => ['kode_toko', 'nomor_anggota'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
+            [['kode_toko', 'nomor_pegawai'], 'unique', 'targetAttribute' => ['kode_toko', 'nomor_pegawai'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
+            [['kode_toko', 'nomor_hp'], 'unique', 'targetAttribute' => ['kode_toko', 'nomor_hp'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
+            [['kode_toko', 'nomor_hp_last_lock'], 'unique', 'targetAttribute' => ['kode_toko', 'nomor_hp_last_lock'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
+            [['kode_toko', 'nomor_zahir'], 'unique', 'targetAttribute' => ['kode_toko', 'nomor_zahir'], 'message'=>'Data ini telah dipakai orang lain, mohon gunakan data lain.'],
+            [['kode_toko'], 'exist', 'skipOnError' => true, 'targetClass' => Toko::className(), 'targetAttribute' => ['kode_toko' => 'kode']],
             [['agama'], 'exist', 'skipOnError' => true, 'targetClass' => VariabelAgama::className(), 'targetAttribute' => ['agama' => 'agama']],
             [['pendidikanterakhir'], 'exist', 'skipOnError' => true, 'targetClass' => VariabelPendidikanterakhir::className(), 'targetAttribute' => ['pendidikanterakhir' => 'pendidikanterakhir']],
             [['status'], 'exist', 'skipOnError' => true, 'targetClass' => VariabelStatus::className(), 'targetAttribute' => ['status' => 'status']],
@@ -279,6 +280,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             'status_karyawan' => 'Status PNJ',
             'nomor_anggota' => 'Nomor Koperasi',
             'nomor_pegawai' => 'Nomor Pegawai PNJ',
+            'nomor_zahir' => 'Nomor Zahir',
             'email' => 'Email',
             'password_default' => 'Password',
             're_password' => 'Ulangi Password',
@@ -313,7 +315,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
      *
      * @return \yii\db\ActiveQuery|VariabelAgamaQuery
      */
-    public function getAgama0()
+    public function getAgama()
     {
         return $this->hasOne(VariabelAgama::className(), ['agama' => 'agama']);
     }
@@ -333,7 +335,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
      *
      * @return \yii\db\ActiveQuery|VariabelStatusQuery
      */
-    public function getStatus0()
+    public function getStatus()
     {
         return $this->hasOne(VariabelStatus::className(), ['status' => 'status']);
     }
@@ -343,7 +345,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
      *
      * @return \yii\db\ActiveQuery|VariabelStatuskaryawanQuery
      */
-    public function getStatuskaryawan0()
+    public function getStatuskaryawan()
     {
         return $this->hasOne(VariabelStatuskaryawan::className(), ['statuskaryawan' => 'status_karyawan']);
     }
@@ -353,7 +355,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
      *
      * @return \yii\db\ActiveQuery|VariabelUnitQuery
      */
-    public function getUnit0()
+    public function getUnit()
     {
         return $this->hasOne(VariabelUnit::className(), ['unit' => 'unit']);
     }
@@ -392,6 +394,18 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return self::findAnggota()
             ->andWhere(['id'=>$id])
+            ->one();
+    }
+
+    public static function findAnggotaByNomorAnggota($nomor_anggota)
+    {
+        return self::findAnggota()
+            ->andwhere(['nomor_anggota'=>$nomor_anggota]);
+    }
+
+    public static function findOneAnggotaByNomorAnggota($nomor_anggota)
+    {
+        return self::findAnggotaByNomorAnggota($nomor_anggota)
             ->one();
     }
 

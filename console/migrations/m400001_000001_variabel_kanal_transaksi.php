@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m190130_000007_variabel_kanal_transaksi extends Migration
+class m400001_000001_variabel_kanal_transaksi extends Migration
 {
     /**
      * {@inheritdoc}
@@ -15,7 +15,7 @@ class m190130_000007_variabel_kanal_transaksi extends Migration
 
         $this->addPrimaryKey('variabel_kanal_transaksi_pkey','variabel_kanal_transaksi','kanal_transaksi');
         
-        $this->batchInsert('variabel_kanal_transaksi', ['kanal_transaksi'], [['web-backend'],['web-frontend'],['zahir']]);
+        $this->batchInsert('variabel_kanal_transaksi', ['kanal_transaksi'], [['bukalapak'],['blibli'],['jdid'],['lazada'],['shopee'],['tokopedia']['web-backend'],['web-frontend'],['zahir']]);
     }
 
     /**

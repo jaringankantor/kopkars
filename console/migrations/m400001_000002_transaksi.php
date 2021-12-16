@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m190150_000005_transaksi extends Migration
+class m400001_000002_transaksi extends Migration
 {
     /**
      * {@inheritdoc}
@@ -13,22 +13,28 @@ class m190150_000005_transaksi extends Migration
             'id' => $this->primaryKey(),
             'kode_toko' => $this->string(50)->notNull(),
             'kanal_transaksi' => $this->string(20)->notNull(),
-            'nomor_referensi' => $this->string(20),
-            'nomor_pesanan' => $this->string(20),
+            'nomor_referensi' => $this->string(50)->notNull(), //Misal nomor invoice
+            'nomor_pesanan' => $this->string(50),
             'anggota_id' => $this->integer(), //isi jika transaksi dilakukan oleh anggota
             'anggota_nomor_zahir' => $this->string(50), //isi jika transaksi dilakukan oleh anggota di zahir
             'nama_pelanggan' => $this->string(50),
+            'nomor_hp' => $this->string(50),
+            'email' => $this->string(50),
+            'alamat' => $this->string(),
+            'kurir' => $this->string(50),
+            'nomor_resi' => $this->string(50),
+            'is_bebasongkir' => $this->boolean(),
             'mata_uang' => $this->string(6)->notNull()->defaultValue('IDR'),
-            'subtotal' => $this->integer(), //dalam jumlah mata_uang
             'diskon' => $this->integer(), //dalam jumlah mata_uang bukan persen
             'pajak' => $this->integer(), //dalam jumlah mata_uang bukan persen
-            'total_penjualan' => $this->integer(), //dalam jumlah mata_uang
+            'subtotal' => $this->integer()->notNull(), //Subtotal harga_awal sebelum diskon dan pajak dalam jumlah mata_uang
+            'total_penjualan' => $this->integer()->notNull(), //Total harga_jual penjualan setelah diskon dan pajak dalam jumlah mata_uang
             'pembayaran' => $this->integer(), //yang dibayarkan cash dalam jumlah mata_uang
             'saldo' => $this->integer(), //yang dibayarkan mencicil/hutang/akhir bulan dalam jumlah mata_uang
-            'keterangan' => $this->string(),
+            'keterangan' => $this->string(), //keterangan akan bertambah jika setiap detil transaksi terisi, dipisahkan |
             'waktu' => $this->dateTime()->notNull()->defaultExpression('now()'),
             'last_waktu_update' => $this->dateTime(),
-            'insert_by' => $this->string(50),
+            'insert_by' => $this->string(50)->notNull(),
             'last_update_by' => $this->string(50),
             'is_deleted' => $this->boolean()->defaultValue(false),
             'deleted_at' => $this->dateTime(),

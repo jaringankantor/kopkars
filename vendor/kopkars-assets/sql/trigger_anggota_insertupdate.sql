@@ -1,9 +1,9 @@
 CREATE OR REPLACE FUNCTION trigger_anggota_insertupdate() RETURNS "trigger" AS
 $BODY$
 DECLARE
-  result_chars character varying(20);
-  query TEXT;
-  found TEXT;
+   result_chars character varying(20);
+   query TEXT;
+   found TEXT;
 BEGIN
    IF (TG_OP = 'INSERT') THEN
       UPDATE anggota

@@ -11,10 +11,10 @@ use kartik\widgets\ActiveForm;
 $worksheet_update = 'Page1';
 
 $row_mulai = 6;
-$column_tanggal = 'A';
-$column_reference = 'B';
-$column_nopesanan = 'C';
-$column_pelanggan = 'G';
+$column_waktu = 'A';
+$column_nomor_referensi = 'B';
+$column_nomor_pesanan = 'C';
+$column_nama_pelanggan = 'G';
 $column_matauang = 'K';
 $column_subtotal = 'L';
 $column_diskon = 'N';
@@ -55,40 +55,41 @@ $this->title = 'Import Transaksi Zahir';
             //inilah looping untuk membaca cell dalam file excel,perkolom
             for ($row = $row_mulai; $row <= $highestRow; ++$row) { //$row = 2 artinya baris kedua yang dibaca dulu(header kolom diskip disesuaikan saja)
                 //for ($col = 1; $col <= $highestColumnIndex; ++$col) {
-                $tanggal = trim($worksheet->getCell($column_tanggal.$row)->getValue());
-                $reference = trim($worksheet->getCell($column_reference.$row)->getValue());
-                $nopesanan_get = trim($worksheet->getCell($column_nopesanan.$row)->getValue());
+                $tanggal = trim($worksheet->getCell($column_waktu.$row)->getValue());
+                $nomor_referensi = trim($worksheet->getCell($column_nomor_referensi.$row)->getValue());
+                $nopesanan_get = trim($worksheet->getCell($column_nomor_pesanan.$row)->getValue());
                 $nopesanan = empty($nopesanan_get)?NULL:$nopesanan_get;
-                $pelanggan = trim($worksheet->getCell($column_pelanggan.$row)->getValue());
-                $matauang = trim($worksheet->getCell($column_matauang.$row)->getValue());
+                $nama_pelanggan = trim($worksheet->getCell($column_nama_pelanggan.$row)->getValue());
+                $mata_uang = trim($worksheet->getCell($column_matauang.$row)->getValue());
                 $subtotal = trim($worksheet->getCell($column_subtotal.$row)->getValue());
                 $diskon = trim($worksheet->getCell($column_diskon.$row)->getValue());
                 $pajak = trim($worksheet->getCell($column_pajak.$row)->getValue());
-                $totalpenjualan = trim($worksheet->getCell($column_totalpenjualan.$row)->getValue()); 
+                $total_penjualan = trim($worksheet->getCell($column_totalpenjualan.$row)->getValue()); 
                 $pembayaran = trim($worksheet->getCell($column_pembayaran.$row)->getValue());
                 $saldo = trim($worksheet->getCell($column_saldo.$row)->getValue());
 
-                if(substr($reference,0,4)=='KSR-' AND strlen($reference)>7) {
-                    $jumlah_transaksi = Transaksi::findTransaksiByKanal('zahir',$reference)->count();
+                if(substr($nomor_referensi,0,4)=='KSR-' AND strlen($nomor_referensi)>7) {
+                    $jumlah_transaksi = Transaksi::findTransaksiByKanal('zahir',$nomor_referensi)->count();
                     if($jumlah_transaksi==0) {
                         $anggota_id = Anggota::findOneAnggotaByNomorZahir($pelanggan)->id;
                         $model = new Transaksi();
                         $model->scenario = 'backend-import-zahir';
                         $model->kode_toko=Yii::$app->user->identity->kode_toko;
                         $model->kanal_transaksi = 'zahir';
-                        $model->nomor_referensi = $reference;
+                        $model->nomor_referensi = $nomor_referensi;
                         $model->nomor_pesanan = $nopesanan;
-                        $model->anggota_nomor_zahir= $pelanggan;
+                        $model->anggota_nomor_zahir= $nama_pelanggan;
                         $model->anggota_id = $anggota_id;
                         $model->nama_pelanggan = $pelanggan;
-                        $model->mata_uang = $matauang;
+                        $model->mata_uang = $mata_uang;
                         $model->subtotal = $subtotal;
                         $model->diskon = $diskon;
                         $model->pajak = $pajak;
-                        $model->total_penjualan = $totalpenjualan;
+                        $model->total_penjualan = $total_penjualan;
                         $model->pembayaran = $pembayaran;
                         $model->saldo = $saldo;
                         $model->insert_by = Yii::$app->user->identity->email;
+
                         if (!$model->save()) $sum_error++;
                     }
                 }
