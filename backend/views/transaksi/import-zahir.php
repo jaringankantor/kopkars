@@ -57,8 +57,7 @@ $this->title = 'Import Transaksi Zahir';
                 //for ($col = 1; $col <= $highestColumnIndex; ++$col) {
                 $tanggal = trim($worksheet->getCell($column_waktu.$row)->getValue());
                 $nomor_referensi = trim($worksheet->getCell($column_nomor_referensi.$row)->getValue());
-                $nopesanan_get = trim($worksheet->getCell($column_nomor_pesanan.$row)->getValue());
-                $nopesanan = empty($nopesanan_get)?NULL:$nopesanan_get;
+                $nopesanan = Yii::$app->kopkarstext->textOrNull(trim($worksheet->getCell($column_nomor_pesanan.$row)->getValue()));
                 $nama_pelanggan = trim($worksheet->getCell($column_nama_pelanggan.$row)->getValue());
                 $mata_uang = trim($worksheet->getCell($column_matauang.$row)->getValue());
                 $subtotal = trim($worksheet->getCell($column_subtotal.$row)->getValue());
