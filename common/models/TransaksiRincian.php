@@ -172,11 +172,12 @@ class TransaksiRincian extends \yii\db\ActiveRecord
             ->one();
     }
 
-    public static function findTransaksiRincianByKanal($kanal_transaksi,$nomor_referensi)
+    public static function findTransaksiRincianByKanal($kanal_transaksi,$nomor_referensi,$nama_produk)
     {
         return self::findTransaksiRincian()
             ->andWhere(['kanal_transaksi'=>$kanal_transaksi])
-            ->andWhere(['nomor_referensi'=>$nomor_referensi]);
+            ->andWhere(['nomor_referensi'=>$nomor_referensi])
+            ->andWhere(['nama_produk'=>$nama_produk]);
     }
 
 }

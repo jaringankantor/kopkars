@@ -88,7 +88,7 @@ $this->title = 'Import Tokopedia';
                 $is_bebasongkir = trim($worksheet->getCell($column_is_bebasongkir.$row)->getValue())=='Yes'?true:false;
 
                 if(substr($nomor_referensi,0,6)=='INV/20' AND strlen($nomor_referensi)>25) {
-                    $jumlah_transaksi = TransaksiRincian::findTransaksiRincianByKanal('tokopedia',$nomor_referensi)->count();
+                    $jumlah_transaksi = TransaksiRincian::findTransaksiRincianByKanal('tokopedia',$nomor_referensi,$nama_produk)->count();
                     if($jumlah_transaksi==0) {
                         $anggota_id = Anggota::findOneAnggotaByNomorZahir($pelanggan)->id;
                         $model = new TransaksiRincian();
