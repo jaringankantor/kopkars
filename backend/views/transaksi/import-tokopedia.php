@@ -77,7 +77,7 @@ $this->title = 'Import Tokopedia';
 
                 $subtotal = $harga_awal*$jumlah_barang;
 
-                if($nomor_referensi='INV/20200927/XX/IX/638680882'){}
+                if($nomor_referensi='INV/20200927/XX/IX/638680882'){
                 print_r($harga_awal.$jumlah_barang);
                 exit();
             }
