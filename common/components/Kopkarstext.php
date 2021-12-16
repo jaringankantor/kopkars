@@ -6,7 +6,7 @@ use yii\base\Component;
 use yii\helpers\StringHelper;
 
 
-class Apeitext extends Component {
+class Kopkarstext extends Component {
     public function textOrNull($input)
     {
        return empty($input)?null:$input;
