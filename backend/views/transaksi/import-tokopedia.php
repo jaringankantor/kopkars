@@ -90,8 +90,6 @@ $this->title = 'Import Tokopedia';
                 if(substr($nomor_referensi,0,6)=='INV/20' AND strlen($nomor_referensi)>25) {
                     $jumlah_transaksi = TransaksiRincian::findTransaksiRincianByKanal('tokopedia',$nomor_referensi,$nama_produk)->count();
                     if($jumlah_transaksi==0) {
-                        print_r($nomor_referensi);
-                        exit();
                         $anggota_id = Anggota::findOneAnggotaByNomorZahir($pelanggan)->id;
                         $model = new TransaksiRincian();
                         $model->scenario = 'backend-import-tokopedia';
