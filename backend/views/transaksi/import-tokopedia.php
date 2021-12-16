@@ -25,6 +25,7 @@ $column_nomor_hp = 'P';
 $column_alamat = 'S';
 $column_kurir = 'T';
 $column_nomor_resi = 'T';
+$column_is_bebasongkir = 'AA';
 
 $this->title = 'Import Tokopedia';
 //$this->params['breadcrumbs'][] = $this->title;
@@ -82,10 +83,12 @@ $this->title = 'Import Tokopedia';
                 $kurir = trim($worksheet->getCell($column_kurir.$row)->getValue());
                 $nomor_resi = trim($worksheet->getCell($column_nomor_resi.$row)->getValue());
 
-                $is_bebasongkir = trim($worksheet->getCell($column_nomor_resi.$row)->getValue())=='Yes'?true:false;
+                $is_bebasongkir = trim($worksheet->getCell($column_is_bebasongkir.$row)->getValue())=='Yes'?true:false;
 
                 if(substr($nomor_referensi,0,6)=='INV/20' AND strlen($reference)>25) {
-                    $jumlah_transaksi = TransaksiRincian::findTransaksiRincianByKanal('zahir',$reference)->count();
+                    $jumlah_transaksi = TransaksiRincian::findTransaksiRincianByKanal('tokopedia',$reference)->count();
+                    print_r($jumlah_transaksi);
+                    exit();
                     if($jumlah_transaksi==0) {
                         $anggota_id = Anggota::findOneAnggotaByNomorZahir($pelanggan)->id;
                         $model = new TransaksiRincian();
