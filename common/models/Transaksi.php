@@ -24,6 +24,7 @@ use yii2tech\ar\softdelete\SoftDeleteQueryBehavior;
  * @property string|null $alamat
  * @property string|null $kurir
  * @property string|null $nomor_resi 
+ * @property bool|null $is_bebasongkir
  * @property string $mata_uang
  * @property int $subtotal
  * @property int|null $diskon
@@ -89,7 +90,7 @@ class Transaksi extends \yii\db\ActiveRecord
             [['anggota_id', 'subtotal', 'diskon', 'pajak', 'total_penjualan', 'pembayaran', 'saldo'], 'default', 'value' => null],
             [['anggota_id', 'subtotal', 'diskon', 'pajak', 'total_penjualan', 'pembayaran', 'saldo'], 'integer'],
             [['waktu', 'last_waktu_update', 'deleted_at'], 'safe'],
-            [['is_deleted'], 'boolean'],
+            [['is_bebasongkir', 'is_deleted'], 'boolean'],
             [['kanal_transaksi'], 'string', 'max' => 20],
             [['kode_toko', 'kanal_transaksi', 'nomor_pesanan'], 'unique', 'targetAttribute' => ['kode_toko', 'kanal_transaksi', 'nomor_pesanan']],
             [['kode_toko', 'kanal_transaksi', 'nomor_referensi'], 'unique', 'targetAttribute' => ['kode_toko', 'kanal_transaksi', 'nomor_referensi']],
