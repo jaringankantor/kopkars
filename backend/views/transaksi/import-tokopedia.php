@@ -77,9 +77,9 @@ $this->title = 'Import Tokopedia';
 
                 $subtotal = $harga_awal*$jumlah_barang;
 
-                if($nomor_referensi=='INV/20200927/XX/IX/638680882' AND $nama_produk=='Bakteri Baik EM4 1 Liter Perikanan dan Tambak'){
-                print_r($harga_awal.$jumlah_barang);
-                exit();
+                //if($nomor_referensi=='INV/20200927/XX/IX/638680882' AND $nama_produk=='Bakteri Baik EM4 1 Liter Perikanan dan Tambak'){
+                //print_r($harga_awal.$jumlah_barang);
+                //exit();
             }
                 $total_penjualan = $harga_jual*$jumlah_barang;
                 $pembayaran = $total_penjualan;
