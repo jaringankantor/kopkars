@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Transaksi;
+use common\models\TransaksiSearch;
 use common\models\UploadForm;
 use yii\data\ActiveDataProvider;
 //use yii\filters\AccessControl;
@@ -41,11 +42,11 @@ class TransaksiController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Transaksi::find(),
-        ]);
+        $searchModel = new TransaksiSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

@@ -4,19 +4,17 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Anggota;
+use common\models\Transaksi;
 
 /**
- * AnggotaSearch represents the model behind the search form of `common\models\Anggota`.
+ * TransaksiSearch represents the model behind the search form of `common\models\Transaksi`.
  */
-class AnggotaSearch extends Anggota
+class TransaksiSearch extends Transaksi
 {
+    public $keyword;
     /**
      * {@inheritdoc}
      */
-
-    public $keyword;
-
     public function rules()
     {
         return [
@@ -42,13 +40,13 @@ class AnggotaSearch extends Anggota
      */
     public function search($params)
     {
-        $query = Anggota::findAnggota()->andWhere('nomor_anggota IS NOT NULL OR waktu_approve IS NOT NULL');
+        $query = Transaksi::findTransaksi();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['nama_lengkap'=>SORT_ASC]]
+            'sort'=> ['defaultOrder' => ['waktu'=>SORT_DESC]]
         ]);
 
         $this->load($params);
@@ -60,7 +58,7 @@ class AnggotaSearch extends Anggota
         }
 
         // grid filtering conditions
-        $query->andFilterWhere(['or',['ilike', 'nomor_anggota', $this->keyword],['ilike', 'email_last_lock', $this->keyword],['ilike', 'nomor_hp_last_lock', $this->keyword],['ilike', 'nama_lengkap', $this->keyword]]);
+        $query->andFilterWhere(['or',['ilike', 'nomor_referensi', $this->keyword],['ilike', 'nomor_pesanan', $this->keyword],['ilike', 'anggota_nomor_zahir', $this->keyword],['ilike', 'nama_pelangganS', $this->keyword]]);
 
         return $dataProvider;
     }
