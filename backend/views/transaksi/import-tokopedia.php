@@ -61,7 +61,9 @@ $this->title = 'Import Tokopedia';
                 //for ($col = 1; $col <= $highestColumnIndex; ++$col) {
 
                 $nomor_referensi = trim($worksheet->getCell($column_nomor_referensi.$row)->getValue());
-                $waktu = trim($worksheet->getCell($column_waktu.$row)->getValue());
+
+                $waktu = date_format(date_create(trim($worksheet->getCell($column_waktu.$row)->getValue())),"Y-m-d H:i:s");
+
                 $nama_produk = trim($worksheet->getCell($column_nama_produk.$row)->getValue());
                 $jumlah_barang = trim($worksheet->getCell($column_jumlah_barang.$row)->getValue());
                 $sku = trim($worksheet->getCell($column_sku.$row)->getValue());
