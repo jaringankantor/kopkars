@@ -11,6 +11,7 @@ class m400001_000003_transaksi_rincian extends Migration
     {
         $this->createTable('transaksi_rincian', [
             'id' => $this->primaryKey(),
+            'transaksi_id' => $this->integer(),
             'kode_toko' => $this->string(50)->notNull(),
             'kanal_transaksi' => $this->string(20)->notNull(),
             'nomor_referensi' => $this->string(50)->notNull(),
@@ -44,6 +45,8 @@ class m400001_000003_transaksi_rincian extends Migration
             'deleted_at' => $this->dateTime(),
             'last_softdelete_by' => $this->string(50),
         ]);
+
+        $this->addForeignKey('transaksi_rincian_transaksi_fkey', 'transaksi_rincian', 'transaksi_id', 'transaksi', 'id', 'RESTRICT', 'CASCADE');
 
         $this->addForeignKey('transaksi_rincian_toko_fkey', 'transaksi_rincian', 'kode_toko', 'toko', 'kode', 'RESTRICT', 'CASCADE');
 

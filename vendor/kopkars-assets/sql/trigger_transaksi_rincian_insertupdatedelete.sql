@@ -4,6 +4,7 @@ DECLARE
     query TEXT;
     found TEXT;
     sum_subtotal INT;
+    last_transaksi_id INT;
     sum_diskon INT;
     sum_pajak INT;
     sum_total_penjualan INT;
@@ -23,7 +24,12 @@ BEGIN
             diskon,pajak,total_penjualan,pembayaran,saldo,keterangan,waktu,insert_by)
             VALUES(NEW.kode_toko,NEW.kanal_transaksi,NEW.nomor_referensi,NEW.nomor_pesanan,NEW.anggota_id,NEW.nama_pelanggan,
             NEW.nomor_hp,NEW.email,NEW.alamat,NEW.kurir,NEW.nomor_resi,NEW.is_bebasongkir,NEW.mata_uang,NEW.subtotal,
-            NEW.diskon,NEW.pajak,NEW.total_penjualan,NEW.pembayaran,NEW.saldo,NEW.keterangan,NEW.waktu,NEW.insert_by);
+            NEW.diskon,NEW.pajak,NEW.total_penjualan,NEW.pembayaran,NEW.saldo,NEW.keterangan,NEW.waktu,NEW.insert_by)
+            RETURNING id INTO last_transaksi_id;
+
+            UPDATE transaksi_rincian
+            SET transaksi_id = last_transaksi_id
+            WHERE kode_toko = NEW.kode_toko AND kanal_transaksi = NEW.kanal_transaksi AND nomor_referensi = NEW.nomor_referensi;
         ELSE
             SELECT INTO sum_subtotal,sum_diskon,sum_pajak,sum_total_penjualan,sum_pembayaran,sum_saldo,all_keterangan 
             SUM(subtotal),SUM(diskon),SUM(pajak),SUM(total_penjualan),SUM(pembayaran),SUM(saldo),string_agg(all_keterangan,'||')

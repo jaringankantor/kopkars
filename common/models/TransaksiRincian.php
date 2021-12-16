@@ -41,6 +41,7 @@ use Yii;
  * @property string|null $deleted_at
  * @property string|null $last_softdelete_by
  *
+ * @property Transaksi $transaksi
  * @property Anggota $anggota
  * @property Toko $kodeToko
  * @property VariabelKanalTransaksi $kanalTransaksi
@@ -71,6 +72,7 @@ class TransaksiRincian extends \yii\db\ActiveRecord
             [['alamat', 'keterangan'], 'string', 'max' => 255],
             [['nama_produk'], 'string', 'max' => 70],
             [['mata_uang'], 'string', 'max' => 6],
+            [['transaksi_id'], 'exist', 'skipOnError' => true, 'targetClass' => Transaksi::className(), 'targetAttribute' => ['transaksi_id' => 'id']], 
             [['anggota_id'], 'exist', 'skipOnError' => true, 'targetClass' => Anggota::className(), 'targetAttribute' => ['anggota_id' => 'id']], 
             [['kode_toko', 'kanal_transaksi', 'nomor_referensi', 'nama_produk'], 'unique', 'targetAttribute' => ['kode_toko', 'kanal_transaksi', 'nomor_referensi', 'nama_produk']],
             [['kode_toko'], 'exist', 'skipOnError' => true, 'targetClass' => Toko::className(), 'targetAttribute' => ['kode_toko' => 'kode']],
@@ -85,6 +87,7 @@ class TransaksiRincian extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'transaksi_id' => 'Transaksi ID',
             'kode_toko' => 'Kode Toko',
             'kanal_transaksi' => 'Kanal Transaksi',
             'nomor_referensi' => 'Nomor Referensi',
@@ -131,10 +134,15 @@ class TransaksiRincian extends \yii\db\ActiveRecord
         return $scenarios;
     }
 
+    public function getTransaksi()
+    {
+       return $this->hasOne(Transaksi::className(), ['id' => 'transaksi_id']);
+    }
+
     public function getAnggota()
-   {
+    {
        return $this->hasOne(Anggota::className(), ['id' => 'anggota_id']);
-   }
+    }
 
     /**
      * Gets query for [[KodeToko]].
