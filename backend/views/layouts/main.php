@@ -145,7 +145,7 @@ AppAsset::register($this);
             'label' => 'Transaksi',
             'items' => [
                 ['label' => 'List Transaksi', 'url' => ['/transaksi']],
-                ['label' => 'Import Transaksi Zahir', 'url' => ['/transaksi/import-tokopedia']],
+                ['label' => 'Import Transaksi Tokopedia', 'url' => ['/transaksi/import-tokopedia']],
                 ['label' => 'Import Transaksi Zahir', 'url' => ['/transaksi/import-zahir']],
             ],
         ];
