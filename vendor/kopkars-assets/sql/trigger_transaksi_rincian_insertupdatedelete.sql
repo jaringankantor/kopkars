@@ -36,10 +36,16 @@ BEGIN
             FROM transaksi_rincian
             WHERE kode_toko = NEW.kode_toko AND kanal_transaksi = NEW.kanal_transaksi AND nomor_referensi = NEW.nomor_referensi;
 
-            UPDATE transaksi
+            WITH updated AS (UPDATE transaksi
             SET subtotal = sum_subtotal, diskon = sum_diskon, pajak=sum_pajak, total_penjualan = sum_total_penjualan,
             pembayaran = sum_pembayaran, saldo = sum_saldo, keterangan = all_keterangan
+            WHERE kode_toko = NEW.kode_toko AND kanal_transaksi = NEW.kanal_transaksi AND nomor_referensi = NEW.nomor_referensi
+            RETURNING id INTO last_transaksi_id)
+
+            UPDATE transaksi_rincian
+            SET transaksi_id = updated
             WHERE kode_toko = NEW.kode_toko AND kanal_transaksi = NEW.kanal_transaksi AND nomor_referensi = NEW.nomor_referensi;
+
         END IF;
 
    ELSIF (TG_OP = 'DELETE') THEN
