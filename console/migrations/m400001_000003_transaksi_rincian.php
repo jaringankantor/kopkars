@@ -49,9 +49,7 @@ class m400001_000003_transaksi_rincian extends Migration
 
         $this->addForeignKey('transaksi_rincian_variabel_kanal_transaksi_fkey', 'transaksi_rincian', 'kanal_transaksi', 'variabel_kanal_transaksi', 'kanal_transaksi', 'RESTRICT', 'CASCADE');
 
-        $this->createIndex('transaksi_rincian_kode_toko_kanal_transaksi_nomor_referensi_idx', 'transaksi_rincian', ['kode_toko', 'kanal_transaksi','nomor_referensi'], true);
-
-        $this->createIndex('transaksi_rincian_kode_toko_kanal_transaksi_nomor_pesanan_idx', 'transaksi_rincian', ['kode_toko', 'kanal_transaksi','nomor_pesanan'], true);
+        $this->createIndex('transaksi_rincian_kode_toko_kanal_transaksi_nomor_referensi_idx', 'transaksi_rincian', ['kode_toko', 'kanal_transaksi','nomor_referensi','nama_produk'], true);
 
         $sql = file_get_contents(Yii::getAlias('@kopkars-assets/sql/trigger_transaksi_rincian_insertupdatedelete.sql'));
         $this->execute($sql);

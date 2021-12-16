@@ -70,8 +70,7 @@ class TransaksiRincian extends \yii\db\ActiveRecord
             [['alamat', 'keterangan'], 'string', 'max' => 255],
             [['nama_produk'], 'string', 'max' => 70],
             [['mata_uang'], 'string', 'max' => 6],
-            [['kode_toko', 'kanal_transaksi', 'nomor_pesanan'], 'unique', 'targetAttribute' => ['kode_toko', 'kanal_transaksi', 'nomor_pesanan']],
-            [['kode_toko', 'kanal_transaksi', 'nomor_referensi'], 'unique', 'targetAttribute' => ['kode_toko', 'kanal_transaksi', 'nomor_referensi']],
+            [['kode_toko', 'kanal_transaksi', 'nomor_referensi', 'nama_produk'], 'unique', 'targetAttribute' => ['kode_toko', 'kanal_transaksi', 'nomor_referensi', 'nama_produk']],
             [['kode_toko'], 'exist', 'skipOnError' => true, 'targetClass' => Toko::className(), 'targetAttribute' => ['kode_toko' => 'kode']],
             [['kanal_transaksi'], 'exist', 'skipOnError' => true, 'targetClass' => VariabelKanalTransaksi::className(), 'targetAttribute' => ['kanal_transaksi' => 'kanal_transaksi']],
         ];
