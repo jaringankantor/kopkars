@@ -122,7 +122,11 @@ $this->title = 'Import Tokopedia';
                         $model->waktu = $waktu;
                         $model->insert_by = Yii::$app->user->identity->email;
 
-                        if (!$model->save()) $sum_error++;
+                        if (!$model->save()) {
+                            print_r($model);
+                            exit();
+                            $sum_error++;
+                        }
                     }
                 }
             }

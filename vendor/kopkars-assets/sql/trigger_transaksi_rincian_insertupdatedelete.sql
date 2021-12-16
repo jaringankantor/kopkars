@@ -27,12 +27,14 @@ BEGIN
             NEW.diskon,NEW.pajak,NEW.total_penjualan,NEW.pembayaran,NEW.saldo,NEW.keterangan,NEW.waktu,NEW.insert_by)
             RETURNING id INTO last_transaksi_id;
 
-            UPDATE transaksi_rincian
-            SET transaksi_id = last_transaksi_id
-            WHERE kode_toko = NEW.kode_toko AND kanal_transaksi = NEW.kanal_transaksi AND nomor_referensi = NEW.nomor_referensi;
+            IF(OLD.transaksi_id IS NULL) THEN
+                UPDATE transaksi_rincian
+                SET transaksi_id = last_transaksi_id
+                WHERE kode_toko = NEW.kode_toko AND kanal_transaksi = NEW.kanal_transaksi AND nomor_referensi = NEW.nomor_referensi;
+            END IF;
         ELSE
-            SELECT INTO last_transaksi_id,sum_subtotal,sum_diskon,sum_pajak,sum_total_penjualan,sum_pembayaran,sum_saldo,all_keterangan 
-            avg(transaksi_id), SUM(subtotal),SUM(diskon),SUM(pajak),SUM(total_penjualan),SUM(pembayaran),SUM(saldo),string_agg(all_keterangan,'||')
+            SELECT INTO sum_subtotal,sum_diskon,sum_pajak,sum_total_penjualan,sum_pembayaran,sum_saldo,all_keterangan 
+            SUM(subtotal),SUM(diskon),SUM(pajak),SUM(total_penjualan),SUM(pembayaran),SUM(saldo),string_agg(all_keterangan,'||')
             FROM transaksi_rincian
             WHERE kode_toko = NEW.kode_toko AND kanal_transaksi = NEW.kanal_transaksi AND nomor_referensi = NEW.nomor_referensi;
 
@@ -42,9 +44,11 @@ BEGIN
             WHERE kode_toko = NEW.kode_toko AND kanal_transaksi = NEW.kanal_transaksi AND nomor_referensi = NEW.nomor_referensi
             RETURNING id INTO last_transaksi_id;
 
-            UPDATE transaksi_rincian
-            SET transaksi_id = last_transaksi_id
-            WHERE kode_toko = NEW.kode_toko AND kanal_transaksi = NEW.kanal_transaksi AND nomor_referensi = NEW.nomor_referensi;
+            IF(OLD.transaksi_id IS NULL) THEN
+                UPDATE transaksi_rincian
+                SET transaksi_id = last_transaksi_id
+                WHERE kode_toko = NEW.kode_toko AND kanal_transaksi = NEW.kanal_transaksi AND nomor_referensi = NEW.nomor_referensi;
+            END IF;
 
         END IF;
 
