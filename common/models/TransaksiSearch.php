@@ -58,7 +58,7 @@ class TransaksiSearch extends Transaksi
         }
 
         // grid filtering conditions
-        $query->andFilterWhere(['or',['ilike', 'nomor_referensi', $this->keyword],['ilike', 'nomor_pesanan', $this->keyword],['ilike', 'anggota_nomor_zahir', $this->keyword],['ilike', 'nama_pelangganS', $this->keyword]]);
+        $query->andFilterWhere(['or',['ilike', 'nomor_referensi', $this->keyword],['ilike', 'nomor_pesanan', $this->keyword],['ilike', 'anggota_nomor_zahir', $this->keyword],['ilike', 'nama_pelanggan', $this->keyword]]);
 
         return $dataProvider;
     }
