@@ -43,7 +43,8 @@ BEGIN
         INTO found;
         IF found IS NOT NULL THEN
             SELECT INTO sum_subtotal,sum_diskon,sum_pajak,sum_total_penjualan,sum_pembayaran,sum_saldo,all_keterangan 
-            SUM(subtotal),SUM(diskon),SUM(pajak),SUM(total_penjualan),SUM(pembayaran),SUM(saldo),string_agg(all_keterangan,'|')
+            COALESCE(SUM(subtotal),0),COALESCE(SUM(diskon),0),COALESCE(SUM(pajak),0),COALESCE(SUM(total_penjualan),0),
+            COALESCE(SUM(pembayaran),0),COALESCE(SUM(saldo),0),string_agg(all_keterangan,'|')
             FROM transaksi_rincian
             WHERE kode_toko = OLD.kode_toko AND kanal_transaksi = OLD.kanal_transaksi AND nomor_referensi = OLD.nomor_referensi;
 
