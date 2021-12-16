@@ -37,7 +37,10 @@ BEGIN
         END IF;
 
    ELSIF (TG_OP = 'DELETE') THEN
-        EXECUTE query || quote_literal(OLD.nomor_referensi) INTO found;
+        EXECUTE 'SELECT id FROM transaksi WHERE kode_toko=' || quote_literal(OLD.kode_toko) ||
+        'AND kanal_transaksi=' || quote_literal(OLD.kanal_transaksi) ||
+        'AND nomor_referensi=' || quote_literal(OLD.nomor_referensi)
+        INTO found;
         IF found IS NOT NULL THEN
             SELECT INTO sum_subtotal,sum_diskon,sum_pajak,sum_total_penjualan,sum_pembayaran,sum_saldo,all_keterangan 
             SUM(subtotal),SUM(diskon),SUM(pajak),SUM(total_penjualan),SUM(pembayaran),SUM(saldo),string_agg(all_keterangan,'|')
