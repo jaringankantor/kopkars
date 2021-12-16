@@ -76,6 +76,8 @@ $this->title = 'Import Tokopedia';
                 $harga_jual = trim($worksheet->getCell($column_harga_jual.$row)->getValue());
 
                 $subtotal = $harga_awal*$jumlah_barang;
+                print_r($harga_awal.$jumlah_barang);
+                exit();
                 $total_penjualan = $harga_jual*$jumlah_barang;
                 $pembayaran = $total_penjualan;
 
