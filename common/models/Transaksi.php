@@ -21,7 +21,8 @@ use yii2tech\ar\softdelete\SoftDeleteQueryBehavior;
  * @property string|null $nama_pelanggan
  * @property string|null $nomor_hp 
  * @property string|null $email 
- * @property string|null $alamat 
+ * @property string|null $alamat
+ * @property string|null $kurir
  * @property string|null $nomor_resi 
  * @property string $mata_uang
  * @property int $subtotal

@@ -13,7 +13,7 @@ DECLARE
 BEGIN
     query := 'SELECT id FROM transaksi WHERE nomor_referensi=';
     --Yang boleh diupdate yang kaitan dengan rupiah2 dan jumlah barang dan keterangan
-    IF (TG_OP = 'INSERT' OR 'UPDATE') THEN
+    IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') THEN
         EXECUTE query || quote_literal(NEW.nomor_referensi) INTO found;
         IF found IS NULL THEN
             INSERT INTO transaksi(kode_toko,kanal_transaksi,nomor_referensi,nomor_pesanan,anggota_id,nama_pelanggan,
