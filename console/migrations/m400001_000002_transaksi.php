@@ -20,7 +20,7 @@ class m400001_000002_transaksi extends Migration
             'nama_pelanggan' => $this->string(50),
             'nomor_hp' => $this->string(50),
             'email' => $this->string(50),
-            'alamat' => $this->string(),
+            'alamat' => $this->text(),
             'kurir' => $this->string(50),
             'nomor_resi' => $this->string(50),
             'is_bebasongkir' => $this->boolean(),
@@ -31,7 +31,7 @@ class m400001_000002_transaksi extends Migration
             'total_penjualan' => $this->integer()->notNull(), //Total harga_jual penjualan setelah diskon dan pajak dalam jumlah mata_uang
             'pembayaran' => $this->integer(), //yang dibayarkan cash dalam jumlah mata_uang
             'saldo' => $this->integer(), //yang dibayarkan mencicil/hutang/akhir bulan dalam jumlah mata_uang
-            'keterangan' => $this->string(), //keterangan akan bertambah jika setiap detil transaksi terisi, dipisahkan |
+            'keterangan' => $this->text(), //keterangan akan bertambah jika setiap detil transaksi terisi, dipisahkan |
             'waktu' => $this->dateTime()->notNull()->defaultExpression('now()'),
             'last_waktu_update' => $this->dateTime(),
             'insert_by' => $this->string(50)->notNull(),
