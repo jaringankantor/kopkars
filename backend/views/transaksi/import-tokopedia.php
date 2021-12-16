@@ -122,11 +122,11 @@ $this->title = 'Import Tokopedia';
                         $model->waktu = $waktu;
                         $model->insert_by = Yii::$app->user->identity->email;
 
-                        if($nomor_referensi=='INV/20200927/XX/IX/638680882' AND $nama_produk=='Bakteri Baik EM4 1 Liter Perikanan dan Tambak'){
+                        //if($nomor_referensi=='INV/20200927/XX/IX/638680882' AND $nama_produk=='Bakteri Baik EM4 1 Liter Perikanan dan Tambak'){
                             //print_r($harga_awal.' '.$jumlah_barang.' '.$subtotal);
-                            print_r($model);
-                            exit();
-                        }
+                        //    print_r($model);
+                        //    exit();
+                        //}
 
                         if (!$model->save()) $sum_error++;
                     }
