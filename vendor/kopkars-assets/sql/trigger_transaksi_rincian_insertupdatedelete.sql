@@ -15,8 +15,7 @@ BEGIN
     IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') THEN
         EXECUTE 'SELECT id FROM transaksi WHERE kode_toko=' || quote_literal(NEW.kode_toko) ||
         'AND kanal_transaksi=' || quote_literal(NEW.kanal_transaksi) ||
-        'AND nomor_referensi=' || quote_literal(NEW.nomor_referensi) ||
-        'AND nama_produk=' || quote_literal(NEW.nama_produk)
+        'AND nomor_referensi=' || quote_literal(NEW.nomor_referensi)
         INTO found;
         IF found IS NULL THEN
             INSERT INTO transaksi(kode_toko,kanal_transaksi,nomor_referensi,nomor_pesanan,anggota_id,nama_pelanggan,
