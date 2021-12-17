@@ -140,7 +140,7 @@ $this->title = 'Import Lazada';
                         if (!$model->save())$sum_error++;
                     } else {
                         $model = TransaksiRincian::findOneTransaksiRincian($transaksi_rincian_id);
-                        if(strpos($model->nomor_referensi_rincian,$nomor_referensi_rincian)){
+                        if(!strpos($model->nomor_referensi_rincian,$nomor_referensi_rincian)){
                             $model->nomor_referensi_rincian = $model->nomor_referensi_rincian.'||'.$nomor_referensi_rincian;
                             $model->jumlah_barang = $model->jumlah_barang+$jumlah_barang;
                             $model->subtotal = $model->jumlah_barang*$model->harga_awal;
