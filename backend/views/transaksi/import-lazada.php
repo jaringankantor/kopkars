@@ -99,7 +99,7 @@ $this->title = 'Import Lazada';
 
                 $is_bebasongkir = trim($worksheet->getCell($column_is_bebasongkir.$row)->getValue())=='0.00'?true:false;
 
-                if(substr($nomor_referensi,0,6)=='INV/20' AND substr($sku,0,3)=='SKU' AND is_numeric($nomor_referensi) AND strlen($nomor_referensi)>12) {
+                if(substr($sku,0,3)=='SKU' AND is_numeric($nomor_referensi) AND strlen($nomor_referensi)>12) {
                     $transaksi_rincian = TransaksiRincian::findTransaksiRincianByKanal('lazada',$nomor_referensi,$nama_produk);
                     $jumlah_transaksi = $transaksi_rincian->count();
                     $transaksi_rincian_id = $transaksi_rincian->one()->id;
