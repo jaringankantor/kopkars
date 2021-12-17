@@ -24,7 +24,7 @@ $column_nama_pelanggan = 'O';
 $column_nomor_hp = 'P';
 $column_alamat = 'S';
 $column_kurir = 'T';
-$column_nomor_resi = 'T';
+$column_nomor_resi = 'Y';
 $column_is_bebasongkir = 'AA';
 
 //$column_nomor_referensi_rincian = 'A';
