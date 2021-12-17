@@ -23,7 +23,7 @@ class m400001_000002_transaksi extends Migration
             'alamat' => $this->text(),
             'kurir' => $this->string(50),
             'nomor_resi' => $this->string(50),
-            'is_bebasongkir' => $this->boolean(),
+            'is_bebasongkir' => $this->boolean()->notNull()->defaultValue(false),
             'mata_uang' => $this->string(6)->notNull()->defaultValue('IDR'),
             'diskon' => $this->integer(), //dalam jumlah mata_uang bukan persen
             'pajak' => $this->integer(), //dalam jumlah mata_uang bukan persen

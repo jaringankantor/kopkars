@@ -25,7 +25,7 @@ class m400001_000003_transaksi_rincian extends Migration
             'alamat' => $this->text(),
             'kurir' => $this->string(50),
             'nomor_resi' => $this->string(50),
-            'is_bebasongkir' => $this->boolean(),
+            'is_bebasongkir' => $this->boolean()->notNull()->defaultValue(false),
             'nama_produk' => $this->text()->notNull(),
             'jumlah_barang' => $this->integer()->notNull(),
             'mata_uang' => $this->string(6)->notNull()->defaultValue('IDR'),
