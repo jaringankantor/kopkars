@@ -8,7 +8,7 @@ use yii\web\UploadedFile;
 //use yii\widgets\ActiveForm;
 use kartik\widgets\ActiveForm;
 
-$worksheet_update = 'Sheet1';
+$worksheet_update = 'sheet1';
 
 $row_mulai = 2;
 $column_sku = 'F';
