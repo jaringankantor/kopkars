@@ -124,7 +124,7 @@ class TransaksiRincian extends \yii\db\ActiveRecord
     {
         $scenarios = parent::scenarios();
         $scenarios['default'] = [];
-        $scenarios['backend-import-tokopedia'] = ['kode_toko','kanal_transaksi','nomor_referensi','sku',
+        $scenarios['backend-import-marketplace'] = ['kode_toko','kanal_transaksi','nomor_referensi','sku',
         'anggota_id','nama_pelanggan','nomor_hp','alamat','kurir','nomor_resi','is_bebasongkir','nama_produk',
         'jumlah_barang','harga_awal','diskon','harga_jual','subtotal','total_penjualan','pembayaran',
         'keterangan'];

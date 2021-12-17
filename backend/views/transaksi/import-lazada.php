@@ -105,7 +105,7 @@ $this->title = 'Import Lazada';
                     $transaksi_rincian_id = $transaksi_rincian->one()->id;
                     if($jumlah_transaksi==0) {
                         $model = new TransaksiRincian();
-                        $model->scenario = 'backend-import-tokopedia';
+                        $model->scenario = 'backend-import-marketplace';
                         $model->kode_toko=Yii::$app->user->identity->kode_toko;
                         $model->kanal_transaksi = 'lazada';
                         $model->nomor_referensi = $nomor_referensi;

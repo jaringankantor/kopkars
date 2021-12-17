@@ -92,7 +92,7 @@ $this->title = 'Import Tokopedia';
                     $jumlah_transaksi = TransaksiRincian::findTransaksiRincianByKanal('tokopedia',$nomor_referensi,$nama_produk)->count();
                     if($jumlah_transaksi==0) {
                         $model = new TransaksiRincian();
-                        $model->scenario = 'backend-import-tokopedia';
+                        $model->scenario = 'backend-import-marketplace';
                         $model->kode_toko=Yii::$app->user->identity->kode_toko;
                         $model->kanal_transaksi = 'tokopedia';
                         $model->nomor_referensi = $nomor_referensi;
