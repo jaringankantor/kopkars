@@ -11,6 +11,7 @@ use kartik\widgets\ActiveForm;
 $worksheet_update = 'sheet1';
 
 $row_mulai = 2;
+$column_nomor_referensi_rincian = 'A';
 $column_sku = 'F';
 $column_waktu = 'J';
 $column_nomor_referensi = 'M';
@@ -69,6 +70,7 @@ $this->title = 'Import Lazada';
                 $sku = Yii::$app->kopkarstext->textOrNull(trim($worksheet->getCell($column_sku.$row)->getValue()));
 
                 $nomor_referensi = trim($worksheet->getCell($column_nomor_referensi.$row)->getValue());
+                $nomor_referensi_rincian = trim($worksheet->getCell($column_nomor_referensi_rincian.$row)->getValue());
 
                 $waktu = date_format(date_create(trim($worksheet->getCell($column_waktu.$row)->getValue())),"Y-m-d H:i:s");
 
@@ -109,6 +111,7 @@ $this->title = 'Import Lazada';
                         $model->kode_toko=Yii::$app->user->identity->kode_toko;
                         $model->kanal_transaksi = 'lazada';
                         $model->nomor_referensi = $nomor_referensi;
+                        $model->nomor_referensi_rincian = $nomor_referensi_rincian;
                         //$model->nomor_pesanan = $nopesanan;
                         $model->sku = $sku;
                         //$model->anggota_id = $anggota_id;
@@ -137,13 +140,16 @@ $this->title = 'Import Lazada';
                         if (!$model->save())$sum_error++;
                     } else {
                         $model = TransaksiRincian::findOneTransaksiRincian($transaksi_rincian_id);
-                        $model->jumlah_barang = $model->jumlah_barang+$jumlah_barang;
-                        $model->subtotal = $model->jumlah_barang*$model->harga_awal;
-                        $model->total_penjualan = $model->jumlah_barang*$model->harga_jual;
-                        $model->pembayaran = $model->total_penjualan;
-                        
+                        if(strpos($model->nomor_referensi_rincian,$nomor_referensi_rincian)){
+                            $model->nomor_referensi_rincian = $model->nomor_referensi_rincian.'||'.$nomor_referensi_rincian;
+                            $model->jumlah_barang = $model->jumlah_barang+$jumlah_barang;
+                            $model->subtotal = $model->jumlah_barang*$model->harga_awal;
+                            $model->total_penjualan = $model->jumlah_barang*$model->harga_jual;
+                            $model->pembayaran = $model->total_penjualan;
+                            
 
-                        if (!$model->save())$sum_error++;
+                            if (!$model->save())$sum_error++;
+                        }
                     }
                 }
             }

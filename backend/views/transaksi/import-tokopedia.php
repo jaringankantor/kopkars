@@ -27,6 +27,8 @@ $column_kurir = 'T';
 $column_nomor_resi = 'T';
 $column_is_bebasongkir = 'AA';
 
+//$column_nomor_referensi_rincian = 'A';
+
 $this->title = 'Import Tokopedia';
 //$this->params['breadcrumbs'][] = $this->title;
 
@@ -60,6 +62,7 @@ $this->title = 'Import Tokopedia';
             for ($row = $row_mulai; $row <= $highestRow; ++$row) { //$row = 2 artinya baris kedua yang dibaca dulu(header kolom diskip disesuaikan saja)
                 //for ($col = 1; $col <= $highestColumnIndex; ++$col) {
 
+                //$nomor_referensi_rincian = trim($worksheet->getCell($column_nomor_referensi_rincian.$row)->getValue());
                 $nomor_referensi = trim($worksheet->getCell($column_nomor_referensi.$row)->getValue());
 
                 $waktu = date_format(date_create(trim($worksheet->getCell($column_waktu.$row)->getValue())),"Y-m-d H:i:s");
@@ -96,6 +99,7 @@ $this->title = 'Import Tokopedia';
                         $model->kode_toko=Yii::$app->user->identity->kode_toko;
                         $model->kanal_transaksi = 'tokopedia';
                         $model->nomor_referensi = $nomor_referensi;
+                        //$model->nomor_referensi_rincian = $nomor_referensi_rincian;
                         //$model->nomor_pesanan = $nopesanan;
                         $model->sku = $sku;
                         $model->anggota_id = $anggota_id;

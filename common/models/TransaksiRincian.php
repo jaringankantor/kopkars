@@ -11,6 +11,7 @@ use Yii;
  * @property string $kode_toko
  * @property string $kanal_transaksi
  * @property string $nomor_referensi
+ * @property string|null $nomor_referensi_rincian
  * @property string|null $nomor_pesanan
  * @property string|null $sku
  * @property int|null $anggota_id
@@ -88,6 +89,7 @@ class TransaksiRincian extends \yii\db\ActiveRecord
             'kode_toko' => 'Kode Toko',
             'kanal_transaksi' => 'Kanal Transaksi',
             'nomor_referensi' => 'Nomor Referensi',
+            'nomor_referensi_rincian' => 'Nomor Referensi Rincian',
             'nomor_pesanan' => 'Nomor Pesanan',
             'sku' => 'Sku',
             'anggota_id' => 'Anggota ID',
@@ -124,7 +126,7 @@ class TransaksiRincian extends \yii\db\ActiveRecord
     {
         $scenarios = parent::scenarios();
         $scenarios['default'] = [];
-        $scenarios['backend-import-marketplace'] = ['kode_toko','kanal_transaksi','nomor_referensi','sku',
+        $scenarios['backend-import-marketplace'] = ['kode_toko','kanal_transaksi','nomor_referensi','nomor_referensi_rincian','sku',
         'anggota_id','nama_pelanggan','nomor_hp','alamat','kurir','nomor_resi','is_bebasongkir','nama_produk',
         'jumlah_barang','harga_awal','diskon','harga_jual','subtotal','total_penjualan','pembayaran',
         'keterangan'];

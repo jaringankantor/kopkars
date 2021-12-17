@@ -15,6 +15,7 @@ class m400001_000003_transaksi_rincian extends Migration
             'kode_toko' => $this->string(50)->notNull(),
             'kanal_transaksi' => $this->string(20)->notNull(),
             'nomor_referensi' => $this->string(50)->notNull(),
+            'nomor_referensi_rincian' => $this->text(),
             'nomor_pesanan' => $this->string(50),
             'sku' => $this->string(20), //Isi SKU untuk mempermudah dalam data mining
             'anggota_id' => $this->integer(), //isi jika transaksi dilakukan oleh anggota
