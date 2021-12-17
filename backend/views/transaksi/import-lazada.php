@@ -137,11 +137,7 @@ $this->title = 'Import Lazada';
                         $model->waktu = $waktu;
                         $model->insert_by = Yii::$app->user->identity->email;
 
-                        if (!$model->save()) {
-                            print_r($model);
-                            exit();
-                            $sum_error++;
-                        }
+                        if (!$model->save())$sum_error++;
                     } else {
                         $model = TransaksiRincian::findOneTransaksiRincian($transaksi_rincian_id);
                         if(strpos($model->nomor_referensi_rincian,$nomor_referensi_rincian)){
