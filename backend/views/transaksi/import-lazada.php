@@ -10,31 +10,36 @@ use kartik\widgets\ActiveForm;
 
 $worksheet_update = 'Sheet1';
 
-$row_mulai = 9;
-$column_nomor_referensi = 'C';
-$column_waktu = 'D';
-$column_nama_produk = 'G';
-$column_jumlah_barang = 'H';
-$column_sku = 'I';
-$column_keterangan = 'J';
-$column_harga_awal = 'K';
-$column_diskon = 'L'; //Jika ada subsidi masukan ke kolom ini juga (dianggap diskon tambahan)
-$column_harga_jual = 'N';
-$column_nama_pelanggan = 'O';
-$column_nomor_hp = 'P';
-$column_alamat = 'S';
-$column_kurir = 'T';
-$column_nomor_resi = 'T';
-$column_is_bebasongkir = 'AA';
+$row_mulai = 2;
+$column_sku = 'F';
+$column_waktu = 'J';
+$column_nomor_referensi = 'M';
+$column_nama_pelanggan = 'T';
+$column_alamat_1 = 'U';
+$column_alamat_2 = 'Y';
+$column_alamat_3 = 'X';
+$column_alamat_4 = 'W';
+$column_nomor_hp = 'AL';
+$column_harga_jual = 'AU';
+$column_harga_awal = 'AV';
+$column_diskon = 'AW'; //Jika ada subsidi masukan ke kolom ini juga (dianggap diskon tambahan)
+$column_is_bebasongkir = 'AX';
+$column_nama_produk = 'AZ';
+$column_kurir = 'BC';
+$column_nomor_resi = 'BG';
 
-$this->title = 'Import Tokopedia';
+//$column_jumlah_barang = 'H';
+//$column_keterangan = 'J';
+//$column_alamat = 'S';
+
+$this->title = 'Import Lazada';
 //$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="transaksi-import-tokopedia">
+<div class="transaksi-import-lazada">
     <h1><?= Html::encode($this->title) ?></h1>
-    <p>Lakukan export data transaksi dari aplikasi Tokopedia, dengan cara: Klik menu Pesanan > Pesanan Selesai > Download Laporan Penjualan > Pilih Tanggal Tiap Awal dan AKhir Bulan</p>
+    <p>Lakukan export data transaksi dari aplikasi Lazada, dengan cara: Klik menu Pesanan > Pesanan > Diterima > Export > Export Tab Saat Ini. Download laporan di Lihar Riwayat > Lihat Riwayat Ekspor</p>
     <?php
 
     if (Yii::$app->request->isPost) {
@@ -58,18 +63,22 @@ $this->title = 'Import Tokopedia';
             $sum_error = 0;
             //inilah looping untuk membaca cell dalam file excel,perkolom
             for ($row = $row_mulai; $row <= $highestRow; ++$row) { //$row = 2 artinya baris kedua yang dibaca dulu(header kolom diskip disesuaikan saja)
+
                 //for ($col = 1; $col <= $highestColumnIndex; ++$col) {
+
+                $sku = Yii::$app->kopkarstext->textOrNull(trim($worksheet->getCell($column_sku.$row)->getValue()));
 
                 $nomor_referensi = trim($worksheet->getCell($column_nomor_referensi.$row)->getValue());
 
                 $waktu = date_format(date_create(trim($worksheet->getCell($column_waktu.$row)->getValue())),"Y-m-d H:i:s");
 
                 $nama_produk = trim($worksheet->getCell($column_nama_produk.$row)->getValue());
-                $jumlah_barang = trim($worksheet->getCell($column_jumlah_barang.$row)->getValue());
-                $sku = Yii::$app->kopkarstext->textOrNull(trim($worksheet->getCell($column_sku.$row)->getValue()));
-                $keterangan = Yii::$app->kopkarstext->textOrNull(trim($worksheet->getCell($column_keterangan.$row)->getValue()));
+                
+                $jumlah_barang = 1;
+                
+                //$keterangan = Yii::$app->kopkarstext->textOrNull(trim($worksheet->getCell($column_keterangan.$row)->getValue()));
 
-                $anggota_id = Anggota::findAnggotaByNomorAnggota($keterangan)->count()==1?Anggota::findOneAnggotaByNomorAnggota($keterangan)->id:null;
+                //$anggota_id = Anggota::findAnggotaByNomorAnggota($keterangan)->count()==1?Anggota::findOneAnggotaByNomorAnggota($keterangan)->id:null;
 
                 $harga_awal = intval(trim($worksheet->getCell($column_harga_awal.$row)->getValue()));
                 $diskon = intval(trim($worksheet->getCell($column_diskon.$row)->getValue()));
@@ -82,23 +91,27 @@ $this->title = 'Import Tokopedia';
 
                 $nama_pelanggan = trim($worksheet->getCell($column_nama_pelanggan.$row)->getValue());
                 $nomor_hp = trim($worksheet->getCell($column_nomor_hp.$row)->getValue());
-                $alamat = trim($worksheet->getCell($column_alamat.$row)->getValue());
+
+                $alamat = trim($worksheet->getCell($column_alamat_1.$row)->getValue()).' '.trim($worksheet->getCell($column_alamat_2.$row)->getValue()).' '.trim($worksheet->getCell($column_alamat_3.$row)->getValue()).' '.trim($worksheet->getCell($column_alamat_4.$row)->getValue());
+
                 $kurir = trim($worksheet->getCell($column_kurir.$row)->getValue());
                 $nomor_resi = trim($worksheet->getCell($column_nomor_resi.$row)->getValue());
 
-                $is_bebasongkir = trim($worksheet->getCell($column_is_bebasongkir.$row)->getValue())=='Yes'?true:false;
+                $is_bebasongkir = trim($worksheet->getCell($column_is_bebasongkir.$row)->getValue())=='0.00'?true:false;
 
-                if(substr($nomor_referensi,0,6)=='INV/20' AND strlen($nomor_referensi)>25) {
-                    $jumlah_transaksi = TransaksiRincian::findTransaksiRincianByKanal('tokopedia',$nomor_referensi,$nama_produk)->count();
+                if(substr($nomor_referensi,0,6)=='INV/20' AND substr($sku,0,3)=='SKU' AND is_numeric($nomor_referensi) AND strlen($nomor_referensi)>12) {
+                    $transaksi_rincian = TransaksiRincian::findTransaksiRincianByKanal('lazada',$nomor_referensi,$nama_produk);
+                    $jumlah_transaksi = $transaksi_rincian->count();
+                    $transaksi_rincian_id = $transaksi_rincian->one()->id;
                     if($jumlah_transaksi==0) {
                         $model = new TransaksiRincian();
                         $model->scenario = 'backend-import-tokopedia';
                         $model->kode_toko=Yii::$app->user->identity->kode_toko;
-                        $model->kanal_transaksi = 'tokopedia';
+                        $model->kanal_transaksi = 'lazada';
                         $model->nomor_referensi = $nomor_referensi;
                         //$model->nomor_pesanan = $nopesanan;
                         $model->sku = $sku;
-                        $model->anggota_id = $anggota_id;
+                        //$model->anggota_id = $anggota_id;
                         $model->nama_pelanggan = $nama_pelanggan;
                         $model->nomor_hp = $nomor_hp;
                         //$model->email = $email;
@@ -122,6 +135,15 @@ $this->title = 'Import Tokopedia';
                         $model->insert_by = Yii::$app->user->identity->email;
 
                         if (!$model->save())$sum_error++;
+                    } else {
+                        $model = TransaksiRincian::findOneTransaksiRincian($transaksi_rincian_id);
+                        $model->jumlah_barang = $model->jumlah_barang+$jumlah_barang;
+                        $model->subtotal = $model->jumlah_barang*$model->harga_awal;
+                        $model->total_penjualan = $model->jumlah_barang*$model->harga_jual;
+                        $model->pembayaran = $model->total_penjualan;
+                        
+
+                        if (!$model->save())$sum_error++;
                     }
                 }
             }
@@ -138,7 +160,7 @@ $this->title = 'Import Tokopedia';
 	?>
 
     <div class="form-group">
-        <?= Html::submitButton('Import Transaksi Tokopedia', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Import Transaksi Lazada', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

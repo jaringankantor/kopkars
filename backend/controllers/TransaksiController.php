@@ -116,6 +116,13 @@ class TransaksiController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionImportLazada()
+    {
+        $upload = new UploadForm();
+
+        return $this->render('import-lazada', ['upload' => $upload]);
+    }
+
     public function actionImportTokopedia()
     {
         $upload = new UploadForm();
