@@ -236,13 +236,13 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             [['nomor_hp'], 'string', 'max' => 12],
             [['alamat_rumah', 'keterangan', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
-            [['kode_toko', 'email'], 'unique', 'targetAttribute' => ['email'], 'message'=>'Email telah dipakai orang lain, mohon gunakan data lain.'],
-            [['kode_toko', 'email_last_lock'], 'unique', 'targetAttribute' => ['email_last_lock'], 'message'=>'Email last lock telah dipakai orang lain, mohon gunakan data lain.'],
-            [['kode_toko', 'nomor_anggota'], 'unique', 'targetAttribute' => ['nomor_anggota'], 'message'=>'No. anggota telah dipakai orang lain, mohon gunakan data lain.'],
-            [['kode_toko', 'nomor_pegawai'], 'unique', 'targetAttribute' => ['nomor_pegawai'], 'message'=>'No. pegawai telah dipakai orang lain, mohon gunakan data lain.'],
-            [['kode_toko', 'nomor_hp'], 'unique', 'targetAttribute' => ['nomor_hp'], 'message'=>'No. HP telah dipakai orang lain, mohon gunakan data lain.'],
-            [['kode_toko', 'nomor_hp_last_lock'], 'unique', 'targetAttribute' => ['nomor_hp_last_lock'], 'message'=>'No. HP telah dipakai orang lain, mohon gunakan data lain.'],
-            [['kode_toko', 'nomor_zahir'], 'unique', 'targetAttribute' => ['nomor_zahir'], 'message'=>'No. Zahir telah dipakai orang lain, mohon gunakan data lain.'],
+            [['email'], 'unique', 'targetAttribute' => ['kode_toko', 'email'], 'message'=>'Email telah dipakai orang lain, mohon gunakan data lain.'],
+            [['email_last_lock'], 'unique', 'targetAttribute' => ['kode_toko', 'email_last_lock'], 'message'=>'Email last lock telah dipakai orang lain, mohon gunakan data lain.'],
+            [['nomor_anggota'], 'unique', 'targetAttribute' => ['kode_toko', 'nomor_anggota'], 'message'=>'No. anggota telah dipakai orang lain, mohon gunakan data lain.'],
+            [['nomor_pegawai'], 'unique', 'targetAttribute' => ['kode_toko', 'nomor_pegawai'], 'message'=>'No. pegawai telah dipakai orang lain, mohon gunakan data lain.'],
+            [['nomor_hp'], 'unique', 'targetAttribute' => ['kode_toko', 'nomor_hp'], 'message'=>'No. HP telah dipakai orang lain, mohon gunakan data lain.'],
+            [['nomor_hp_last_lock'], 'unique', 'targetAttribute' => ['kode_toko', 'nomor_hp_last_lock'], 'message'=>'No. HP telah dipakai orang lain, mohon gunakan data lain.'],
+            [['nomor_zahir'], 'unique', 'targetAttribute' => ['kode_toko', 'nomor_zahir'], 'message'=>'No. Zahir telah dipakai orang lain, mohon gunakan data lain.'],
             [['kode_toko'], 'exist', 'skipOnError' => true, 'targetClass' => Toko::className(), 'targetAttribute' => ['kode_toko' => 'kode']],
             [['agama'], 'exist', 'skipOnError' => true, 'targetClass' => VariabelAgama::className(), 'targetAttribute' => ['agama' => 'agama']],
             [['pendidikanterakhir'], 'exist', 'skipOnError' => true, 'targetClass' => VariabelPendidikanterakhir::className(), 'targetAttribute' => ['pendidikanterakhir' => 'pendidikanterakhir']],
@@ -260,7 +260,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
         $scenarios['backend-nomor_anggota-anggota'] = ['status', 'waktu_approve','approved_by'];
         $scenarios['backend-updateemail-anggota'] = ['email'];
         $scenarios['backend-updatehp-anggota'] = ['nomor_hp'];
-        $scenarios['frontend-create-anggota'] = ['kode_toko','email','password_default','re_password','nomor_hp', 'nomor_hp_last_lock', 'nomor_hp_last_lock_verified', 'nomor_pegawai'];
+        $scenarios['frontend-create-anggota'] = ['email','password_default','re_password','nomor_hp', 'nomor_hp_last_lock', 'nomor_hp_last_lock_verified', 'nomor_pegawai'];
         $scenarios['frontend-update-anggota'] = ['nomor_pegawai', 'status_karyawan', 'unit', 'nomor_ktp', 'nama_lengkap', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama', 'pendidikanterakhir', 'alamat_rumah','nomor_npwp'];
         $scenarios['frontend-update-anggota-email'] = ['email', 'captcha'];
         $scenarios['frontend-update-anggota-foto'] = ['foto'];
