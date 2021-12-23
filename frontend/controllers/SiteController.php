@@ -169,7 +169,12 @@ class SiteController extends Controller
             if($model->save() && $model->sendEmail($model)) {
                 Yii::$app->session->setFlash('success', 'Pendaftaran sukses, silahkan membuka email lalu klik link verifikasi pada email yang kami kirimkan.');
                 return $this->goHome();
-            }
+            } else {
+                echo "MODEL NOT SAVED";
+                print_r($model->getAttributes());
+                print_r($model->getErrors());
+                exit;
+              }
 
         }
 
