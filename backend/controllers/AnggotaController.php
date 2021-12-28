@@ -13,6 +13,7 @@ use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use \yii\web\Response;
+use yii\web\UploadedFile;
 
 /**
  * AnggotaController implements the CRUD actions for Anggota model.
@@ -146,6 +147,18 @@ class AnggotaController extends Controller
         $model = $this->findModelAnggota($id);
 
         $model->scenario = 'frontend-update-anggota';
+
+        if ($model->load(Yii::$app->request->post())) {
+            $upload_foto = UploadedFile::getInstance($model, 'foto');
+            if(!empty($upload_foto)){
+                $model->foto = bin2hex(file_get_contents($upload_foto->tempName));
+            }
+
+            $upload_foto_ktp = UploadedFile::getInstance($model, 'foto');
+            if(!empty($upload_foto_ktp)){
+                $model->foto_ktp = bin2hex(file_get_contents($upload_foto_ktp->tempName));
+            }
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);

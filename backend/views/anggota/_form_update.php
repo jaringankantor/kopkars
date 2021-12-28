@@ -5,6 +5,7 @@ use common\models\VariabelPendidikanterakhir;
 use common\models\VariabelStatuskaryawan;
 use common\models\VariabelUnit;
 use kartik\widgets\DatePicker;
+use kartik\widgets\FileInput;
 use kartik\widgets\Select2; // or kartik\select2\Select2
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -23,6 +24,14 @@ use yii\web\JsExpression;
     //'id' => 'form-signup', 
     'type' => ActiveForm::TYPE_HORIZONTAL,
     'formConfig' => ['labelSpan' => 3, 'deviceSize' => ActiveForm::SIZE_SMALL]
+    ]); ?>
+
+    <?= $form->field($model, 'foto')->widget(FileInput::classname(), [
+        'options' => ['accept' => 'image/*'],
+    ]); ?>
+
+    <?= $form->field($model, 'foto_ktp')->widget(FileInput::classname(), [
+        'options' => ['accept' => 'image/*'],
     ]); ?>
 
     <?php
