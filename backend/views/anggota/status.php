@@ -26,7 +26,7 @@ $this->title = 'Status Anggota';
             ['class' => 'yii\grid\SerialColumn'],
 
             'nomor_anggota',
-            'nomor_karyawan',
+            'nomor_pegawai',
             'nama_lengkap',
 
             ['class' => 'yii\grid\ActionColumn',
