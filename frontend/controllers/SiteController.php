@@ -3,6 +3,9 @@ namespace frontend\controllers;
 
 use common\models\Anggota;
 use common\models\DbpegawaiPubPegawai;
+use frontend\models\LoginForm;
+use frontend\models\PasswordResetRequestForm;
+use frontend\models\ResetPasswordForm;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -11,9 +14,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use frontend\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
+use yii\web\UploadedFile;
 
 /**
  * Site controller
@@ -121,12 +122,22 @@ class SiteController extends Controller
         
         $model = new Anggota();
         $model->scenario = 'frontend-create-anggota';
+        $current_foto = NULL;
 
         if ($model->load(Yii::$app->request->post())) {
             $model->kode_toko = Yii::$app->params['kode_toko'];
             $model->setPassword($model->password_default);
             $model->generateAuthKey();
             $model->generateEmailVerificationToken();
+
+            $upload_foto = UploadedFile::getInstance($model, 'foto');
+            if(!empty($upload)){
+                $model->foto = bin2hex(file_get_contents($upload->tempName));
+            }
+            $upload_foto_ktp = UploadedFile::getInstance($model, 'foto_ktp');
+            if(!empty($upload)){
+                $model->foto_ktp = bin2hex(file_get_contents($upload->tempName));
+            }
 
             $model->nomor_hp = preg_replace('/[^0-9]/', '', $model->nomor_hp);
 
