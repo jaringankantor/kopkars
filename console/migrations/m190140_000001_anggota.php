@@ -64,7 +64,11 @@ class m190140_000001_anggota extends Migration
        
         $this->createIndex('anggota_nama_lengkap_idx', 'anggota', 'nama_lengkap');
 
-        $this->createIndex('anggota_kode_toko_nomor_anggota_idx', 'anggota', ['kode_toko','nomor_anggota'], true);
+        //$this->createIndex('anggota_kode_toko_nomor_anggota_idx', 'anggota', ['kode_toko','nomor_anggota'], true);
+        $this->execute('
+        CREATE UNIQUE INDEX anggota_kode_toko_nomor_anggota_idx ON anggota (kode_toko,nomor_anggota)
+        WHERE nomor_anggota IS NOT NULL
+        ');
 
         $this->createIndex('anggota_kode_toko_nomor_pegawai_idx', 'anggota', ['kode_toko','nomor_pegawai'], true);
 

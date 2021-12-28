@@ -10,10 +10,10 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\AnggotaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Anggota Resmi';
+$this->title = 'Status Anggota';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="anggota-index">
+<div class="anggota-status">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -26,33 +26,8 @@ $this->title = 'Anggota Resmi';
             ['class' => 'yii\grid\SerialColumn'],
 
             'nomor_anggota',
+            'nomor_karyawan',
             'nama_lengkap',
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'email',
-                'editableOptions' => [
-                    'formOptions' => [
-                        'action' => Url::to(['/anggota/updateemail-editable-json']),
-                    ],
-                ],
-            ],
-            [
-                'class' => 'kartik\grid\EditableColumn',
-                'attribute' => 'nomor_hp',
-                'value'=>function($model, $key, $index)
-                {return '+62'.$model->nomor_hp;},
-                'editableOptions' => [
-                    'formOptions' => [
-                        'action' => Url::to(['/anggota/updatehp-editable-json']),
-                    ],
-                ],
-            ],
-            [
-                'attribute'=>'Informasi Kontak',
-                'format'=>'raw',
-                'value'=>function($model, $key, $index)
-                {return 'Email: '.$model->email.'<br>No HP: +62'.$model->nomor_hp;},
-            ],
 
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {delete}',

@@ -122,6 +122,17 @@ class AnggotaController extends Controller
         ]);
     }
 
+    public function actionStatus()
+    {
+        $searchModel = new AnggotaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('status', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Updates an existing Anggota model.
      * If update is successful, the browser will be redirected to the 'view' page.

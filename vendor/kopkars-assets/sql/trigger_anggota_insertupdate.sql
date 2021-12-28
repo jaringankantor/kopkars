@@ -42,6 +42,12 @@ BEGIN
 
       END IF;
 
+      --Jika user statusnya berubah catat pada histori
+      IF (NEW.status != OLD.status AND OLD.status IS NOT NULL) THEN
+         INSERT INTO histori_anggota (anggota_id,anggota_kolom,value_old,value_new)
+         VALUES (NEW.id, 'status', OLD.status, NEW.status);
+      END IF;
+
       --Jika user mengubah email
       IF ((NEW.email != OLD.email) AND (NEW.email != OLD.email_last_lock)) THEN
          UPDATE anggota
