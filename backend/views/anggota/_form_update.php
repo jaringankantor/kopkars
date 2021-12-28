@@ -26,14 +26,6 @@ use yii\web\JsExpression;
     'formConfig' => ['labelSpan' => 3, 'deviceSize' => ActiveForm::SIZE_SMALL]
     ]); ?>
 
-    <?= $form->field($model, 'foto')->widget(FileInput::classname(), [
-        'options' => ['accept' => 'image/*'],
-    ]); ?>
-
-    <?= $form->field($model, 'foto_ktp')->widget(FileInput::classname(), [
-        'options' => ['accept' => 'image/*'],
-    ]); ?>
-
     <?php
     $url = \yii\helpers\Url::to(['anggota/select-karyawan-pnj']);
 
@@ -81,6 +73,14 @@ use yii\web\JsExpression;
     <?= $form->field($model, 'alamat_rumah')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'nomor_npwp')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'foto')->widget(FileInput::classname(), [
+        'options' => ['accept' => 'image/*'],
+    ]); ?>
+
+    <?= $form->field($model, 'foto_ktp')->widget(FileInput::classname(), [
+        'options' => ['accept' => 'image/*'],
+    ]); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
