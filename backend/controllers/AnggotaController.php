@@ -148,16 +148,23 @@ class AnggotaController extends Controller
 
         $model->scenario = 'frontend-update-anggota';
 
+        $current_foto = $model->foto;
+        $current_foto_ktp = $model->foto_ktp;
+
         if ($model->load(Yii::$app->request->post())) {
             $upload_foto = UploadedFile::getInstance($model, 'foto');
             if(!empty($upload_foto)){
                 $model->foto = bin2hex(file_get_contents($upload_foto->tempName));
-            }
+            } else {
+				$model->foto = $current_foto;
+			}
 
             $upload_foto_ktp = UploadedFile::getInstance($model, 'foto');
             if(!empty($upload_foto_ktp)){
                 $model->foto_ktp = bin2hex(file_get_contents($upload_foto_ktp->tempName));
-            }
+            } else {
+				$model->foto_ktp = $current_foto_ktp;
+			}
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
