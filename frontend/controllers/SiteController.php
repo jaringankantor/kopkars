@@ -132,11 +132,11 @@ class SiteController extends Controller
 
             $upload_foto = UploadedFile::getInstance($model, 'foto');
             if(!empty($upload)){
-                $model->foto = bin2hex(file_get_contents($upload->tempName));
+                $model->foto = bin2hex(file_get_contents($upload_foto->tempName));
             }
             $upload_foto_ktp = UploadedFile::getInstance($model, 'foto_ktp');
             if(!empty($upload)){
-                $model->foto_ktp = bin2hex(file_get_contents($upload->tempName));
+                $model->foto_ktp = bin2hex(file_get_contents($upload_foto_ktp->tempName));
             }
 
             $model->nomor_hp = preg_replace('/[^0-9]/', '', $model->nomor_hp);
