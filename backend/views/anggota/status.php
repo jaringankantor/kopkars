@@ -28,6 +28,7 @@ $this->title = 'Status Anggota';
             'nomor_anggota',
             'nomor_pegawai',
             'nama_lengkap',
+            'status',
         ],
         'options'=>['class'=>'box-body table-responsive no-padding'],
     ]); ?>
