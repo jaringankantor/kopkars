@@ -131,11 +131,11 @@ class SiteController extends Controller
             $model->generateEmailVerificationToken();
 
             $upload_foto = UploadedFile::getInstance($model, 'foto');
-            if(!empty($upload)){
+            if(!empty($upload_foto)){
                 $model->foto = bin2hex(file_get_contents($upload_foto->tempName));
             }
             $upload_foto_ktp = UploadedFile::getInstance($model, 'foto_ktp');
-            if(!empty($upload)){
+            if(!empty($upload_foto_ktp)){
                 $model->foto_ktp = bin2hex(file_get_contents($upload_foto_ktp->tempName));
             }
 
