@@ -28,29 +28,6 @@ $this->title = 'Status Anggota';
             'nomor_anggota',
             'nomor_pegawai',
             'nama_lengkap',
-
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {update} {delete}',
-                'buttons' => [
-                    'view' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
-                                    'title' => Yii::t('app', 'lead-view'),
-                        ]);
-                    },
-        
-                    'update' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                                    'title' => Yii::t('app', 'lead-update'),
-                        ]);
-                    },
-                    'delete' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
-                                    'title' => Yii::t('app', 'lead-delete'),
-                        ]);
-                    }
-        
-                ],
-            ],
         ],
         'options'=>['class'=>'box-body table-responsive no-padding'],
     ]); ?>
