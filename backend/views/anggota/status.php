@@ -50,23 +50,6 @@ $this->title = 'Status Anggota';
                     }
         
                 ],
-                'urlCreator' => function ($action, $model, $key, $index) {
-                    if ($action === 'view') {
-                        return ['anggota/view-biodata','id'=>$model->id];
-                    }
-                    if ($action === 'update') {
-                        return ['anggota/update','id'=>$model->id];
-                    }
-                    if ($action === 'delete') {
-                        return ['anggota/delete','id'=>$model->id];
-                    }
-        
-                },
-                'visibleButtons' => [
-                    'delete' => function ($model, $key, $index) {
-                        return empty($model->nomor_anggota) ? true : false;
-                    }
-                ]
             ],
         ],
         'options'=>['class'=>'box-body table-responsive no-padding'],
