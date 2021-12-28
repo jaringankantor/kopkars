@@ -9,6 +9,7 @@ use yii\data\ActiveDataProvider;
 //use yii\filters\AccessControl;
 use yii2mod\rbac\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use \yii\web\Response;
@@ -49,7 +50,7 @@ class AnggotaController extends Controller
     public function actionIndex()
     {
         $searchModel = new AnggotaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->searchAnggota(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -122,12 +123,12 @@ class AnggotaController extends Controller
         ]);
     }
 
-    public function actionStatus()
+    public function actionHistori()
     {
         $searchModel = new AnggotaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('status', [
+        return $this->render('histori', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -153,6 +154,30 @@ class AnggotaController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionUpdatestatusEditableJson() {
+        if (isset($_POST['hasEditable'])) {
+            $model = $this->findModelAnggota(Yii::$app->request->post('editableKey'));
+            $model->scenario = 'backend-updatestatus-anggota';
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            
+            $posted = current(Yii::$app->request->post('Anggota'));
+            $post = ['Anggota' => $posted];
+
+            if ($model->load($post) && $model->save()) {
+                $output = $model->status;
+
+                $errs = current($model->getErrors());
+                $message = $errs[0];
+                
+                return ['output'=>$output, 'message'=>$message];
+            } else {
+                return ['output'=>'', 'message'=>current($model->getErrors())[0]];
+            }
+        }
+        
     }
 
     public function actionUpdateemailEditableJson() {

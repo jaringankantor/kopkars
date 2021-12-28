@@ -26,6 +26,8 @@ use yii\web\IdentityInterface;
  * @property string|null $password_default
  * @property resource|null $foto
  * @property resource|null $foto_thumbnail
+ * @property resource|null $foto_ktp
+ * @property resource|null $foto_ktp_thumbnail
  * @property string|null $unit
  * @property string|null $nomor_hp
  * @property string|null $nomor_hp_last_lock
@@ -218,14 +220,14 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['nomor_ktp', 'nomor_npwp', 'nomor_hp'], 'match' ,'pattern'=>'/^[0-9]+$/u','message'=> 'Hanya boleh angka'],
-            [['foto'], 'file', 'extensions' => 'png,jpg,jpeg', 'mimeTypes'=>'image/jpeg,image/png','maxSize'=>2097152],
+            [['foto','foto_ktp'], 'file', 'extensions' => 'png,jpg,jpeg', 'mimeTypes'=>'image/jpeg,image/png','maxSize'=>2097152],
             [['email_last_lock_verified', 'nomor_hp_last_lock_verified'], 'boolean'],
             [['tanggal_lahir', 'waktu_daftar', 'waktu_update', 'waktu_login', 'waktu_approve'], 'safe'],
             [['status', 'status_karyawan', 'nomor_anggota', 'nomor_pegawai', 'agama', 'pendidikanterakhir'], 'string', 'max' => 20],
             [['kode_toko','nomor_hp', 'nama_lengkap', 'tempat_lahir', 'email', 'approved_by'], 'string', 'max' => 50],
             [['password_default','re_password'], 'string', 'min' => 8],
             [['password_default','re_password'], 'string', 'max' => 150],
-            [['kode_toko', 'foto', 'email', 'nomor_hp', 'nomor_pegawai', 'unit', 'status_karyawan', 'nomor_ktp', 'nama_lengkap', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama', 'pendidikanterakhir', 'alamat_rumah','nomor_npwp'], 'required'],
+            [['kode_toko', 'foto', 'foto_ktp', 'email', 'nomor_hp', 'nomor_pegawai', 'unit', 'status_karyawan', 'nomor_ktp', 'nama_lengkap', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama', 'pendidikanterakhir', 'alamat_rumah','nomor_npwp'], 'required'],
             [['password_default','re_password','captcha'], 'required','on' => 'frontend-create-anggota'],
             ['re_password', 'compare', 'compareAttribute'=>'password_default', 'skipOnEmpty' => false, 'message'=>'Re-Password aplikasi tidak sama'],
             [['unit'], 'string', 'max' => 100],
@@ -260,10 +262,12 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
         $scenarios['backend-nomor_anggota-anggota'] = ['status', 'waktu_approve','approved_by'];
         $scenarios['backend-updateemail-anggota'] = ['email'];
         $scenarios['backend-updatehp-anggota'] = ['nomor_hp'];
+        $scenarios['backend-updatestatus-anggota'] = ['status'];
         $scenarios['frontend-create-anggota'] = ['kode_toko','email','password_default','re_password','nomor_hp', 'nomor_hp_last_lock', 'nomor_hp_last_lock_verified', 'nomor_pegawai'];
         $scenarios['frontend-update-anggota'] = ['nomor_pegawai', 'status_karyawan', 'unit', 'nomor_ktp', 'nama_lengkap', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama', 'pendidikanterakhir', 'alamat_rumah','nomor_npwp'];
         $scenarios['frontend-update-anggota-email'] = ['email', 'captcha'];
         $scenarios['frontend-update-anggota-foto'] = ['foto'];
+        $scenarios['frontend-update-anggota-foto_ktp'] = ['foto_ktp'];
         $scenarios['frontend-update-anggota-hp'] = ['nomor_hp', 'captcha'];
         $scenarios['updateallpassword'] = ['auth_key','password_hash','password_reset_token'];
         return $scenarios;
@@ -287,6 +291,8 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             're_password' => 'Ulangi Password',
             'foto' => 'Foto',
             'foto_thumbnail' => 'Foto Thumbnail',
+            'foto_ktp' => 'Foto/Scan KTP',
+            'foto_ktp_thumbnail' => 'Foto/Scan KTP Thumbnail',
             'unit' => 'Unit',
             'nomor_hp' => 'Nomor HP',
             'nomor_ktp' => 'Nomor KTP',

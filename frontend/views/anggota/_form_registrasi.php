@@ -28,6 +28,10 @@ use yii\web\JsExpression;
         'options' => ['accept' => 'image/*'],
     ]); ?>
 
+    <?= $form->field($model, 'foto_ktp')->widget(FileInput::classname(), [
+        'options' => ['accept' => 'image/*'],
+    ]); ?>
+
     <?= $form->field($model, 'email',['addon' => ['prepend' => ['content'=>'@']]])->textInput(['maxlength' => true])->textInput(['maxlength' => true,'placeholder' => 'Email pribadi aktif (diutamakan email PNJ)','disabled'=>($model->scenario == 'update')? TRUE : FALSE]) ?>
 
     <?= $form->field($model, 'password_default',['addon' => ['prepend' => ['content'=>'*']]])->passwordInput(['maxlength' => true,'placeholder' => 'Password untuk login ke aplikasi KOPKARS PNJ','disabled'=>($model->scenario == 'update')? TRUE : FALSE]) ?>

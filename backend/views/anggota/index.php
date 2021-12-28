@@ -10,14 +10,14 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\AnggotaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Anggota Resmi';
+$this->title = 'Anggota Aktif';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="anggota-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search_index', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

@@ -124,8 +124,8 @@ AppAsset::register($this);
             'label' => 'Manajemen Anggota',
             'items' => [
                 ['label' => 'Pemberian Nomor', 'url' => ['/anggota/beri-nomor']],
-                ['label' => 'Anggota Resmi', 'url' => ['/anggota']],
-                ['label' => 'Ubah Status', 'url' => ['/anggota/status']],
+                ['label' => 'Anggota Aktif', 'url' => ['/anggota']],
+                ['label' => 'Histori Anggota', 'url' => ['/anggota/histori']],
             ],
         ];
     }

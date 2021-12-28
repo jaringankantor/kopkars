@@ -64,4 +64,29 @@ class AnggotaSearch extends Anggota
 
         return $dataProvider;
     }
+
+    public function searchAnggota($params)
+    {
+        $query = Anggota::findAnggota()->andWhere('status = \'Aktif\' AND (nomor_anggota IS NOT NULL OR waktu_approve IS NOT NULL)');
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort'=> ['defaultOrder' => ['nama_lengkap'=>SORT_ASC]]
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere(['or',['ilike', 'nomor_anggota', $this->keyword],['ilike', 'email_last_lock', $this->keyword],['ilike', 'nomor_hp_last_lock', $this->keyword],['ilike', 'nama_lengkap', $this->keyword]]);
+
+        return $dataProvider;
+    }
 }

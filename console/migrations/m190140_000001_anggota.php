@@ -22,6 +22,8 @@ class m190140_000001_anggota extends Migration
             'password_default' => $this->string(150),
             'foto' => $this->binary(),
             'foto_thumbnail' => $this->binary(),
+            'foto_ktp' => $this->binary(),
+            'foto_ktp_thumbnail' => $this->binary(),
             'unit' => $this->string(100),
             'nomor_hp' => $this->string(50),
             'nomor_hp_last_lock' => $this->string(20),
