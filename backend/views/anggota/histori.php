@@ -2,6 +2,7 @@
 use common\models\HistoriAnggota;
 use common\models\VariabelStatus;
 use kartik\editable\Editable;
+use kartik\export\ExportMenu;
 //use yii\grid\GridView;
 use kartik\grid\GridView;
 use yii\helpers\ArrayHelper;
@@ -21,7 +22,24 @@ $this->title = 'Histori Anggota';
 
     <?php echo $this->render('_search_histori', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
+    
+
+    <?php
+        echo ExportMenu::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => $gridColumns,
+            'columnSelectorOptions'=>[
+                'label' => 'Cols...',
+            ],
+            'hiddenColumns'=>[0, 9], // SerialColumn & ActionColumn
+            'disabledColumns'=>[1, 2], // ID & Name
+            'dropdownOptions' => [
+                'label' => 'Export All',
+                'class' => 'btn btn-outline-secondary btn-default'
+            ]
+        ]) . "<hr>\n".
+        
+        GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
         'columns' => [

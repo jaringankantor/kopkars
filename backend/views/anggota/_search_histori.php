@@ -1,5 +1,7 @@
 <?php
 
+use common\models\VariabelStatus;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 //use yii\widgets\ActiveForm;
 use kartik\widgets\ActiveForm;
@@ -19,7 +21,9 @@ use kartik\widgets\ActiveForm;
         'formConfig' => ['labelSpan' => 3, 'deviceSize' => ActiveForm::SIZE_SMALL]
     ]); ?>
 
-	<?= $form->field($model, 'keyword') ?>
+    <?= $form->field($model, 'keyword') ?>
+
+    <?= $form->field($model, 'status')->dropDownList(ArrayHelper::map(VariabelStatus::find()->all(),'status','status'),['prompt'=>'--Pilih--']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Cari Data', ['class' => 'btn btn-primary']) ?>

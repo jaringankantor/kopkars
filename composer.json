@@ -17,6 +17,7 @@
         "kartik-v/yii2-builder": "@dev",
         "kartik-v/yii2-detail-view": "*",
         "kartik-v/yii2-editable": "@dev",
+        "kartik-v/yii2-export": "@dev",
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-number": "dev-master",
         "kartik-v/yii2-widgets": "*",

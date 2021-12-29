@@ -20,7 +20,7 @@ class AnggotaSearch extends Anggota
     public function rules()
     {
         return [
-            [['keyword'], 'safe'],
+            [['keyword','status'], 'safe'],
         ];
     }
 
@@ -60,6 +60,10 @@ class AnggotaSearch extends Anggota
         }
 
         // grid filtering conditions
+        $query->andFilterWhere([
+            'status' => $this->status,
+        ]);
+        
         $query->andFilterWhere(['or',['ilike', 'nomor_anggota', $this->keyword],['ilike', 'email_last_lock', $this->keyword],['ilike', 'nomor_hp_last_lock', $this->keyword],['ilike', 'nama_lengkap', $this->keyword]]);
 
         return $dataProvider;
