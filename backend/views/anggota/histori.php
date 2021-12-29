@@ -22,28 +22,11 @@ $this->title = 'Histori Anggota';
 
     <?php echo $this->render('_search_histori', ['model' => $searchModel]); ?>
 
-    
+    <br>
 
     <?php
-        echo ExportMenu::widget([
-            'dataProvider' => $dataProvider,
-            'columns' => $gridColumns,
-            'columnSelectorOptions'=>[
-                'label' => 'Cols...',
-            ],
-            'hiddenColumns'=>[0, 9], // SerialColumn & ActionColumn
-            'disabledColumns'=>[1, 2], // ID & Name
-            'dropdownOptions' => [
-                'label' => 'Export All',
-                'class' => 'btn btn-outline-secondary btn-default'
-            ]
-        ]) . "<hr>\n".
-        
-        GridView::widget([
-        'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    $gridColumns = [
+        ['class' => 'kartik\grid\SerialColumn'],
 
             'nomor_anggota',
             'nomor_pegawai',
@@ -74,8 +57,47 @@ $this->title = 'Histori Anggota';
                     'data' => ArrayHelper::map(VariabelStatus::find()->all(),'status','status'),
                 ],
             ],
+    ];
+
+    $customDropdown = [
+        //'linkOptions' => ['class' => 'dropdown-item']
+    ];
+    $fullExportMenu = ExportMenu::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => $gridColumns,
+        'target' => ExportMenu::TARGET_BLANK,
+        'asDropdown' => false, // this is important for this case so we just need to get a HTML list 
+        'exportConfig' => [ // set styling for your custom dropdown list items
+            ExportMenu::FORMAT_CSV => $customDropdown,
+            ExportMenu::FORMAT_TEXT => $customDropdown,
+            ExportMenu::FORMAT_HTML => $customDropdown,
+            ExportMenu::FORMAT_PDF => $customDropdown,
+            ExportMenu::FORMAT_EXCEL => $customDropdown,
+            ExportMenu::FORMAT_EXCEL_X => $customDropdown,
         ],
-        'options'=>['class'=>'box-body table-responsive no-padding'],
+    ]);
+        
+    echo GridView::widget([
+        'dataProvider' => $dataProvider,
+        //'filterModel' => $searchModel,
+        'columns' => $gridColumns,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<h3 class="panel-title"><i class="fas fa-book"></i> '.$this->title.'</h3>',
+        ],
+        'exportContainer' => [
+            'class' => 'btn-group mr-2 me-2'
+        ],
+        'toolbar' => [
+            '{export}',
+        ],
+        'export' => [
+            'itemsAfter'=> [
+                '<div role="presentation" class="dropdown-divider"></div>',
+                '<div class="dropdown-header">Export All Data</div>',
+                $fullExportMenu
+            ]
+        ],
     ]); ?>
 
 
