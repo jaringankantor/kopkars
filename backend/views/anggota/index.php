@@ -56,39 +56,40 @@ $this->title = 'Anggota Aktif';
         //    {return 'Email: '.$model->email.'<br>No HP: +62'.$model->nomor_hp;},
         //],
 
-        ['class' => 'yii\grid\ActionColumn',
-        'template' => '{view} {update} {delete}',
-        'buttons' =>
-            [
-                'view' => function ($url, $model) {
-                    return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, ['title' => Yii::t('app', 'lead-view'),]);
-                },
-                'update' => function ($url, $model) {
-                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url,
-                    ['title' => Yii::t('app', 'lead-update'),]);
-                },
-                'delete' => function ($url, $model) {
-                    return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url,
-                    ['title' => Yii::t('app', 'lead-delete'),]);
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '{view} {update} {delete}',
+            'buttons' =>
+                [
+                    'view' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, ['title' => Yii::t('app', 'lead-view'),]);
+                    },
+                    'update' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url,
+                        ['title' => Yii::t('app', 'lead-update'),]);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url,
+                        ['title' => Yii::t('app', 'lead-delete'),]);
+                    }
+                ],
+            'urlCreator' => function ($action, $model, $key, $index) {
+                if ($action === 'view') {
+                    return ['anggota/view-biodata','id'=>$model->id];
                 }
-            ],
-        'urlCreator' => function ($action, $model, $key, $index) {
-            if ($action === 'view') {
-                return ['anggota/view-biodata','id'=>$model->id];
-            }
-            if ($action === 'update') {
-                return ['anggota/update','id'=>$model->id];
-            }
-            if ($action === 'delete') {
-                return ['anggota/delete','id'=>$model->id];
-            }
-        },
-        'visibleButtons' =>
-            [
-                'delete' => function ($model, $key, $index) {
-                    return empty($model->nomor_anggota) ? true : false;
+                if ($action === 'update') {
+                    return ['anggota/update','id'=>$model->id];
                 }
-            ]
+                if ($action === 'delete') {
+                    return ['anggota/delete','id'=>$model->id];
+                }
+            },
+            'visibleButtons' =>
+                [
+                    'delete' => function ($model, $key, $index) {
+                        return empty($model->nomor_anggota) ? true : false;
+                    }
+                ]
         ],
     ];
     
