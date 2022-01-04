@@ -1,6 +1,7 @@
 <?php
 
 use kartik\editable\Editable;
+use kartik\export\ExportMenu;
 //use yii\grid\GridView;
 use kartik\grid\GridView;
 use yii\helpers\Html;
@@ -92,6 +93,25 @@ $this->title = 'Anggota Aktif';
                 ]
         ],
     ];
+
+    $customDropdown = [
+        //'linkOptions' => ['class' => 'dropdown-item']
+    ];
+
+    $fullExportMenu = ExportMenu::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => $gridColumns,
+        'target' => ExportMenu::TARGET_BLANK,
+        'asDropdown' => false, // this is important for this case so we just need to get a HTML list 
+        'exportConfig' => [ // set styling for your custom dropdown list items
+            ExportMenu::FORMAT_CSV => $customDropdown,
+            ExportMenu::FORMAT_TEXT => $customDropdown,
+            ExportMenu::FORMAT_HTML => $customDropdown,
+            ExportMenu::FORMAT_PDF => $customDropdown,
+            ExportMenu::FORMAT_EXCEL => $customDropdown,
+            ExportMenu::FORMAT_EXCEL_X => $customDropdown,
+        ],
+    ]);
     
     echo GridView::widget([
         'dataProvider' => $dataProvider,
