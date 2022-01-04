@@ -13,6 +13,6 @@ class Kopkarstext extends Component {
     }
     public function hp62($input)
     {
-       return empty($input)?null:'+62'.$input;
+       return empty($input)?null:'62'.$input;
     }
 }
