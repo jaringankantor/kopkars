@@ -47,12 +47,12 @@ $this->title = 'Anggota Aktif';
                     ],
                 ],
             ],
-            [
-                'attribute'=>'Informasi Kontak',
-                'format'=>'raw',
-                'value'=>function($model, $key, $index)
-                {return 'Email: '.$model->email.'<br>No HP: +62'.$model->nomor_hp;},
-            ],
+            //[
+            //    'attribute'=>'Informasi Kontak',
+            //    'format'=>'raw',
+            //    'value'=>function($model, $key, $index)
+            //    {return 'Email: '.$model->email.'<br>No HP: +62'.$model->nomor_hp;},
+            //],
 
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {delete}',
