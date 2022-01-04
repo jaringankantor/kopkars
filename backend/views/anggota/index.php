@@ -19,11 +19,10 @@ $this->title = 'Anggota Aktif';
 
     <?php echo $this->render('_search_index', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <?php
+
+    $gridColums = [
+        ['class' => 'yii\grid\SerialColumn'],
 
             'nomor_anggota',
             'nama_lengkap',
@@ -93,6 +92,28 @@ $this->title = 'Anggota Aktif';
                     }
                 ]
             ],
+    ];
+    
+    echo GridView::widget([
+        'dataProvider' => $dataProvider,
+        //'filterModel' => $searchModel,
+        'columns' => $gridColumns,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<h3 class="panel-title"><i class="fas fa-book"></i> '.$this->title.'</h3>',
+        ],
+        'exportContainer' => [
+            'class' => 'btn-group mr-2 me-2'
+        ],
+        'toolbar' => [
+            '{export}',
+        ],
+        'export' => [
+            'itemsAfter'=> [
+                '<div role="presentation" class="dropdown-divider"></div>',
+                '<div class="dropdown-header">Export All Data</div>',
+                $fullExportMenu
+            ]
         ],
         'options'=>['class'=>'box-body table-responsive no-padding'],
     ]); ?>

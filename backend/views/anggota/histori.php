@@ -62,6 +62,7 @@ $this->title = 'Histori Anggota';
     $customDropdown = [
         //'linkOptions' => ['class' => 'dropdown-item']
     ];
+
     $fullExportMenu = ExportMenu::widget([
         'dataProvider' => $dataProvider,
         'columns' => $gridColumns,
@@ -98,6 +99,7 @@ $this->title = 'Histori Anggota';
                 $fullExportMenu
             ]
         ],
+        'options'=>['class'=>'box-body table-responsive no-padding'],
     ]); ?>
 
 
