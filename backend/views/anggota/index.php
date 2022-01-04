@@ -24,7 +24,7 @@ $this->title = 'Anggota Aktif';
 
     <?php
 
-    $gridColums = [
+    $gridColumns = [
         ['class' => 'yii\grid\SerialColumn'],
 
         'nomor_anggota',
