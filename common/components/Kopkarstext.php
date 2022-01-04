@@ -11,7 +11,7 @@ class Kopkarstext extends Component {
     {
        return empty($input)?null:$input;
     }
-    public function hpPlus62($input)
+    public function hp62($input)
     {
        return empty($input)?null:'+62'.$input;
     }

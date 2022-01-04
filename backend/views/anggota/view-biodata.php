@@ -27,7 +27,7 @@ $this->title = 'Biodata '.$model->nama_lengkap;
                 'nomor_pegawai',
                 'email:email',
                 'unit',
-                ['attribute' => 'nomor_hp','value' => Yii::$app->kopkarstext->hpPlus62($model->nomor_hp)],
+                ['attribute' => 'nomor_hp','value' => Yii::$app->kopkarstext->hp62($model->nomor_hp)],
                 'nomor_ktp',
                 'nama_lengkap',
                 'tempat_lahir',

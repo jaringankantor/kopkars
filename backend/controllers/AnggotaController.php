@@ -234,7 +234,7 @@ class AnggotaController extends Controller
             $post = ['Anggota' => $posted];
 
             if ($model->load($post) && $model->save()) {
-                $output = Yii::$app->kopkarstext->hpPlus62($model->nomor_hp);
+                $output = Yii::$app->kopkarstext->hp62($model->nomor_hp);
 
                 $errs = current($model->getErrors());
                 $message = $errs[0];
