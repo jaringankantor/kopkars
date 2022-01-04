@@ -42,7 +42,7 @@ $this->title = 'Anggota Aktif';
             'class' => 'kartik\grid\EditableColumn',
             'attribute' => 'nomor_hp',
             'value'=>function($model, $key, $index){
-                return '+62'.$model->nomor_hp;
+                return Yii::$app->kopkarstext->hpPlus62($model->nomor_hp);
             },
             'editableOptions' => [
                 'formOptions' => [
@@ -54,7 +54,7 @@ $this->title = 'Anggota Aktif';
         //    'attribute'=>'Informasi Kontak',
         //    'format'=>'raw',
         //    'value'=>function($model, $key, $index)
-        //    {return 'Email: '.$model->email.'<br>No HP: +62'.$model->nomor_hp;},
+        //    {return 'Email: '.$model->email.'<br>No HP: '.Yii::$app->kopkarstext->hpPlus62($model->nomor_hp);},
         //],
 
         [

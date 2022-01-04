@@ -31,7 +31,7 @@ $this->title = 'Pemberian Nomor Anggota';
                 'attribute'=>'Informasi Kontak',
                 'format'=>'raw',
                 'value'=>function($model, $key, $index)
-                {return 'Email: '.$model->email.'<br>No HP: +62'.$model->nomor_hp;},
+                {return 'Email: '.$model->email.'<br>No HP: '.Yii::$app->kopkarstext->hpPlus62($model->nomor_hp);},
             ],
             'waktu_daftar:datetime',
 
