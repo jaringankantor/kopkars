@@ -9,6 +9,10 @@ use yii\rest\ActiveController;
 
 class ApiController extends ActiveController {
     public $modelClass = 'frontend\models\ApiProduk';
+    public $serializer = [
+        'class' => 'yii\rest\Serializer',
+        'collectionEnvelope' => 'items',
+    ];
 
     public function actions() {
         $actions = parent::actions();
