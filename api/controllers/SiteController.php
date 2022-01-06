@@ -44,6 +44,6 @@ class SiteController extends Controller
 
     public function actionIndex(){
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return null;
+        return var_dump(null);
     }
 }
