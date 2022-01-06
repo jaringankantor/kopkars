@@ -1,6 +1,6 @@
 #https://aaronfrancis.com/2014/hosting-an-advanced-yii2-application-on-heroku
 <IfModule mod_rewrite.c>
-    Options +FollowSymlinks
+    Options +SymLinksIfOwnerMatch
     RewriteEngine On
 </IfModule>
 
