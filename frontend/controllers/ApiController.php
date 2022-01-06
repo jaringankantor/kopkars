@@ -24,7 +24,7 @@ class ApiController extends ActiveController {
     public function actionProduk() {
         $activeData = new ActiveDataProvider([
             'query' => ApiProduk::findFrontendProdukAktif(),
-            'pagination' => false
+            //'pagination' => false
         ]);
         return $activeData;
     }
