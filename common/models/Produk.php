@@ -479,5 +479,18 @@ class Produk extends \yii\db\ActiveRecord
             ->orderBy(['sku'=>SORT_ASC]);
     }
 
+    public static function findFrontendProduk()
+    {
+        return self::find()
+        ->where(['kode_toko'=>Yii::$app->params['kode_toko']])
+        ->orderBy(['sku' => SORT_DESC]);
+    }
+
+    public static function findFrontendProdukAktif()
+    {
+        return self::findFrontendProduk()
+        ->andWhere(['status_aktif'=>TRUE]);
+    }
+
     
 }
