@@ -1,10 +1,12 @@
 <?php
-namespace frontend\models;
+namespace api\models;
 
 use Yii;
-use common\models\Produk;
+use common\models\Produk as CommonProduk;
+use yii\web\IdentityInterface;
 
-class ApiProduk extends Produk {
+class Produk extends CommonProduk {
+
     public function fields()
     {
         return['sku','nama_produk',

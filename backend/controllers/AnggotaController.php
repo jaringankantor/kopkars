@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use \yii\web\Response;
+use yii\web\Response;
 use yii\web\UploadedFile;
 
 /**

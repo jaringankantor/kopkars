@@ -8,6 +8,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use common\models\DbpegawaiPubPegawai;
 use yii\web\IdentityInterface;
+use yii\web\UnauthorizedHttpException;
 
 
 /**
@@ -51,6 +52,8 @@ use yii\web\IdentityInterface;
  * @property string|null $password_hash
  * @property string|null $password_reset_token
  * @property string|null $verification_token
+ * @property string|null $access_token
+ * @property integer|null expire_at
  *
  * @property VariabelAgama $agama
  * @property VariabelPendidikanterakhir $pendidikanTerakhir
@@ -120,10 +123,29 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return static::findOne(['id' => $id, 'email_last_lock_verified' => self::EMAIL_VERIFIED]);
     }
+
+    public function generateAccessToken()
+    {
+        $this->access_token=Yii::$app->security->generateRandomString();
+        return $this->access_token;
+    }
     
+    // public static function findIdentityByAccessToken($token, $type = null)
+    // {
+    //     throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+    // }
+
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        $user = static::find()->where(['access_token' => $token, 'status' => self::STATUS_ACTIVE])->one();
+        if (!$user) {
+            return false;
+        }
+        if ($user->expire_at < time()) {
+            throw new UnauthorizedHttpException('the access - token expired ', -1);
+        } else {
+            return $user;
+        }
     }
     
     public static function findByEmail($email)
@@ -259,6 +281,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $scenarios = parent::scenarios();
         $scenarios['default'] = [];
+        $scenarios['api-set-token'] = ['access_token','expire_at'];
         $scenarios['backend-nomor_anggota-anggota'] = ['status', 'waktu_approve','approved_by'];
         $scenarios['backend-updateemail-anggota'] = ['email'];
         $scenarios['backend-updatehp-anggota'] = ['nomor_hp'];
@@ -313,7 +336,9 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
-            'verification_token' => 'Verification Token'
+            'verification_token' => 'Verification Token',
+            'access_token' => 'Access Token',
+            'expire_at' => 'Expire At'
         ];
     }
 

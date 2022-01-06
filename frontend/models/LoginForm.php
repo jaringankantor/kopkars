@@ -2,8 +2,8 @@
 namespace frontend\models;
 
 use Yii;
-use yii\base\Model;
 use common\models\Anggota;
+use yii\base\Model;
 
 /**
  * Login form
@@ -66,7 +66,7 @@ class LoginForm extends Model
     /**
      * Finds user by [[username]]
      *
-     * @return User|null
+     * @return Anggota|null
      */
     protected function getUser()
     {

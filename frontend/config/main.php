@@ -44,9 +44,6 @@ return [
             'class' => 'common\components\Request',
             'csrfParam' => '_csrf-frontend',
             'web'=> '/frontend/web',
-            'parsers' => [
-                'application/json' => 'yii\web\JsonParser',
-            ]
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
@@ -55,11 +52,6 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'api','extraPatterns' => [
-                    'GET produk' => 'produk',
-                ]],
-            ],
         ],
         'user' => [
             'identityClass' => 'common\models\Anggota',
