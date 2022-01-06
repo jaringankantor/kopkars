@@ -47,6 +47,8 @@ class m190140_000001_anggota extends Migration
             'password_hash' => $this->string(255),
             'password_reset_token' => $this->string(255),
             'verification_token' => $this->string(255),
+            'access_token' => $this-> string(255),
+            'expired_at' => $this-> integer(11),
             'nomor_zahir' => $this->string(50), //hanya sementara selama proses migrasi data, nanti di zahir semua akan diganti jadi nomor_anggota
         ]);
 
