@@ -78,11 +78,6 @@ return [
                         'GET index' => 'index'
                     ]
                 ],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'site','extraPatterns' =>
-                    [
-                        'GET index' => 'index'
-                    ]
-                ],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'user','extraPatterns'=>
                     [
                         'GET test'=>'test',

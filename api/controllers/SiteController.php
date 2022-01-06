@@ -41,9 +41,4 @@ class SiteController extends Controller
             ],
         ];
     }
-
-    public function actionIndex(){
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return var_dump([]);
-    }
 }
