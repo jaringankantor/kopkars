@@ -73,6 +73,11 @@ return [
             //'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'anggota','extraPatterns' =>
+                    [
+                        'GET index' => 'index'
+                    ]
+                ],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'produk','extraPatterns' =>
                     [
                         'GET index' => 'index'
