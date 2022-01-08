@@ -74,7 +74,6 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'produk-toko/<kode_toko:[\w\-]*>' => 'produk/index',
-                'backend/produk-foto/<kode_toko:[\w\-]*>/<sku:[\w\-]*>-<ke:[\w\-]*>.jpg' => 'backend/produk/view-foto',
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'anggota','extraPatterns' =>
                     [
                         'GET index' => 'index'
