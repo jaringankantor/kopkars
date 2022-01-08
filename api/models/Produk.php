@@ -15,6 +15,15 @@ class Produk extends CommonProduk {
         'sku','nama_produk',
         'url_image_1' => function($model){
             return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,1);
+        }
+        ];
+    }
+
+    public function extraFields()
+    {
+        return ['deskripsi',
+        'url_image_1' => function($model){
+            return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,1);
         },
         'url_image_2' => function($model){
             return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,2);
@@ -27,12 +36,6 @@ class Produk extends CommonProduk {
         },
         'url_image_5' => function($model){
             return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,5);
-        }
-        ];
-    }
-
-    public function extraFields()
-    {
-        return ['deskripsi'];
+        }];
     }
 }
