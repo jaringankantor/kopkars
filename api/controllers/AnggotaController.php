@@ -3,7 +3,8 @@
 namespace api\controllers;
 
 use Yii;
-use api\models\Produk;
+use api\models\Anggota as ApiAnggota;
+use common\models\Anggota;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
@@ -11,7 +12,7 @@ use yii\filters\auth\QueryParamAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\rest\ActiveController;
 
-class ProdukController extends ActiveController {
+class AnggotaController extends ActiveController {
     public $modelClass = 'api\models\Produk';
     public $serializer = [
         'class' => 'yii\rest\Serializer',
@@ -56,7 +57,7 @@ class ProdukController extends ActiveController {
 
     public function actionIndex() {
         $activeData = new ActiveDataProvider([
-            'query' => Produk::findFrontendProdukAktif(),
+            'query' => ApiAnggota::findFrontendProdukAktif(),
             //'pagination' => false
         ]);
         return $activeData;

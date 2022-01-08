@@ -1,13 +1,13 @@
 <?php
 namespace api\models;
 
-use common\models\Produk as CommonProduk;
+use common\models\Anggota as CommonAnggota;
 
-class Produk extends CommonProduk {
+class Anggota extends CommonAnggota {
 
     public function fields()
     {
-        return['sku','nama_produk',
+        return['nama_lengkap',
         //'url_image_1' => function($model){
         //    return $model->sku;
         //}
