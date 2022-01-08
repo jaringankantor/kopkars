@@ -8,10 +8,11 @@ class Produk extends CommonProduk {
 
     public function fields()
     {
-        return['sku','nama_produk',
+        return[
         'kode_toko' => function($model){
             return $model->kode_toko;
         },
+        'sku','nama_produk',
         'url_image_1' => function($model){
             return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,1);
         },
