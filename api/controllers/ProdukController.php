@@ -1,7 +1,7 @@
 <?php
-
 namespace api\controllers;
 
+use Yii;
 use api\models\Produk;
 use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
@@ -35,9 +35,11 @@ class ProdukController extends ActiveController {
         return $actions;
     }
 
-    public function actionIndex() {
+    public function actionIndex($kode_toko){
+        $kode_toko = isset($kode_toko)? $kode_toko:Yii::$app->params['kode_toko'];
+        
         $activeData = new ActiveDataProvider([
-            'query' => Produk::findFrontendProdukAktif(),
+            'query' => Produk::findProdukAktifByKodeToko($kode_toko),
         ]);
         return $activeData;
     }

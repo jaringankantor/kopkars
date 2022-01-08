@@ -492,5 +492,12 @@ class Produk extends \yii\db\ActiveRecord
         ->andWhere(['status_aktif'=>TRUE]);
     }
 
+    public static function findProdukAktifByKodeToko($kode_toko)
+    {
+        return self::find()
+        ->andWhere(['status_aktif'=>TRUE])
+        ->andWhere(['kode_toko'=>$kode_toko]);
+    }
+
     
 }
