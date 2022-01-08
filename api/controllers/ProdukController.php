@@ -43,4 +43,12 @@ class ProdukController extends ActiveController {
         ]);
         return $activeData;
     }
+
+    public function actionViewFoto($kode_toko,$sku,$ke)
+    {
+        return $this->renderPartial('@backend/view-foto', [
+            'model' => $this->findModelProdukFoto($kode_toko,$sku),
+            'ke'=>$ke
+        ]);
+    }
 }
