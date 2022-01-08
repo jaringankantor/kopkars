@@ -11,6 +11,18 @@ class Produk extends CommonProduk {
         return['sku','nama_produk',
         'url_image_1' => function($model){
             return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,1);
+        },
+        'url_image_2' => function($model){
+            return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,2);
+        },
+        'url_image_3' => function($model){
+            return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,3);
+        },
+        'url_image_4' => function($model){
+            return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,4);
+        },
+        'url_image_5' => function($model){
+            return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,5);
         }
         ];
     }
