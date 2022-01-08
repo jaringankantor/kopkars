@@ -35,8 +35,8 @@ class ProdukController extends ActiveController {
         return $actions;
     }
 
-    public function actionIndex($kode_toko){
-        $kode_toko = isset($kode_toko)? $kode_toko:Yii::$app->params['kode_toko'];
+    public function actionIndex($kode_toko=null){
+        $kode_toko = empty($kode_toko)? Yii::$app->params['kode_toko']:$kode_toko;
         
         $activeData = new ActiveDataProvider([
             'query' => Produk::findProdukAktifByKodeToko($kode_toko),
