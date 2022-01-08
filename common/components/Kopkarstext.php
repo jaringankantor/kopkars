@@ -17,7 +17,7 @@ class Kopkarstext extends Component {
        return empty($input)?null:$input;
     }
     public function urlFotoProdukBackend($kode_toko,$sku,$ke){
-       return Url::base().'backend/produkfoto/'.$kode_toko.'/'.$sku.'-'.$ke.'.jpg';
+       return 'https://kopkars.pnj.ac.id/backend/produk-foto/'.$kode_toko.'/'.$sku.'-'.$ke.'.jpg';
       }
 
 }
