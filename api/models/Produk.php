@@ -10,7 +10,7 @@ class Produk extends CommonProduk {
     {
         return['sku','nama_produk',
         'url_image_1' => function($model){
-            return Yii::$app->kopkarstext->urlFotoProduk($model->kode_toko,$model->sku,1);
+            return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,1);
         }
         ];
     }
