@@ -42,7 +42,7 @@ class AnggotaSearch extends Anggota
      */
     public function search($params)
     {
-        $query = Anggota::findAnggotaAktif();
+        $query = Anggota::findAnggota()->andWhere('nomor_anggota IS NOT NULL OR waktu_approve IS NOT NULL');
 
         // add conditions that should always apply here
 
@@ -71,7 +71,7 @@ class AnggotaSearch extends Anggota
 
     public function searchAnggota($params)
     {
-        $query = Anggota::findAnggotaAktif()->andWhere('status = \'Aktif\'');
+        $query = Anggota::findAnggotaAktif();
 
         // add conditions that should always apply here
 

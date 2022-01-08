@@ -57,7 +57,7 @@ class AnggotaController extends ActiveController {
 
     public function actionIndex() {
         $activeData = new ActiveDataProvider([
-            'query' => ApiAnggota::findFrontendProdukAktif(),
+            'query' => ApiAnggota::findAnggotaAktif(),
             //'pagination' => false
         ]);
         return $activeData;
