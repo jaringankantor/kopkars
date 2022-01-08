@@ -2,13 +2,8 @@
 
 namespace api\controllers;
 
-use Yii;
 use api\models\Produk;
 use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
-use yii\filters\AccessControl;
-use yii\filters\auth\QueryParamAuth;
-use yii\filters\auth\HttpBasicAuth;
 use yii\rest\ActiveController;
 
 class ProdukController extends ActiveController {
@@ -23,23 +18,9 @@ class ProdukController extends ActiveController {
         parent::init();
     }
 
-    // public function behaviors()
-    // {
-    //     $behaviors = parent::behaviors();
-    //     $behaviors['authenticator'] = [
-    //         'class' => HttpBasicAuth::class,
-    //     ];
-
-    //     return $behaviors;
-    // }
-
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        $behaviors['authenticator'] = [
-            'class' => QueryParamAuth::class,
-        ];
-
         return $behaviors;
     }
 
@@ -57,7 +38,6 @@ class ProdukController extends ActiveController {
     public function actionIndex() {
         $activeData = new ActiveDataProvider([
             'query' => Produk::findFrontendProdukAktif(),
-            //'pagination' => false
         ]);
         return $activeData;
     }
