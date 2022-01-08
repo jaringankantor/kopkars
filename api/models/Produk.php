@@ -30,4 +30,9 @@ class Produk extends CommonProduk {
         }
         ];
     }
+
+    public function extraFields()
+    {
+        return ['deskripsi'];
+    }
 }
