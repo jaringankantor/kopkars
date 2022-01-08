@@ -73,6 +73,7 @@ return [
             //'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
+                'produk-toko/<kode_toko:[\w\-]*>' => 'produk/index',
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'anggota','extraPatterns' =>
                     [
                         'GET index' => 'index'
