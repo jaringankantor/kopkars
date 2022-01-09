@@ -7,6 +7,10 @@ use api\models\ProdukSearch;
 use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
 
+
+
+use yii\data\ActiveDataFilter;
+
 class ProdukController extends ActiveController {
     public $modelClass = 'api\models\Produk';
     public $serializer = [
@@ -38,33 +42,39 @@ class ProdukController extends ActiveController {
     }
 
     public function actionIndex($kode_toko=null){
-        $kode_toko = empty($kode_toko)? Yii::$app->params['kode_toko']:$kode_toko;
+        // $kode_toko = empty($kode_toko)? Yii::$app->params['kode_toko']:$kode_toko;
         
         // $activeData = new ActiveDataProvider([
         //     'query' => Produk::findProdukAktifByKodeToko($kode_toko),
         // ]);
 
-        //return $activeData;
+        // return $activeData;
 
-        // $requestParams = \Yii::$app->getRequest()->getBodyParams(); // [1]
-        // if (empty($requestParams)) {
-        //     $requestParams = \Yii::$app->getRequest()->getQueryParams(); // [2]
-        // }
-
-        $requestParams = \Yii::$app->getRequest()->getBodyParams(); // [1]
-        if (empty($requestParams)) {
-            $requestParams = \Yii::$app->getRequest()->getQueryParams(); // [2]
-        }
-
-        $searchModel = new ProdukSearch();
-        $dataProvider = $searchModel->search($requestParams);
-
-        $activeData = new ActiveDataProvider([
-            'query' => $dataProvider,
+        $filter = new ActiveDataFilter([
+            'searchModel' => 'api\models\ProdukSearch'
         ]);
         
-        return $activeData;
+        $filterCondition = null;
         
+        // You may load filters from any source. For example,
+        // if you prefer JSON in request body,
+        // use Yii::$app->request->getBodyParams() below:
+        if ($filter->load(\Yii::$app->request->getBodyParams())) { 
+            $filterCondition = $filter->build();
+            if ($filterCondition === false) {
+                // Serializer would get errors out of it
+                return $filter;
+            }
+        }
+        
+        $query = Produk::find();
+        if ($filterCondition !== null) {
+            $query->andWhere($filterCondition);
+        }
+        
+        return new ActiveDataProvider([
+            'query' => $query,
+        ]);
     }
 
     public function actionView($kode_toko=null, $sku=null)
