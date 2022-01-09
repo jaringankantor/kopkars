@@ -43,7 +43,16 @@ class ProdukController extends ActiveController {
             'query' => Produk::findProdukAktifByKodeToko($kode_toko),
         ]);
 
-        return $activeData;
+        //return $activeData;
+        
+        $dataFilter = [
+            'class' => \yii\data\ActiveDataFilter::class,
+            'searchModel' => 'api\models\ProdukSearch',
+        ];
+
+        $index = ['prepareDataProvider'=>$activeData,'dataFilter'=>$dataFilter];
+
+        return $index;
         
     }
 
