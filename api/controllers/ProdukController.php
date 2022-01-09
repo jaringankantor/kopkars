@@ -3,6 +3,7 @@ namespace api\controllers;
 
 use Yii;
 use api\models\Produk;
+use api\models\ProdukSearch;
 use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
 
@@ -45,13 +46,12 @@ class ProdukController extends ActiveController {
 
         //return $activeData;
 
+        $searchModel = new ProdukSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
         $dataFilter = [
             'class' => 'yii\data\ActiveDataFilter',
-            'searchModel' => function () {
-                return (new \yii\base\DynamicModel(['sku' => null, 'nama_produk'=>null]))
-                ->addRule(['sku', 'nama_produk'], 'trim')
-                ->addRule(['sku', 'nama_produk'], 'string');
-            },
+            'searchModel' => $dataProvider,
         ];
 
         $index = ['prepareDataProvider'=>$activeData,'dataFilter'=>$dataFilter];
