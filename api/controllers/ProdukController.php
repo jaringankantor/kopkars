@@ -34,6 +34,11 @@ class ProdukController extends ActiveController {
         unset($actions['delete']);
         unset($actions['options']);
 
+        $actions['index']['dataFilter'] = [
+            'class' => \yii\data\ActiveDataFilter::class,
+            'searchModel' => $this->modelClass,
+        ];
+
         return $actions;
     }
 
