@@ -50,7 +50,7 @@ class ProdukController extends ActiveController {
             'searchModel' => 'api\models\ProdukSearch',
         ];
 
-        $index = ['prepareDataProvider'=>$activeData,'dataFilter'=>$dataFilter];
+        $index = ['dataFilter'=>$dataFilter];
 
         return $index;
         
