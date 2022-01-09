@@ -27,7 +27,7 @@ class ProdukController extends ActiveController {
     public function actions() {
         $actions = parent::actions();
         unset($actions['index']);
-        unset($actions['view']);
+        //unset($actions['view']);
         unset($actions['create']);
         unset($actions['update']);
         unset($actions['delete']);
