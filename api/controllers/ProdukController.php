@@ -52,7 +52,7 @@ class ProdukController extends ActiveController {
             },
         ];
 
-        $index = ['prepareDataProvider'=>$activeData,'dataFilter'=>$dataFilter];
+        $index = ['dataFilter'=>$dataFilter];
 
         return $index;
         
