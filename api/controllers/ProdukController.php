@@ -57,7 +57,7 @@ class ProdukController extends ActiveController {
         }
 
         $searchModel = new ProdukSearch();
-        $dataProvider = $searchModel->search($this->load($requestParams));
+        $dataProvider = $searchModel->search($requestParams);
 
         $activeData = new ActiveDataProvider([
             'query' => $dataProvider,
