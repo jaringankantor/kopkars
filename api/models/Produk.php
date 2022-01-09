@@ -38,4 +38,18 @@ class Produk extends CommonProduk {
             return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,5);
         }];
     }
+
+    public static function findProdukAktifByKodeToko($kode_toko)
+    {
+        return self::find()
+        ->andWhere(['status_aktif'=>TRUE])
+        ->andWhere(['kode_toko'=>$kode_toko]);
+    }
+
+    public static function findOneProdukAktifByKodeToko($kode_toko,$sku)
+    {
+        return self::findProdukAktifByKodeToko($kode_toko)
+            ->andWhere(['sku'=>$sku])
+            ->one();
+    }
 }
