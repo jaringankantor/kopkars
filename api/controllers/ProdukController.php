@@ -59,7 +59,7 @@ class ProdukController extends ActiveController {
         // You may load filters from any source. For example,
         // if you prefer JSON in request body,
         // use Yii::$app->request->getBodyParams() below:
-        if ($filter->load(\Yii::$app->request->getBodyParams())) { 
+        if ($filter->load(\Yii::$app->request->get())) { 
             $filterCondition = $filter->build();
             if ($filterCondition === false) {
                 // Serializer would get errors out of it
