@@ -3,6 +3,7 @@ namespace api\controllers;
 
 use Yii;
 use api\models\Produk;
+use api\models\ProdukSearch;
 use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
 
@@ -39,20 +40,25 @@ class ProdukController extends ActiveController {
     public function actionIndex($kode_toko=null){
         $kode_toko = empty($kode_toko)? Yii::$app->params['kode_toko']:$kode_toko;
         
-        $activeData = new ActiveDataProvider([
-            'query' => Produk::findProdukAktifByKodeToko($kode_toko),
-        ]);
+        // $activeData = new ActiveDataProvider([
+        //     'query' => Produk::findProdukAktifByKodeToko($kode_toko),
+        // ]);
 
         //return $activeData;
+
+        // $requestParams = \Yii::$app->getRequest()->getBodyParams(); // [1]
+        // if (empty($requestParams)) {
+        //     $requestParams = \Yii::$app->getRequest()->getQueryParams(); // [2]
+        // }
+
+        $searchModel = new ProdukSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $activeData = new ActiveDataProvider([
+            'query' => $dataProvider,
+        ]);
         
-        $dataFilter = [
-            'class' => \yii\data\ActiveDataFilter::class,
-            'searchModel' => 'api\models\ProdukSearch',
-        ];
-
-        $index = ['prepareDataProvider'=>$activeData];
-
-        return $index;
+        return $activeData;
         
     }
 
