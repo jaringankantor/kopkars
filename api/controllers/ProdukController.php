@@ -7,8 +7,6 @@ use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
 
 class ProdukController extends ActiveController {
-    public $dataFilter;
-    
     public $modelClass = 'api\models\Produk';
     public $serializer = [
         'class' => 'yii\rest\Serializer',
@@ -44,24 +42,6 @@ class ProdukController extends ActiveController {
         $activeData = new ActiveDataProvider([
             'query' => Produk::findProdukAktifByKodeToko($kode_toko),
         ]);
-
-        //return $activeData;
-
-        $requestParams = Yii::$app->getRequest()->getBodyParams();
-        if (empty($requestParams)) {
-            $requestParams = Yii::$app->getRequest()->getQueryParams();
-        }
-
-        $filter = null;
-        if ($this->dataFilter !== null) {
-            $this->dataFilter = Yii::createObject($this->dataFilter);
-            if ($this->dataFilter->load($requestParams)) {
-                $filter = $this->dataFilter->build();
-                if ($filter === false) {
-                    return $this->dataFilter;
-                }
-            }
-        }
 
         return $activeData;
         
