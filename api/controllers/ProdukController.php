@@ -34,7 +34,7 @@ class ProdukController extends ActiveController {
         unset($actions['options']);
 
         $actions['index']['dataFilter']=[
-            'class' => 'yii\data\ActiveDataFilter',
+            'class' => \yii\data\ActiveDataFilter::class,
             'searchModel' => function () {
                 return (new \yii\base\DynamicModel(['sku' => null, 'nama_produk'=>null]));
             },
