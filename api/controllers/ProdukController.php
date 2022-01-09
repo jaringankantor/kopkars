@@ -48,7 +48,7 @@ class ProdukController extends ActiveController {
         $dataFilter = [
             'class' => 'yii\data\ActiveDataFilter',
             'searchModel' => function () {
-                return (new \yii\base\DynamicModel(['sku' => null, 'nama_produk']));
+                return (new \yii\base\DynamicModel(['sku' => null, 'nama_produk'=>null]));
             },
         ];
 
