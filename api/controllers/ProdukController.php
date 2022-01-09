@@ -48,17 +48,9 @@ class ProdukController extends ActiveController {
 
     public function actionView($kode_toko=null, $sku=null)
     {
-        return $this->render('view', [
-            'model' => $this->findModelProduk($kode_toko,$sku),
+        $activeData = new ActiveDataProvider([
+            'query' => Produk::findOneProdukAktifByKodeToko($kode_toko,$sku),
         ]);
-    }
-
-    protected function findModelProduk($kode_toko=null,$sku=null)
-    {
-        if (($model = Produk::findOneProdukAktifByKodeToko($kode_toko,$sku)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
+        return $activeData;
     }
 }
