@@ -5,7 +5,6 @@ use Yii;
 use api\models\Produk;
 use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
-use yii\web\NotFoundHttpException;
 
 class ProdukController extends ActiveController {
     public $modelClass = 'api\models\Produk';
@@ -36,7 +35,9 @@ class ProdukController extends ActiveController {
 
         $actions['index']['dataFilter'] = [
             'class' => \yii\data\ActiveDataFilter::class,
-            'searchModel' => $this->modelClass,
+            'searchModel' => function () {
+                return (new \yii\base\DynamicModel(['sku' => null, 'nama_produk' => null]));
+            },
         ];
 
         return $actions;
