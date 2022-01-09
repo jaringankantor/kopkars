@@ -19,7 +19,7 @@ class ProdukSearch extends Produk
     public function rules()
     {
         return [
-            [['keyword','nama_produk'], 'safe'],
+            [['keyword','nama_produk','sku'], 'safe'],
         ];
     }
 
