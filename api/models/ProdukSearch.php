@@ -6,4 +6,5 @@ use common\models\ProdukSearch as CommonProdukSearch;
 
 class ProdukSearch extends CommonProdukSearch
 {
+
 }

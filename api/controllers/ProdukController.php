@@ -42,7 +42,7 @@ class ProdukController extends ActiveController {
     }
 
     public function actionIndex($kode_toko=null){
-        // $kode_toko = empty($kode_toko)? Yii::$app->params['kode_toko']:$kode_toko;
+        $kode_toko = empty($kode_toko)? Yii::$app->params['kode_toko']:$kode_toko;
         
         // $activeData = new ActiveDataProvider([
         //     'query' => Produk::findProdukAktifByKodeToko($kode_toko),
@@ -56,9 +56,6 @@ class ProdukController extends ActiveController {
         
         $filterCondition = null;
         
-        // You may load filters from any source. For example,
-        // if you prefer JSON in request body,
-        // use Yii::$app->request->getBodyParams() below:
         if ($filter->load(\Yii::$app->request->get())) { 
             $filterCondition = $filter->build();
             if ($filterCondition === false) {
@@ -67,7 +64,7 @@ class ProdukController extends ActiveController {
             }
         }
         
-        $query = Produk::find();
+        $query = Produk::findProdukAktifByKodeToko($kode_toko);
         if ($filterCondition !== null) {
             $query->andWhere($filterCondition);
         }

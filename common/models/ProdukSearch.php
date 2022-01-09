@@ -14,12 +14,12 @@ class ProdukSearch extends Produk
     /**
      * {@inheritdoc}
      */
+    public $keyword;
+
     public function rules()
     {
         return [
-            [['sku', 'nama_produk', 'nama_produk_pendek', 'deskripsi'], 'safe'],
-            [['status_aktif'], 'boolean'],
-            [['harga_async', 'stok_async', 'berat'], 'integer'],
+            [['keyword','nama_produk'], 'safe'],
         ];
     }
 
