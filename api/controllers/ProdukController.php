@@ -51,8 +51,13 @@ class ProdukController extends ActiveController {
         //     $requestParams = \Yii::$app->getRequest()->getQueryParams(); // [2]
         // }
 
+        $requestParams = \Yii::$app->getRequest()->getBodyParams(); // [1]
+        if (empty($requestParams)) {
+            $requestParams = \Yii::$app->getRequest()->getQueryParams(); // [2]
+        }
+
         $searchModel = new ProdukSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search($this->load($requestParams));
 
         $activeData = new ActiveDataProvider([
             'query' => $dataProvider,
