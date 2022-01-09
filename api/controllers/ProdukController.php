@@ -42,7 +42,20 @@ class ProdukController extends ActiveController {
         $activeData = new ActiveDataProvider([
             'query' => Produk::findProdukAktifByKodeToko($kode_toko),
         ]);
-        return $activeData;
+
+        //return $activeData;
+
+        $dataFilter = [
+            'class' => 'yii\data\ActiveDataFilter',
+            'searchModel' => function () {
+                return (new \yii\base\DynamicModel(['sku' => null, 'nama_produk']));
+            },
+        ];
+
+        $index = ['prepareDataProvider'=>$activeData,'dataFilter'=>$dataFilter];
+
+        return $index;
+        
     }
 
     public function actionView($kode_toko=null, $sku=null)
