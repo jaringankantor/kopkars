@@ -48,9 +48,6 @@ class ProdukController extends ActiveController {
 
     public function actionView($kode_toko=null, $sku=null)
     {
-        $activeData = new ActiveDataProvider([
-            'query' => Produk::findOneProdukAktifByKodeToko($kode_toko,$sku),
-        ]);
-        return $activeData;
+        return Produk::findOneProdukAktifByKodeToko($kode_toko,$sku);
     }
 }
