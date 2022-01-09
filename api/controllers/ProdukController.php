@@ -33,11 +33,6 @@ class ProdukController extends ActiveController {
         unset($actions['delete']);
         unset($actions['options']);
 
-        $actions['index']['dataFilter'] = [
-            'class' => \yii\data\ActiveDataFilter::class,
-            'searchModel' => $this->modelClass,
-        ];
-
         return $actions;
     }
 
@@ -48,20 +43,16 @@ class ProdukController extends ActiveController {
             'query' => Produk::findProdukAktifByKodeToko($kode_toko),
         ]);
 
-        return $activeData;
+        //return $activeData;
 
-        // $dataFilter = [
-        //     'class' => \yii\data\ActiveDataFilter::class,
-        //     'searchModel' => function () {
-        //         return (new \yii\base\DynamicModel(['sku' => null, 'nama_produk'=>null]))
-        //         ->addRule(['sku', 'nama_produk'], 'trim')
-        //         ->addRule(['sku', 'nama_produk'], 'string');;
-        //     },
-        // ];
+        $dataFilter = [
+            'class' => \yii\data\ActiveDataFilter::class,
+            'searchModel' => 'api\models\ProdukSearch',
+        ];
 
-        // $index = ['prepareDataProvider'=>$activeData,'dataFilter'=>$dataFilter];
+        $index = ['prepareDataProvider'=>$activeData,'dataFilter'=>$dataFilter];
 
-        // return $index;
+        return $index;
         
     }
 
