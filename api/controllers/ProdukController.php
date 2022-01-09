@@ -45,14 +45,23 @@ class ProdukController extends ActiveController {
 
         //return $activeData;
 
-        $dataFilter = [
-            'class' => \yii\data\ActiveDataFilter::class,
-            'searchModel' => 'api\models\ProdukSearch',
-        ];
+        $requestParams = Yii::$app->getRequest()->getBodyParams();
+        if (empty($requestParams)) {
+            $requestParams = Yii::$app->getRequest()->getQueryParams();
+        }
 
-        $index = ['prepareDataProvider'=>$activeData,'dataFilter'=>$dataFilter];
+        $filter = null;
+        if ($this->dataFilter !== null) {
+            $this->dataFilter = Yii::createObject($this->dataFilter);
+            if ($this->dataFilter->load($requestParams)) {
+                $filter = $this->dataFilter->build();
+                if ($filter === false) {
+                    return $this->dataFilter;
+                }
+            }
+        }
 
-        return $index;
+        return $activeData;
         
     }
 
