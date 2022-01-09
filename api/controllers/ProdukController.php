@@ -5,6 +5,7 @@ use Yii;
 use api\models\Produk;
 use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
+use yii\web\NotFoundHttpException;
 
 class ProdukController extends ActiveController {
     public $modelClass = 'api\models\Produk';
@@ -27,7 +28,7 @@ class ProdukController extends ActiveController {
     public function actions() {
         $actions = parent::actions();
         unset($actions['index']);
-        //unset($actions['view']);
+        unset($actions['view']);
         unset($actions['create']);
         unset($actions['update']);
         unset($actions['delete']);
@@ -43,5 +44,21 @@ class ProdukController extends ActiveController {
             'query' => Produk::findProdukAktifByKodeToko($kode_toko),
         ]);
         return $activeData;
+    }
+
+    public function actionView($kode_toko=null, $sku=null)
+    {
+        return $this->render('view', [
+            'model' => $this->findModelProduk($kode_toko,$sku),
+        ]);
+    }
+
+    protected function findModelProduk($kode_toko=null,$sku=null)
+    {
+        if (($model = Produk::findOneProdukAktifByKodeToko($kode_toko,$sku)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
