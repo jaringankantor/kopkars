@@ -50,7 +50,7 @@ class ProdukController extends ActiveController {
             'searchModel' => function () {
                 return (new \yii\base\DynamicModel(['sku' => null, 'nama_produk'=>null]))
                 ->addRule(['sku', 'nama_produk'], 'trim')
-                ->addRule(['sku', 'nama_produk'], 'string');;
+                ->addRule(['sku', 'nama_produk'], 'string');
             },
         ];
 
