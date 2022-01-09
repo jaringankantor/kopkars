@@ -7,6 +7,8 @@ use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
 
 class ProdukController extends ActiveController {
+    public $dataFilter;
+    
     public $modelClass = 'api\models\Produk';
     public $serializer = [
         'class' => 'yii\rest\Serializer',
