@@ -12,7 +12,7 @@ class Produk extends CommonProduk {
         'kode_toko' => function($model){
             return $model->kode_toko;
         },
-        'sku','nama_produk','deskripsi',
+        'sku','nama_produk_pendek','nama_produk','deskripsi',
         'url_image_1' => function($model){
             return Yii::$app->kopkarstext->urlFotoProdukBackend($model->kode_toko,$model->sku,1);
         },
