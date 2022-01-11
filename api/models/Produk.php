@@ -35,8 +35,7 @@ class Produk extends CommonProduk {
     {
         return self::find()
         ->andWhere(['status_aktif'=>TRUE])
-        ->andWhere(['kode_toko'=>$kode_toko])
-        ->orderBy(['sku' => SORT_DESC]);
+        ->andWhere(['kode_toko'=>$kode_toko]);
     }
 
     public static function findOneProdukAktifByKodeToko($kode_toko,$sku)
