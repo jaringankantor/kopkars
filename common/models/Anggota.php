@@ -112,7 +112,9 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
         if (parent::beforeValidate()) {
             $this->nama_lengkap = strtoupper($this->nama_lengkap);
             $this->tempat_lahir = strtoupper($this->tempat_lahir);
-            $this->email = strtolower($this->email);
+            if(!empty($this->email)) {
+                $this->email = strtolower($this->email);
+            }
             $this->alamat_rumah = strtoupper($this->alamat_rumah);
             return true;
         }

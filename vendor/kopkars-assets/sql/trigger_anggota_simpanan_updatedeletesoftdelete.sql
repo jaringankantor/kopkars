@@ -1,5 +1,14 @@
-CREATE OR REPLACE FUNCTION trigger_anggota_simpanan_updatedeletesoftdelete() RETURNS "trigger" AS
-$BODY$
+-- FUNCTION: public.trigger_anggota_simpanan_updatedeletesoftdelete()
+
+-- DROP FUNCTION IF EXISTS public.trigger_anggota_simpanan_updatedeletesoftdelete();
+
+CREATE OR REPLACE FUNCTION public.trigger_anggota_simpanan_updatedeletesoftdelete()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+
 DECLARE
    last_time timestamp;
 BEGIN
@@ -8,17 +17,17 @@ BEGIN
    --Jika data dihapus catat data sebelumnya pada histori
    IF (TG_OP = 'DELETE') THEN
       INSERT INTO histori_anggota_simpanan (anggota_id,anggota_simpanan_id,anggota_simpanan_kolom,value_old,value_new,jenis_transaksi,waktu)
-      VALUES (OLD.anggota_id, OLD.id, 'simpanan', OLD.simpanan,'DELETE', last_time);
+      VALUES (OLD.anggota_id, OLD.id, 'simpanan', OLD.simpanan, null,'DELETE', last_time);
 
       INSERT INTO histori_anggota_simpanan (anggota_id,anggota_simpanan_id,anggota_simpanan_kolom,value_old,value_new,jenis_transaksi,waktu)
-      VALUES (OLD.anggota_id, OLD.id, 'debitkredit', OLD.debitkredit,'DELETE', last_time);
+      VALUES (OLD.anggota_id, OLD.id, 'debitkredit', OLD.debitkredit, null,'DELETE', last_time);
 
       INSERT INTO histori_anggota_simpanan (anggota_id,anggota_simpanan_id,anggota_simpanan_kolom,value_old,value_new,jenis_transaksi,waktu)
-      VALUES (OLD.anggota_id, OLD.id, 'rupiah', OLD.rupiah,'DELETE', last_time);
+      VALUES (OLD.anggota_id, OLD.id, 'rupiah', OLD.rupiah, null,'DELETE', last_time);
 
       IF (OLD.keterangan IS NOT NULL) THEN
          INSERT INTO histori_anggota_simpanan (anggota_id,anggota_simpanan_id,anggota_simpanan_kolom,value_old,value_new,jenis_transaksi,waktu)
-         VALUES (OLD.anggota_id, OLD.id, 'keterangan', OLD.keterangan,'DELETE', last_time);
+         VALUES (OLD.anggota_id, OLD.id, 'keterangan', OLD.keterangan, null,'DELETE', last_time);
       END IF;
 
    ELSIF (TG_OP = 'UPDATE') THEN
@@ -69,5 +78,7 @@ BEGIN
    RETURN NEW;
 	 
 END;
-$BODY$
-LANGUAGE plpgsql;
+$BODY$;
+
+ALTER FUNCTION public.trigger_anggota_simpanan_updatedeletesoftdelete()
+    OWNER TO kopkars;
