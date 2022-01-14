@@ -41,7 +41,7 @@ class AnggotaSimpananController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => AnggotaSimpanan::find(),
+            'query' => AnggotaSimpanan::findAnggotaSimpanan(),
         ]);
 
         return $this->render('index', [
