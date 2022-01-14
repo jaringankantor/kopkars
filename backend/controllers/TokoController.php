@@ -7,6 +7,8 @@ use common\models\Toko;
 use common\models\TokoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+//use yii\filters\AccessControl;
+use yii2mod\rbac\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 /**
@@ -20,6 +22,9 @@ class TokoController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

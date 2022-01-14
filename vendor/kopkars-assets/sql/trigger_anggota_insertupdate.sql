@@ -111,6 +111,12 @@ BEGIN
          VALUES (NEW.id, 'nomor_anggota', OLD.nomor_anggota, NEW.nomor_anggota);
       END IF;
 
+      --Jika data nomor_pegawai berubah catat pada histori
+      IF ((NEW.nomor_pegawai != OLD.nomor_pegawai) AND (OLD.nomor_pegawai IS NOT NULL)) THEN
+         INSERT INTO histori_anggota (anggota_id,anggota_kolom,value_old,value_new)
+         VALUES (NEW.id, 'nomor_pegawai', OLD.nomor_pegawai, NEW.nomor_pegawai);
+      END IF;
+
       --Jika user mengubah nama_lengkap catat pada histori
       IF (NEW.nama_lengkap != OLD.nama_lengkap) THEN
          INSERT INTO histori_anggota (anggota_id,anggota_kolom,value_old,value_new)
