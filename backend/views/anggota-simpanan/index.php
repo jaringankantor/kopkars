@@ -23,7 +23,7 @@ $this->title = 'Simpanan Anggota';
             'debitkredit',
             'rupiah',
             //'keterangan',
-            //'waktu',
+            'waktu'::datetime,
             //'last_waktu_update',
             //'insert_by',
             //'last_update_by',
