@@ -1,13 +1,10 @@
--- FUNCTION: public.trigger_anggota_simpanan_updatedeletesoftdelete()
+-- Function: public.trigger_anggota_simpanan_updatedeletesoftdelete()
 
--- DROP FUNCTION IF EXISTS public.trigger_anggota_simpanan_updatedeletesoftdelete();
+-- DROP FUNCTION public.trigger_anggota_simpanan_updatedeletesoftdelete();
 
 CREATE OR REPLACE FUNCTION public.trigger_anggota_simpanan_updatedeletesoftdelete()
-    RETURNS trigger
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE NOT LEAKPROOF
-AS $BODY$
+  RETURNS trigger AS
+$BODY$
 
 DECLARE
    last_time timestamp;
@@ -38,9 +35,9 @@ BEGIN
       END IF;
 
       --Jika update data anggota_simpanan_id berubah catat pada histori
-      IF (NEW.anggota_simpanan_id != OLD.anggota_simpanan_id) THEN
+      IF (NEW.id != OLD.id) THEN
          INSERT INTO histori_anggota_simpanan (anggota_id,anggota_simpanan_id,anggota_simpanan_kolom,value_old,value_new,jenis_transaksi,waktu,by)
-         VALUES (OLD.anggota_id, OLD.id, 'anggota_simpanan_id', OLD.anggota_simpanan_id, NEW.anggota_simpanan_id, 'UPDATE', last_time, NEW.last_update_by);
+         VALUES (OLD.anggota_id, OLD.id, 'anggota_simpanan_id', OLD.id, NEW.id, 'UPDATE', last_time, NEW.last_update_by);
       END IF;
 
       --Jika update data simpanan berubah catat pada histori
@@ -78,7 +75,8 @@ BEGIN
    RETURN NEW;
 	 
 END;
-$BODY$;
-
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
 ALTER FUNCTION public.trigger_anggota_simpanan_updatedeletesoftdelete()
-    OWNER TO kopkars;
+  OWNER TO kopkars;
