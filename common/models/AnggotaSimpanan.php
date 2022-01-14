@@ -146,7 +146,7 @@ class AnggotaSimpanan extends \yii\db\ActiveRecord
     {
         return self::find()
             ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko])
-            ->orderBy(['id' => SORT_DESC]);
+            ->orderBy(['waktu' => SORT_DESC]);
     }
 
     public static function findOneAnggotaSimpanan($id)
@@ -161,7 +161,7 @@ class AnggotaSimpanan extends \yii\db\ActiveRecord
         return self::find()
             ->where(['kode_toko'=>Yii::$app->params['kode_toko']])
             ->andWhere(['anggota_id'=>Yii::$app->user->identity->id])
-            ->orderBy(['id' => SORT_DESC]);
+            ->orderBy(['waktu' => SORT_DESC]);
     }
 
     public static function findOneFrontendAnggotaSimpanan($id)
