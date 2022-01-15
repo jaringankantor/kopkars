@@ -21,9 +21,7 @@ use kartik\widgets\ActiveForm;
         'type' => ActiveForm::TYPE_INLINE,
         'formConfig' => ['labelSpan' => 3, 'deviceSize' => ActiveForm::SIZE_SMALL]
     ]); ?>
-
-    <?= $form->field($model, 'anggota_id') ?>
-
+    
     <?php
     $url = \yii\helpers\Url::to(['anggota/select-anggota']);
 
