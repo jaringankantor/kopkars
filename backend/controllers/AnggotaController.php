@@ -150,7 +150,7 @@ class AnggotaController extends Controller
             $out['results'] = array_values($data);
         }
         elseif ($anggota_id > 0) {
-            $out['results'] = ['id' => $anggota_id, 'text' => Anggota::find([['id'=>$anggota_id]])->nama_lengkap];
+            $out['results'] = ['anggota_id' => $anggota_id, 'text' => Anggota::find([['id'=>$anggota_id]])->nama_lengkap];
         }
         return $out;
     }
