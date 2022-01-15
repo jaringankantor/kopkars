@@ -1,8 +1,10 @@
 <?php
 
 use common\models\VariabelSimpanan;
+use kartik\widgets\Select2;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\web\JsExpression;
 //use yii\widgets\ActiveForm;
 use kartik\widgets\ActiveForm;
 
@@ -25,10 +27,10 @@ use kartik\widgets\ActiveForm;
     <?php
     $url = \yii\helpers\Url::to(['anggota/select-anggota']);
 
-    $karyawan_pnj = empty($model->nomor_pegawai) ? '' : $model->nomor_pegawai;
+    $anggota = empty($model->anggota_id) ? '' : $model->anggota_id;
 
-    echo $form->field($model, 'nomor_pegawai')->widget(Select2::classname(), [
-        'initValueText' => $karyawan_pnj, // set the initial display text
+    echo $form->field($model, 'anggota_id')->widget(Select2::classname(), [
+        'initValueText' => $anggota, // set the initial display text
         'options' => ['placeholder' => 'Masukan sebagian nama....'],
         'pluginOptions' => [
             'allowClear' => true,
