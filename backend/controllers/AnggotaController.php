@@ -141,7 +141,7 @@ class AnggotaController extends Controller
         if (!is_null($q)) {
 
             $query = new \yii\db\Query;
-            $query->select(['id',"CONCAT(nama_lengkap, ' (', nomor_anggota,')') AS text"])
+            $query->select(['id',"CONCAT(nomor_anggota, '-', nama_lengkap, '-', unit) AS text"])
                 ->from('anggota')
                 ->where(['like', 'lower(nama_lengkap)', strtolower($q)])
                 ->limit(20);
