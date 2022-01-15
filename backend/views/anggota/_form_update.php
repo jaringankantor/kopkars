@@ -27,7 +27,7 @@ use yii\web\JsExpression;
     ]); ?>
 
     <?php
-    $url = \yii\helpers\Url::to(['anggota/select-karyawan-pnj']);
+    $url = \yii\helpers\Url::to(['@frontend/anggota/select-karyawan-pnj']);
 
     $karyawan_pnj = empty($model->nomor_pegawai) ? '' : $model->nomor_pegawai;
 
