@@ -21,11 +21,11 @@ use kartik\widgets\ActiveForm;
         'type' => ActiveForm::TYPE_INLINE,
         'formConfig' => ['labelSpan' => 3, 'deviceSize' => ActiveForm::SIZE_SMALL]
     ]); ?>
-    
+
     <?php
     $url = \yii\helpers\Url::to(['anggota/select-anggota']);
 
-    $anggota = empty($model->anggota_id) ? '' : $model->anggota_id;
+    $anggota = empty($model->anggota_id) ? '' : $model->anggota->nama_lengkap;
 
     echo $form->field($model, 'anggota_id')->widget(Select2::classname(), [
         'initValueText' => $anggota, // set the initial display text
