@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\AnggotaSimpanan;
-use yii\data\ActiveDataProvider;
+use common\models\AnggotaSimpananSearch;
 //use yii\filters\AccessControl;
 use yii2mod\rbac\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -38,13 +38,14 @@ class AnggotaSimpananController extends Controller
      * Lists all AnggotaSimpanan models.
      * @return mixed
      */
+
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => AnggotaSimpanan::findAnggotaSimpanan(),
-        ]);
+        $searchModel = new AnggotaSimpananSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

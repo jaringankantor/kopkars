@@ -23,7 +23,7 @@ use kartik\widgets\ActiveForm;
 
     <?= $form->field($model, 'keyword') ?>
 
-    <?= $form->field($model, 'status')->dropDownList(ArrayHelper::map(VariabelStatus::find()->all(),'status','status'),['prompt'=>'--Pilih--']) ?>
+    <?= $form->field($model, 'status')->dropDownList(ArrayHelper::map(VariabelStatus::find()->all(),'status','status'),['prompt'=>'--Semua--']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Cari Data', ['class' => 'btn btn-primary']) ?>
