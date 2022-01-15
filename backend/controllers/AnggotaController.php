@@ -144,6 +144,7 @@ class AnggotaController extends Controller
             $query->select(['id',"CONCAT(nomor_anggota, '-', nama_lengkap, '-', unit) AS text"])
                 ->from('anggota')
                 ->where(['like', 'lower(nama_lengkap)', strtolower($q)])
+                ->andWhere(['kode_toko'=>Yii::$app->user->identity->kode_toko])
                 ->limit(20);
             $command = $query->createCommand();
             $data = $command->queryAll();
