@@ -25,7 +25,7 @@ use kartik\widgets\ActiveForm;
     <?php
     $url = \yii\helpers\Url::to(['anggota/select-anggota']);
 
-    $anggota = empty($model->anggota_id) ? '' : $model->anggota->nama_lengkap;
+    $anggota = empty($model->anggota_id) ? '' : $model->anggota->nomor_anggota.'-'.$model->anggota->nama_lengkap.'-'.$model->anggota->unit;
 
     echo $form->field($model, 'anggota_id')->widget(Select2::classname(), [
         'initValueText' => $anggota, // set the initial display text
