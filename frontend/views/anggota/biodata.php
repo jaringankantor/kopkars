@@ -47,6 +47,7 @@ $this->title = 'Biodata '.$model->nama_lengkap;
         </div>
         
         <div class="col-xs-12 col-md-4">
+            <?= Html::a('<span class="glyphicon glyphicon-camera"></span> Update Foto', ['update-foto'], ['class' => 'btn btn-success']) ?> <?= Html::a('<span class="glyphicon glyphicon-user"></span> Update KTP', ['update-foto-ktp'], ['class' => 'btn btn-success']) ?>
             <?php
             $foto = $model->foto;
             $foto_profil='<img class="img-thumbnail img-responsive" src="'.Url::base().'/public/images/no-image.png">';
@@ -55,7 +56,6 @@ $this->title = 'Biodata '.$model->nama_lengkap;
             }
             echo $foto_profil;
             ?>
-            <?= Html::a('<span class="glyphicon glyphicon-camera"></span> Update Foto', ['update-foto'], ['class' => 'btn btn-success']) ?>
             <br>
             <?php
             $foto_ktp = $model->foto_ktp;
@@ -65,7 +65,6 @@ $this->title = 'Biodata '.$model->nama_lengkap;
             }
             echo $foto_ktp_tampil;
             ?>
-            <?= Html::a('<span class="glyphicon glyphicon-camera"></span> Update KTP', ['update-foto-ktp'], ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 
