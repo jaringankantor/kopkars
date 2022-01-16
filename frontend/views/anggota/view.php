@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'status',
             'statuskaryawan',
             'nomor_anggota',
@@ -50,14 +50,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'alamat_rumah',
             'nomor_npwp',
             'keterangan',
-            'waktu_daftar',
-            'waktu_update',
-            'waktu_login',
-            'waktu_approve',
-            'approved_by',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
+            //'waktu_daftar',
+            //'waktu_update',
+            //'waktu_login',
+            //'waktu_approve',
+            //'approved_by',
+            //'auth_key',
+            //'password_hash',
+            //'password_reset_token',
         ],
     ]) ?>
 
