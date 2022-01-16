@@ -13,6 +13,7 @@ class m400001_000007_cicilan extends Migration
             'id' => $this->primaryKey(),
             'kode_toko' => $this->string(50)->notNull(),
             'anggota_id' => $this->integer()->notNull(),
+            'kanal_cicilan' => $this->string(20)->notNull(),
             'nomor_referensi' => $this->string(50), //Misal nomor invoice atau kuitansi
             'cicilan' => $this->integer()->notNull(),
             'keterangan' => $this->string(),
