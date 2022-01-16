@@ -150,6 +150,38 @@ class AnggotaController extends Controller
         ]);
     }
 
+    public function actionUpdateFotoKtp()
+    {
+        $model = $this->findModelAnggota(Yii::$app->user->identity->id);
+
+        $model->scenario = 'frontend-update-anggota-foto_ktp';
+
+		$current_foto = $model->foto_ktp;
+
+        
+        if ($model->load(Yii::$app->request->post())) {
+            
+            $upload = UploadedFile::getInstance($model, 'foto_ktp');
+            if(!empty($upload)){
+                $model->foto_ktp = bin2hex(file_get_contents($upload->tempName));
+            } else {
+				$model->foto_ktp = $current_foto;
+			}
+
+            if ($model->validate() && $model->save()) {
+                return $this->redirect([
+                    'biodata'
+                ]);
+            } else {
+                $errors = $model->errors;
+            }
+        }
+        
+        return $this->render('update_foto_ktp', [
+            'model' => $model,
+        ]);
+    }
+
     public function actionUpdateHp()
     {
         $model = $this->findModelAnggota(Yii::$app->user->identity->id);
