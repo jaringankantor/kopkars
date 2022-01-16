@@ -36,7 +36,7 @@ $this->title = 'Simpanan Anggota';
                 $query = HistoriAnggotaSimpanan::find()->where(['anggota_id'=>$model->id])->all();
                 $historianggotasimpanan = NULL;
                 foreach ($query as $row) {
-                    $historianggotasimpanan .= $row['anggota_simpanan_kolom'].': '.$row['value_old'].' => '.$row['value_new'].' ('.$row['waktu_update'].')<br>';
+                    $historianggotasimpanan .= $row['anggota_simpanan_kolom'].': '.$row['value_old'].' => '.$row['value_new'].' ('.$row['waktu'].')<br>';
                 
                 }
 
