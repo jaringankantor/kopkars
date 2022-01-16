@@ -35,7 +35,7 @@ $this->title = 'Update Data Foto / Scan KTP';
             'options' => ['accept' => 'image/*'],
             'pluginOptions' => [
                 'initialPreview'=>[
-                    '<img src="data:image/png;base64,'.base64_encode(hex2bin(stream_get_contents($model->fot_ktp))).'" class="kv-preview-data file-preview-image">',
+                    '<img src="data:image/png;base64,'.base64_encode(hex2bin(stream_get_contents($model->foto_ktp))).'" class="kv-preview-data file-preview-image">',
                 ],
                 'initialPreviewAsData'=>false,
                 'overwriteInitial'=>true,
