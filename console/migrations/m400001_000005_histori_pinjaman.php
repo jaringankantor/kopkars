@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m400001_000005_histori_anggota_pinjaman extends Migration
+class m400001_000005_histori_pinjaman extends Migration
 {
     /**
      * {@inheritdoc}

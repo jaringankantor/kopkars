@@ -13,6 +13,11 @@ BEGIN
 
    --Jika data dihapus catat data sebelumnya pada histori
    IF (TG_OP = 'DELETE') THEN
+      IF (OLD.nomor_referensi IS NOT NULL) THEN
+         INSERT INTO histori_pinjaman (anggota_id,pinjaman_id,pinjaman_kolom,value_old,value_new,jenis_transaksi,waktu)
+         VALUES (OLD.anggota_id, OLD.id, 'nomor_referensi', OLD.nomor_referensi, null,'DELETE', last_time);
+      END IF;
+
       INSERT INTO histori_pinjaman (anggota_id,pinjaman_id,pinjaman_kolom,value_old,value_new,jenis_transaksi,waktu)
       VALUES (OLD.anggota_id, OLD.id, 'saldo_pokok', OLD.saldo_pokok, null,'DELETE', last_time);
 
@@ -21,9 +26,6 @@ BEGIN
 
       INSERT INTO histori_pinjaman (anggota_id,pinjaman_id,pinjaman_kolom,value_old,value_new,jenis_transaksi,waktu)
       VALUES (OLD.anggota_id, OLD.id, 'total_pembayaran', OLD.total_pembayaran, null,'DELETE', last_time);
-
-      INSERT INTO histori_pinjaman (anggota_id,pinjaman_id,pinjaman_kolom,value_old,value_new,jenis_transaksi,waktu)
-      VALUES (OLD.anggota_id, OLD.id, 'sisa_saldo', OLD.sisa_saldo, null,'DELETE', last_time);
 
       IF (OLD.keterangan IS NOT NULL) THEN
          INSERT INTO histori_pinjaman (anggota_id,pinjaman_id,pinjaman_kolom,value_old,value_new,jenis_transaksi,waktu)

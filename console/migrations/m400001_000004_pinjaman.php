@@ -13,10 +13,10 @@ class m400001_000004_pinjaman extends Migration
             'id' => $this->primaryKey(),
             'kode_toko' => $this->string(50)->notNull(),
             'anggota_id' => $this->integer()->notNull(),
+            'nomor_referensi' => $this->string(50), //Misal nomor invoice atau kuitansi
             'saldo_pokok' => $this->integer()->notNull(),
             'saldo_jasa' => $this->integer()->notNull(),
             'total_pembayaran' => $this->integer()->notNull()->defaultValue(0),
-            'sisa_saldo' => $this->integer()->notNull()->defaultValue(0),
             'mulai_tanggal_pembayaran' => $this->date(),
             'rencana_tanggal_pelunasan' => $this->date(),
             'aktual_tanggal_pelunasan' => $this->date(),
