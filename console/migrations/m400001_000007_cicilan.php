@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m400001_000006_cicilan extends Migration
+class m400001_000007_cicilan extends Migration
 {
     /**
      * {@inheritdoc}
