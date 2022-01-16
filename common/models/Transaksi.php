@@ -92,7 +92,7 @@ class Transaksi extends \yii\db\ActiveRecord
             [['waktu', 'last_waktu_update', 'deleted_at'], 'safe'],
             [['is_bebasongkir', 'is_deleted'], 'boolean'],
             [['kanal_transaksi'], 'string', 'max' => 20],
-            [['kode_toko', 'kanal_transaksi', 'nomor_pesanan'], 'unique', 'targetAttribute' => ['kode_toko', 'kanal_transaksi', 'nomor_pesanan']],
+            [['nomor_pesanan'], 'unique', 'targetAttribute' => ['kode_toko', 'kanal_transaksi', 'nomor_pesanan'], 'message'=>'Nomor pesanan sudah digunakan'],
             [['kode_toko', 'kanal_transaksi', 'nomor_referensi'], 'unique', 'targetAttribute' => ['kode_toko', 'kanal_transaksi', 'nomor_referensi']],
             [['mata_uang'], 'string', 'max' => 6],
             [['anggota_nomor_zahir', 'email', 'nama_pelanggan','nomor_hp', 'kurir', 'nomor_resi', 'insert_by', 'last_update_by', 'last_softdelete_by'], 'string', 'max' => 50],

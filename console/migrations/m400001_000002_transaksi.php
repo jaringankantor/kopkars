@@ -49,7 +49,12 @@ class m400001_000002_transaksi extends Migration
 
         $this->createIndex('transaksi_kode_toko_kanal_transaksi_nomor_referensi_idx', 'transaksi', ['kode_toko', 'kanal_transaksi','nomor_referensi'], true);
 
-        $this->createIndex('transaksi_kode_toko_kanal_transaksi_nomor_pesanan_idx', 'transaksi', ['kode_toko', 'kanal_transaksi','nomor_pesanan'], true);
+        //$this->createIndex('transaksi_kode_toko_kanal_transaksi_nomor_pesanan_idx', 'transaksi', ['kode_toko', 'kanal_transaksi','nomor_pesanan'], true);
+
+        $this->execute('
+        CREATE UNIQUE INDEX transaksi_kode_toko_kanal_transaksi_nomor_pesanan_idx ON transaksi (kode_toko,kanal_transaksi,nomor_pesanan)
+        WHERE nomor_pesanan IS NOT NULL
+        ');
 
     }
 
