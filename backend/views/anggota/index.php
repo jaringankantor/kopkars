@@ -59,6 +59,13 @@ $this->title = 'Anggota';
         //],
 
         [
+           'attribute'=>'Kirim WA Info Login',
+           'format'=>'raw',
+           'value'=>function($model, $key, $index)
+           {return 'https://api.whatsapp.com/send?phone=62'.$model->nomor_hp.'&text=Informasi%20Login%20KOPKARS%20PNJ.%20URL:%20https://kopkars.pnj.ac.id/site/login%20Email:%20'.$model->email.'%20Password:%20'.$model->password_default.'%20Mohon%20segera%20reset%20password%20setelah%20Anda%20login%20pertama%20kali.%20Informasi%20lebih%20lanjut%20https://wa.me/62895386952044';},
+        ],
+
+        [
             'class' => 'yii\grid\ActionColumn',
             'template' => '{view} {update} {delete}',
             'buttons' =>
