@@ -66,9 +66,8 @@ $this->title = 'Import Transaksi Zahir';
                 $total_penjualan = trim($worksheet->getCell($column_totalpenjualan.$row)->getValue()); 
                 $pembayaran = trim($worksheet->getCell($column_pembayaran.$row)->getValue());
                 $saldo = trim($worksheet->getCell($column_saldo.$row)->getValue());
-                
                 $model = new Transaksi();
-
+                
                 if(substr($nomor_referensi,0,4)=='KSR-' AND strlen($nomor_referensi)>7) {
                     $jumlah_transaksi = Transaksi::findTransaksiByKanal('zahir',$nomor_referensi)->count();
                     if($jumlah_transaksi==0) {
@@ -91,11 +90,7 @@ $this->title = 'Import Transaksi Zahir';
                         $model->saldo = $saldo;
                         $model->insert_by = Yii::$app->user->identity->email;
 
-                        if (!$model->save()) {
-                            print_r($model->getErrors());
-                            exit();
-                            $sum_error++;
-                        }
+                        if (!$model->save()) $sum_error++;
                     }
                 }
             }
