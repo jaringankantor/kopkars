@@ -92,7 +92,7 @@ $this->title = 'Import Transaksi Zahir';
                         $model->insert_by = Yii::$app->user->identity->email;
 
                         if (!$model->save()) {
-                            print_r($model);
+                            print_r($model->getErrors());
                             exit();
                             $sum_error++;
                         }
