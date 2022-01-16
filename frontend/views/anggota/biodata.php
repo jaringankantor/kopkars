@@ -56,6 +56,16 @@ $this->title = 'Biodata '.$model->nama_lengkap;
             echo $foto_profil;
             ?>
             <?= Html::a('<span class="glyphicon glyphicon-camera"></span> Update Foto', ['update-foto'], ['class' => 'btn btn-success']) ?>
+            <br>
+            <?php
+            $foto_ktp = $model->foto_ktp;
+            $foto_ktp_tampil='<img class="img-thumbnail img-responsive" src="'.Url::base().'/public/images/no-image.png">';
+            if($foto_ktp !== NULL){
+                $foto_ktp_tampil='<img class="img-thumbnail img-responsive" src="data:image/png;base64,'.base64_encode(hex2bin(stream_get_contents($model->foto))).'">';
+            }
+            echo $foto_ktp_tampil;
+            ?>
+            <?= Html::a('<span class="glyphicon glyphicon-camera"></span> Update KTP', ['update-foto-ktp'], ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 
