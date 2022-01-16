@@ -29,6 +29,7 @@
     RewriteCond %{REQUEST_URI} ^/(assets|css)
     RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
     RewriteRule ^public/css/(.*)$ frontend/web/public/css/$1 [L]
+    RewriteRule ^public/images/(.*)$ frontend/web/public/images/$1 [L]
 
     RewriteCond %{REQUEST_URI} !^/(frontend|backend|api)/web/(assets|public)/
     RewriteCond %{REQUEST_URI} !index.php
