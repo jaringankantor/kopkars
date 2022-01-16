@@ -21,6 +21,8 @@ use kartik\widgets\ActiveForm;
 
 	<?= $form->field($model, 'keyword') ?>
 
+    <?= $form->field($model, 'status')->dropDownList(['Aktif' => 'Aktif', 'Non Aktif' => 'Non Aktif'],['prompt'=>'--Semua--']) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Cari Data', ['class' => 'btn btn-primary']) ?>
     </div>
