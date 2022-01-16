@@ -8,14 +8,18 @@ use yii\db\ActiveRecord;
 use yii2tech\ar\softdelete\SoftDeleteBehavior;
 
 /**
- * This is the model class for table "anggota_simpanan".
+ * This is the model class for table "pinjaman".
  *
  * @property int $id
  * @property string $kode_toko
  * @property int $anggota_id
- * @property string $simpanan
- * @property string $debitkredit
- * @property int $rupiah
+ * @property int $saldo_pokok
+ * @property int $saldo_jasa
+ * @property int $total_pembayaran
+ * @property string|null $mulai_tanggal_pembayaran
+ * @property string|null $rencana_tanggal_pelunasan
+ * @property string|null $aktual_tanggal_pelunasan
+ * @property string|null $peruntukan
  * @property string|null $keterangan
  * @property string $waktu
  * @property string|null $last_waktu_update
@@ -24,18 +28,19 @@ use yii2tech\ar\softdelete\SoftDeleteBehavior;
  * @property bool|null $is_deleted
  * @property string|null $deleted_at
  * @property string|null $last_softdelete_by
+ * @property string|null $nomor_referensi
  *
  * @property Anggota $anggota
- * @property VariabelSimpanan $simpanan0
+ * @property Toko $kodeToko
  */
-class AnggotaSimpanan extends ActiveRecord
+class Pinjaman extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'anggota_simpanan';
+        return 'pinjaman';
     }
 
     public function behaviors()
@@ -73,19 +78,16 @@ class AnggotaSimpanan extends ActiveRecord
     public function rules()
     {
         return [
-            ['kode_toko', 'string', 'max' => 50],
+            [['kode_toko', 'anggota_id', 'saldo_pokok', 'saldo_jasa'], 'required'],
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
-            [['kode_toko', 'anggota_id', 'simpanan', 'debitkredit', 'rupiah'], 'required'],
-            [['anggota_id'], 'default', 'value' => null],
-            [['anggota_id', 'rupiah'], 'integer'],
-            [['waktu', 'last_waktu_update', 'deleted_at'], 'safe'],
+            [['anggota_id', 'saldo_pokok', 'saldo_jasa', 'total_pembayaran'], 'default', 'value' => null],
+            [['anggota_id', 'saldo_pokok', 'saldo_jasa', 'total_pembayaran'], 'integer'],
+            [['mulai_tanggal_pembayaran', 'rencana_tanggal_pelunasan', 'aktual_tanggal_pelunasan', 'waktu', 'last_waktu_update', 'deleted_at'], 'safe'],
             [['is_deleted'], 'boolean'],
-            [['simpanan'], 'string', 'max' => 20],
-            [['debitkredit'], 'string', 'max' => 6],
-            [['keterangan'], 'string', 'max' => 255],
-            [['insert_by', 'last_update_by', 'last_softdelete_by'], 'string', 'max' => 50],
+            [['kode_toko', 'insert_by', 'last_update_by', 'last_softdelete_by', 'nomor_referensi'], 'string', 'max' => 50],
+            [['peruntukan', 'keterangan'], 'string', 'max' => 255],
             [['anggota_id'], 'exist', 'skipOnError' => true, 'targetClass' => Anggota::className(), 'targetAttribute' => ['anggota_id' => 'id']],
-            [['simpanan'], 'exist', 'skipOnError' => true, 'targetClass' => VariabelSimpanan::className(), 'targetAttribute' => ['simpanan' => 'simpanan']],
+            [['kode_toko'], 'exist', 'skipOnError' => true, 'targetClass' => Toko::className(), 'targetAttribute' => ['kode_toko' => 'kode']],
         ];
     }
 
@@ -98,9 +100,13 @@ class AnggotaSimpanan extends ActiveRecord
             'id' => 'ID',
             'kode_toko' => 'Kode Toko',
             'anggota_id' => 'Anggota ID',
-            'simpanan' => 'Jenis Simpanan',
-            'debitkredit' => 'Debit/Kredit',
-            'rupiah' => 'Nominal Rupiah',
+            'saldo_pokok' => 'Saldo Pokok',
+            'saldo_jasa' => 'Saldo Jasa',
+            'total_pembayaran' => 'Total Pembayaran',
+            'mulai_tanggal_pembayaran' => 'Mulai Tanggal Pembayaran',
+            'rencana_tanggal_pelunasan' => 'Rencana Tanggal Pelunasan',
+            'aktual_tanggal_pelunasan' => 'Aktual Tanggal Pelunasan',
+            'peruntukan' => 'Peruntukan',
             'keterangan' => 'Keterangan',
             'waktu' => 'Waktu',
             'last_waktu_update' => 'Last Waktu Update',
@@ -109,6 +115,7 @@ class AnggotaSimpanan extends ActiveRecord
             'is_deleted' => 'Is Deleted',
             'deleted_at' => 'Deleted At',
             'last_softdelete_by' => 'Last Softdelete By',
+            'nomor_referensi' => 'Nomor Referensi',
         ];
     }
 
@@ -123,39 +130,39 @@ class AnggotaSimpanan extends ActiveRecord
     }
 
     /**
-     * Gets query for [[Simpanan0]].
+     * Gets query for [[KodeToko]].
      *
-     * @return \yii\db\ActiveQuery|VariabelSimpananQuery
+     * @return \yii\db\ActiveQuery|TokoQuery
      */
-    public function getSimpanan0()
+    public function getKodeToko()
     {
-        return $this->hasOne(VariabelSimpanan::className(), ['simpanan' => 'simpanan']);
+        return $this->hasOne(Toko::className(), ['kode' => 'kode_toko']);
     }
 
     /**
      * {@inheritdoc}
-     * @return AnggotaSimpananQuery the active query used by this AR class.
+     * @return PinjamanQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new AnggotaSimpananQuery(get_called_class());
+        return new PinjamanQuery(get_called_class());
     }
 
-    public static function findAnggotaSimpanan()
+    public static function findPinjaman()
     {
         return self::find()
             ->where(['kode_toko'=>Yii::$app->user->identity->kode_toko])
             ->orderBy(['waktu' => SORT_DESC]);
     }
 
-    public static function findOneAnggotaSimpanan($id)
+    public static function findOnePinjaman($id)
     {
-        return self::findAnggotaSimpanan()
+        return self::findPinjaman()
             ->andWhere(['id'=>$id])
             ->one();
     }
 
-    public static function findFrontendAnggotaSimpanan()
+    public static function findFrontendPinjaman()
     {
         return self::find()
             ->where(['kode_toko'=>Yii::$app->params['kode_toko']])
@@ -163,11 +170,10 @@ class AnggotaSimpanan extends ActiveRecord
             ->orderBy(['waktu' => SORT_DESC]);
     }
 
-    public static function findOneFrontendAnggotaSimpanan($id)
+    public static function findOneFrontendPinjaman($id)
     {
-        return self::findFrontendAnggotaSimpanan()
+        return self::findFrontendPinjaman()
             ->andWhere(['id'=>$id])
             ->one();
     }
-
 }
