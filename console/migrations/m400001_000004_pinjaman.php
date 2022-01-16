@@ -35,8 +35,6 @@ class m400001_000004_pinjaman extends Migration
 
         $this->addForeignKey('pinjaman_anggota_fkey', 'pinjaman', 'anggota_id', 'anggota', 'id', 'RESTRICT', 'CASCADE');
 
-        $this->addForeignKey('pinjaman_variabel_simpanan_fkey', 'pinjaman', 'simpanan', 'variabel_simpanan', 'simpanan', 'RESTRICT', 'CASCADE');
-
         $sql = file_get_contents(Yii::getAlias('@kopkars-assets/sql/trigger_pinjaman_updatedeletesoftdelete.sql'));
         $this->execute($sql);
         
