@@ -37,7 +37,7 @@ class AnggotaController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['biodata','update','update-email','update-foto','update-hp','select-karyawan-pnj'],
+                        'actions' => ['biodata','update','update-email','update-foto','update-foto-ktp','update-hp','select-karyawan-pnj'],
                         'roles' => ['@'],
                     ],
                 ],
