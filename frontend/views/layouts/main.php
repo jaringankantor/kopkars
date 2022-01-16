@@ -43,6 +43,7 @@ AppAsset::register($this);
         $menuItems = [
             ['label' => 'Biodata', 'url' => ['/anggota/biodata']],
             ['label' => 'Simpanan', 'url' => ['/anggota-simpanan/index']],
+            ['label' => 'Pinjaman', 'url' => ['/pinjaman/index']],
             ['label' => 'Transaksi', 'url' => ['/transaksi/index']],
         ];
         $menuItems[] = '<li>'
