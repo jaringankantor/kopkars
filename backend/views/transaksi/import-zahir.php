@@ -66,13 +66,12 @@ $this->title = 'Import Transaksi Zahir';
                 $total_penjualan = trim($worksheet->getCell($column_totalpenjualan.$row)->getValue()); 
                 $pembayaran = trim($worksheet->getCell($column_pembayaran.$row)->getValue());
                 $saldo = trim($worksheet->getCell($column_saldo.$row)->getValue());
-                $model = new Transaksi();
-                
+
                 if(substr($nomor_referensi,0,4)=='KSR-' AND strlen($nomor_referensi)>7) {
                     $jumlah_transaksi = Transaksi::findTransaksiByKanal('zahir',$nomor_referensi)->count();
                     if($jumlah_transaksi==0) {
                         $anggota_id = Anggota::findOneAnggotaByNomorZahir($pelanggan)->id;
-                        
+                        $model = new Transaksi();
                         $model->scenario = 'backend-import-zahir';
                         $model->kode_toko=Yii::$app->user->identity->kode_toko;
                         $model->kanal_transaksi = 'zahir';
