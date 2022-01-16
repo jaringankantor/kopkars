@@ -41,7 +41,7 @@ $this->title = 'Biodata '.$model->nama_lengkap;
                 'pendidikanterakhir',
                 'alamat_rumah',
                 'nomor_npwp',
-                'waktu_login:date',
+                //'waktu_login:date',
             ],
         ]) ?>
         </div>
