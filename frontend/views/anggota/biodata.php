@@ -17,7 +17,7 @@ $this->title = 'Biodata '.$model->nama_lengkap;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-    <?= Html::a('<span class="glyphicon glyphicon-envelope"></span> Update Email', ['update-email'], ['class' => 'btn btn-success']) ?> <?= Html::a('<span class="glyphicon glyphicon-phone"></span> Update Nomor HP', ['update-hp'], ['class' => 'btn btn-success']) ?> <?= Html::a('<span class="glyphicon glyphicon-user"></span>  Update Biodata', ['update'], ['class' => 'btn btn-success']) ?>
+    <?= Html::a('<span class="glyphicon glyphicon-envelope"></span> Update Email', ['update-email'], ['class' => 'btn btn-success']) ?> <?= Html::a('<span class="glyphicon glyphicon-phone"></span> Update Nomor HP', ['update-hp'], ['class' => 'btn btn-success']) ?> <?= Html::a('<span class="glyphicon glyphicon-user"></span>  Update Biodata', ['update'], ['class' => 'btn btn-success']) ?> <?= Html::a('<span class="glyphicon glyphicon-qrcode"></span>  Reset Password', ['site/request-password-reset'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <div class="row">
