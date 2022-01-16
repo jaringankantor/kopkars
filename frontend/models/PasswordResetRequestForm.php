@@ -39,8 +39,8 @@ class PasswordResetRequestForm extends Model
      */
     public function sendEmail()
     {
-        $anggota = Anggota::find([
-            //'kode_toko'=>Yii::$app->params['kode_toko'],
+        $anggota = Anggota::findOne([
+            'kode_toko'=>Yii::$app->params['kode_toko'],
             'email_last_lock' => $this->email,
             'email_last_lock_verified' => Anggota::EMAIL_VERIFIED
         ]);
