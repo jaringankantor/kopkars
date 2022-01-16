@@ -11,7 +11,7 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\AnggotaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Anggota Aktif';
+$this->title = 'Anggota';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="anggota-index">
@@ -29,6 +29,7 @@ $this->title = 'Anggota Aktif';
 
         'nomor_anggota',
         'nama_lengkap',
+        'status',
         [
             'class' => 'kartik\grid\EditableColumn',
             'attribute' => 'email',

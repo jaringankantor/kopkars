@@ -71,7 +71,7 @@ class AnggotaSearch extends Anggota
 
     public function searchAnggota($params)
     {
-        $query = Anggota::findAnggotaAktif();
+        $query = Anggota::findAnggotaAktifNonaktif();
 
         // add conditions that should always apply here
 

@@ -444,6 +444,19 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             ->one();
     }
 
+    public static function findAnggotaAktifNonaktif()
+    {
+        return self::findAnggota()
+            ->andWhere('status in (\'Aktif\',\'Non Aktif\') AND (nomor_anggota IS NOT NULL OR waktu_approve IS NOT NULL)');
+    }
+
+    public static function findOneAnggotaAktifNonaktif($id)
+    {
+        return self::findAnggotaAktifNonaktif()
+            ->andWhere(['id'=>$id])
+            ->one();
+    }
+
     public static function findAnggotaByNomorAnggota($nomor_anggota)
     {
         return self::findAnggota()
