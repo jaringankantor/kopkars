@@ -32,8 +32,8 @@ class m400001_000007_cicilan extends Migration
 
         $this->addForeignKey('cicilan_variabel_kanal_cicilan_fkey', 'cicilan', 'kanal_cicilan', 'variabel_kanal_cicilan', 'kanal_cicilan', 'RESTRICT', 'CASCADE');
 
-        $sql = file_get_contents(Yii::getAlias('@kopkars-assets/sql/trigger_cicilan_updatedeletesoftdelete.sql'));
-        $this->execute($sql);
+        //$sql = file_get_contents(Yii::getAlias('@kopkars-assets/sql/trigger_cicilan_updatedeletesoftdelete.sql'));
+        //$this->execute($sql);
         
         $this->execute('
         CREATE TRIGGER trigger_cicilan_updatedeletesoftdelete AFTER UPDATE OR DELETE ON cicilan
