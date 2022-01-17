@@ -28,9 +28,9 @@ $this->title = 'Transaksi Anggota';
             //'subtotal',
             //'diskon',
             //'pajak',
-            'total_penjualan',
-            'pembayaran',
-            'saldo',
+            'total_penjualan:currency',
+            'pembayaran:currency',
+            'saldo:currency',
             //'waktu:datetime',
 
             //['class' => 'yii\grid\ActionColumn'],

@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'kanal_cicilan',
             //'nomor_referensi',
-            'cicilan',
+            'cicilan:currency',
             //'keterangan',
             'waktu:date',
             //'last_waktu_update',

@@ -20,7 +20,7 @@ $this->title = 'Dana Simpanan Anggota';
 
             'simpanan',
             'debitkredit',
-            'rupiah',
+            'rupiah:currency',
             'waktu:date',
         ],
         'options'=>['class'=>'box-body table-responsive no-padding'],
