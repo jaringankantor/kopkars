@@ -26,5 +26,9 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'formatter' => [
+            'thousandSeparator' => '.',
+            'currencyCode' => 'IDR',
+       ],
     ],
 ];

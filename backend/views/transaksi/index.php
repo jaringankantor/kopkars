@@ -31,7 +31,7 @@ $this->title = 'Transaksi';
             //'subtotal',
             //'diskon',
             //'pajak',
-            'total_penjualan',
+            'total_penjualan:currency',
             'pembayaran',
             'saldo',
             'keterangan',
