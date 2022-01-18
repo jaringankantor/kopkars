@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\helpers\Url;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\VoucherSearch */
@@ -24,11 +26,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['label'=>'Nama Anggota Kopkars', 'value'=>function ($model, $index, $widget) { return $model->anggota->nama_lengkap; }],
             'kode_voucher',
-            'kode_toko',
+            //'kode_toko',
             'rupiah:currency',
             'rupiah_terpakai:currency',
-            'berlaku_mulai:date',
+            //'berlaku_mulai:date',
             'berakhir_sampai:date',
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'keterangan',
+                'value'=>function($model, $key, $index){
+                    return $model->keterangan;
+                },
+                'editableOptions' => [
+                    'formOptions' => [
+                        'action' => Url::to(['/voucher/update-editable-json']),
+                    ],
+                ],
+            ],
 
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{gunakan}',

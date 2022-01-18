@@ -96,6 +96,7 @@ class Voucher extends \yii\db\ActiveRecord
         $scenarios = parent::scenarios();
         $scenarios['default'] = [];
         $scenarios['backend-gunakan-voucher'] = ['rupiah_terpakai', 'last_update_by'];
+        $scenarios['backend-keterangan-voucher'] = ['keterangan'];
         return $scenarios;
     }
 

@@ -10,6 +10,8 @@ use yii2mod\rbac\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
+use yii\web\Response;
 
 /**
  * VoucherController implements the CRUD actions for Voucher model.
@@ -129,6 +131,32 @@ class VoucherController extends Controller
         if ($model->save()) {
             return $this->redirect(Yii::$app->request->referrer);
         }
+    }
+
+    public function actionUpdateEditableJson() {
+        $model = Voucher::findOneVoucher(Json::decode(Yii::$app->request->post('editableKey'))['kode_voucher'],Json::decode(Yii::$app->request->post('editableKey'))['kode_koko']); // your model can be loaded here
+        $model->scenario = 'backend-keterangan-voucher';
+        if (isset($_POST['hasEditable'])) {
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            
+            $posted = current(Yii::$app->request->post('Voucher'));
+            $post = ['Voucher' => $posted];
+
+            if ($model->load($post) && $model->save()) {
+                $field_name = Yii::$app->request->post('editableAttribute');
+                $output = $model->$field_name;
+
+                $errs = current($model->getErrors());
+                $message = $errs[0];
+                
+                return ['output'=>$output, 'message'=>$message];
+            } else {
+                return ['output'=>'', 'message'=>current($model->getErrors())[0]];
+            }
+        }
+        
+        return $this->render('view', ['model'=>$model]);
     }
 
     /**
