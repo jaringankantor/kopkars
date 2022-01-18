@@ -34,8 +34,8 @@ class m400001_000009_voucher extends Migration
 
         $this->addForeignKey('voucher_anggota_fkey', 'voucher', 'anggota_id', 'anggota', 'id', 'RESTRICT', 'CASCADE');
 
-        //$sql = file_get_contents(Yii::getAlias('@kopkars-assets/sql/trigger_voucher_updatedeletesoftdelete.sql'));
-        //$this->execute($sql);
+        $sql = file_get_contents(Yii::getAlias('@kopkars-assets/sql/trigger_voucher_updatedeletesoftdelete.sql'));
+        $this->execute($sql);
         
         $this->execute('
         CREATE TRIGGER trigger_voucher_updatedeletesoftdelete AFTER UPDATE OR DELETE ON voucher
