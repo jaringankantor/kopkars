@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'deleted_at',
             //'last_softdelete_by',
         ],
+        'options'=>['class'=>'box-body table-responsive no-padding'],
     ]); ?>
 
 

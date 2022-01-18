@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'berlaku_mulai',
             'berakhir_sampai',
         ],
+        'options'=>['class'=>'box-body table-responsive no-padding'],
     ]); ?>
 
 

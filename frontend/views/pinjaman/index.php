@@ -40,6 +40,7 @@ $this->title = 'Pinjaman Anggota Kepada Koperasi';
             //'last_softdelete_by',
             //'nomor_referensi',
         ],
+        'options'=>['class'=>'box-body table-responsive no-padding'],
     ]); ?>
 
 
