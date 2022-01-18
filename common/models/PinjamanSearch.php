@@ -41,7 +41,7 @@ class PinjamanSearch extends Pinjaman
      */
     public function search($params)
     {
-        $query = Pinjaman::find();
+        $query = Pinjaman::findPinjaman();
 
         // add conditions that should always apply here
 

@@ -10,7 +10,8 @@ class m400001_000010_histori_voucher extends Migration
     public function safeUp()
     {
         $this->createTable('histori_voucher', [
-            'id' => $this->primaryKey(),
+            'kode_voucher' => $this->string(10)->notNull(),
+            'kode_toko' => $this->string(50)->notNull(),
             'anggota_id' => $this->integer()->notNull(),
             'voucher_id' => $this->integer()->notNull(),
             'voucher_kolom' => $this->string(50)->notNull(),
@@ -20,6 +21,8 @@ class m400001_000010_histori_voucher extends Migration
             'waktu' => $this->dateTime()->notNull()->defaultExpression('now()'),
             'by' => $this->string(50),
         ]);
+
+        $this->addPrimaryKey('histori_voucher_kode_voucher_kode_toko_pkey','voucher',array('kode_voucher','kode_toko'));
         
     }
 

@@ -153,6 +153,16 @@ AppAsset::register($this);
         ];
     }
 
+    if (Yii::$app->user->can('All Voucher')) {
+        $menuItems[] =
+        [
+            'label' => 'Voucher',
+            'items' => [
+                ['label' => 'List Voucher', 'url' => ['/voucher/index']],
+            ],
+        ];
+    }
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {

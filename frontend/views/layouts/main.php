@@ -46,6 +46,7 @@ AppAsset::register($this);
             ['label' => 'Pinjaman', 'url' => ['/pinjaman/index']],
             ['label' => 'Cicilan', 'url' => ['/cicilan/index']],
             ['label' => 'Transaksi', 'url' => ['/transaksi/index']],
+            ['label' => 'Voucher', 'url' => ['/voucher/index']],
         ];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')

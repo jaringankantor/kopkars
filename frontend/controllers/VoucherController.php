@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\models\Cicilan;
+use common\models\Voucher;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -11,9 +11,9 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
 /**
- * CicilanController implements the CRUD actions for Cicilan model.
+ * VoucherController implements the CRUD actions for Voucher model.
  */
-class CicilanController extends Controller
+class VoucherController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -41,13 +41,13 @@ class CicilanController extends Controller
     }
 
     /**
-     * Lists all Cicilan models.
+     * Lists all Voucher models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Cicilan::findFrontendCicilan(),
+            'query' => Voucher::findFrontendVoucher(),
         ]);
 
         return $this->render('index', [
@@ -55,19 +55,4 @@ class CicilanController extends Controller
         ]);
     }
 
-    /**
-     * Finds the Cicilan model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Cicilan the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Cicilan::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
 }

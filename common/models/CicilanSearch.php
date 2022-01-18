@@ -41,7 +41,7 @@ class CicilanSearch extends Cicilan
      */
     public function search($params)
     {
-        $query = Cicilan::find();
+        $query = Cicilan::findCicilan();
 
         // add conditions that should always apply here
 
