@@ -216,6 +216,7 @@ class SiteController extends Controller
         $model = new ResendVerificationEmailForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
+                $model->generateEmailVerificationToken();
                 Yii::$app->session->setFlash('success', 'Silahkan membuka email lalu klik link verifikasi pada email.');
                 return $this->goHome();
             }
