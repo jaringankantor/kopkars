@@ -42,7 +42,7 @@ class ResendVerificationEmailForm extends Model
     public function sendEmail()
     {
         $anggota = Anggota::findOne([
-            'email_last_lock' => $this->email,
+            'email' => $this->email,
             'kode_toko'=>Yii::$app->params['kode_toko']
         ]);
 
