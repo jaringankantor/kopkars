@@ -41,11 +41,9 @@ class ResendVerificationEmailForm extends Model
      */
     public function sendEmail()
     {
-        //Belum beres, seharusnya kirim ke email lama
         $anggota = Anggota::findOne([
-            'kode_toko'=>Yii::$app->params['kode_toko'],
-            'email' => $this->email,
-            //'status' => Anggota::STATUS_NULL
+            'email_last_lock' => $this->email,
+            'kode_toko'=>Yii::$app->params['kode_toko']
         ]);
 
         if ($anggota === null) {
