@@ -27,7 +27,7 @@ class ResendVerificationEmailForm extends Model
             ['email', 'email'],
             ['email', 'exist',
                 'targetClass' => '\common\models\Anggota',
-                'filter' => ['status' => Anggota::STATUS_NULL,'email_last_lock_verified' => Anggota::EMAIL_NOT_VERIFIED],
+                'filter' => ['email_last_lock_verified' => Anggota::EMAIL_NOT_VERIFIED],
                 'message' => 'Email tidak ditemukan untuk proses verifikasi.'
             ],
             ['captcha', 'captcha']
