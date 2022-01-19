@@ -43,11 +43,14 @@ class ResendVerificationEmailForm extends Model
     {
         $anggota = Anggota::findOne([
             'email' => $this->email,
-            'kode_toko'=>Yii::$app->params['kode_toko']
+            'kode_toko'=>Yii::$app->params['kode_toko'],
+            'email_last_lock_verified' => Anggota::EMAIL_NOT_VERIFIED
         ]);
 
         if ($anggota === null) {
             return false;
+        } else {
+            $anggota->generateEmailVerificationToken();
         }
 
         return Yii::$app

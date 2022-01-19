@@ -46,6 +46,7 @@ class VerifyEmailForm extends Model
     public function verifyEmail()
     {
         $user = $this->_user;
+        $user->email_last_lock = $user->email;
         $user->email_last_lock_verified = Anggota::EMAIL_VERIFIED;
         return $user->save(false) ? $user : null;
     }
