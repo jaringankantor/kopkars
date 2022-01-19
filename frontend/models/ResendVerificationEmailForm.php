@@ -49,6 +49,9 @@ class ResendVerificationEmailForm extends Model
 
         if ($anggota === null) {
             return false;
+        } else {
+            $anggota->generateEmailVerificationToken();
+            $anggota->save();
         }
 
         return Yii::$app
