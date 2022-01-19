@@ -27,7 +27,7 @@ class ResendVerificationEmailForm extends Model
             ['email', 'email'],
             ['email', 'exist',
                 'targetClass' => '\common\models\Anggota',
-                'filter' => ['email_last_lock_verified' => Anggota::EMAIL_NOT_VERIFIED],
+                'filter' => ['kode_toko'=>Yii::$app->params['kode_toko'],'email_last_lock_verified' => Anggota::EMAIL_NOT_VERIFIED],
                 'message' => 'Email tidak ditemukan untuk proses verifikasi.'
             ],
             ['captcha', 'captcha']
@@ -43,7 +43,7 @@ class ResendVerificationEmailForm extends Model
     {
         $anggota = Anggota::findOneAnggota([
             'email_last_lock' => $this->email,
-            'status' => Anggota::STATUS_NULL
+            //'status' => Anggota::STATUS_NULL
         ]);
 
         if ($anggota === null) {
