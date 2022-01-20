@@ -89,6 +89,14 @@ class Cicilan extends ActiveRecord
         ];
     }
 
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['default'] = [];
+        $scenarios['backend-keterangan-cicilan'] = ['keterangan'];
+        return $scenarios;
+    }
+
     /**
      * {@inheritdoc}
      */

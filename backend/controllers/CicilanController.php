@@ -3,8 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Voucher;
-use common\models\VoucherSearch;
+use common\models\Cicilan;
+use common\models\CicilanSearch;
 //use yii\filters\AccessControl;
 use yii2mod\rbac\filters\AccessControl;
 use yii\web\Controller;
@@ -12,11 +12,10 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\Json;
 use yii\web\Response;
-
 /**
- * VoucherController implements the CRUD actions for Voucher model.
+ * CicilanController implements the CRUD actions for Cicilan model.
  */
-class VoucherController extends Controller
+class CicilanController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -31,19 +30,18 @@ class VoucherController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'ok-gunakan' => ['POST'],
                 ],
             ],
         ];
     }
 
     /**
-     * Lists all Voucher models.
+     * Lists all Cicilan models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new VoucherSearch();
+        $searchModel = new CicilanSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -53,30 +51,29 @@ class VoucherController extends Controller
     }
 
     /**
-     * Displays a single Voucher model.
-     * @param string $kode_voucher
-     * @param string $kode_toko
+     * Displays a single Cicilan model.
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($kode_voucher, $kode_toko)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($kode_voucher, $kode_toko),
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Voucher model.
+     * Creates a new Cicilan model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     // public function actionCreate()
     // {
-    //     $model = new Voucher();
+    //     $model = new Cicilan();
 
     //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['view', 'kode_voucher' => $model->kode_voucher, 'kode_toko' => $model->kode_toko]);
+    //         return $this->redirect(['view', 'id' => $model->id]);
     //     }
 
     //     return $this->render('create', [
@@ -85,19 +82,18 @@ class VoucherController extends Controller
     // }
 
     /**
-     * Updates an existing Voucher model.
+     * Updates an existing Cicilan model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $kode_voucher
-     * @param string $kode_toko
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    // public function actionUpdate($kode_voucher, $kode_toko)
+    // public function actionUpdate($id)
     // {
-    //     $model = $this->findModel($kode_voucher, $kode_toko);
+    //     $model = $this->findModel($id);
 
     //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['view', 'kode_voucher' => $model->kode_voucher, 'kode_toko' => $model->kode_toko]);
+    //         return $this->redirect(['view', 'id' => $model->id]);
     //     }
 
     //     return $this->render('update', [
@@ -106,42 +102,28 @@ class VoucherController extends Controller
     // }
 
     /**
-     * Deletes an existing Voucher model.
+     * Deletes an existing Cicilan model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $kode_voucher
-     * @param string $kode_toko
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    // public function actionDelete($kode_voucher, $kode_toko)
+    // public function actionDelete($id)
     // {
-    //     $this->findModel($kode_voucher, $kode_toko)->delete();
+    //     $this->findModel($id)->delete();
 
     //     return $this->redirect(['index']);
     // }
 
-    public function actionOkGunakan($kode_voucher,$kode_toko)
-    {
-        $model = $this->findModelVoucher($kode_voucher,$kode_toko);
-
-        $model->scenario = 'backend-gunakan-voucher';
-        $model->rupiah_terpakai = $model->rupiah;
-        $model->last_update_by = Yii::$app->user->identity->email;
-
-        if ($model->save()) {
-            return $this->redirect(Yii::$app->request->referrer);
-        }
-    }
-
     public function actionUpdateKeteranganEditableJson() {
-        $model = Voucher::findOneVoucher(Json::decode(Yii::$app->request->post('editableKey'))['kode_voucher'],Json::decode(Yii::$app->request->post('editableKey'))['kode_koko']); // your model can be loaded here
-        $model->scenario = 'backend-keterangan-voucher';
+        $model = Cicilan::findOneCicilan(Json::decode(Yii::$app->request->post('editableKey'))['id']); // your model can be loaded here
+        $model->scenario = 'backend-keterangan-cicilan';
         if (isset($_POST['hasEditable'])) {
 
             Yii::$app->response->format = Response::FORMAT_JSON;
             
-            $posted = current(Yii::$app->request->post('Voucher'));
-            $post = ['Voucher' => $posted];
+            $posted = current(Yii::$app->request->post('Cicilan'));
+            $post = ['Cicilan' => $posted];
 
             if ($model->load($post) && $model->save()) {
                 $field_name = Yii::$app->request->post('editableAttribute');
@@ -160,25 +142,15 @@ class VoucherController extends Controller
     }
 
     /**
-     * Finds the Voucher model based on its primary key value.
+     * Finds the Cicilan model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $kode_voucher
-     * @param string $kode_toko
-     * @return Voucher the loaded model
+     * @param integer $id
+     * @return Cicilan the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($kode_voucher, $kode_toko)
+    protected function findModel($id)
     {
-        if (($model = Voucher::findOne(['kode_voucher' => $kode_voucher, 'kode_toko' => $kode_toko])) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    protected function findModelVoucher($kode_voucher, $kode_toko)
-    {
-        if (($model = Voucher::findOneVoucher( $kode_voucher, $kode_toko)) !== null) {
+        if (($model = Cicilan::findOne($id)) !== null) {
             return $model;
         }
 

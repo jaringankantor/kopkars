@@ -59,22 +59,9 @@ class CicilanSearch extends Cicilan
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
             'anggota_id' => $this->anggota_id,
-            'cicilan' => $this->cicilan,
-            'waktu' => $this->waktu,
-            'last_waktu_update' => $this->last_waktu_update,
-            'is_deleted' => $this->is_deleted,
-            'deleted_at' => $this->deleted_at,
+            'kanal_cicilan' => $this->kanal_cicilan,
         ]);
-
-        $query->andFilterWhere(['ilike', 'kode_toko', $this->kode_toko])
-            ->andFilterWhere(['ilike', 'kanal_cicilan', $this->kanal_cicilan])
-            ->andFilterWhere(['ilike', 'nomor_referensi', $this->nomor_referensi])
-            ->andFilterWhere(['ilike', 'keterangan', $this->keterangan])
-            ->andFilterWhere(['ilike', 'insert_by', $this->insert_by])
-            ->andFilterWhere(['ilike', 'last_update_by', $this->last_update_by])
-            ->andFilterWhere(['ilike', 'last_softdelete_by', $this->last_softdelete_by]);
 
         return $dataProvider;
     }

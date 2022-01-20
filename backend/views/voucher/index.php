@@ -1,6 +1,5 @@
 <?php
 
-use common\models\HistoriAnggotaSimpanan;
 use kartik\export\ExportMenu;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -12,7 +11,7 @@ use kartik\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Voucher Anggota';
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="voucher-index">
 
@@ -42,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             },
             'editableOptions' => [
                 'formOptions' => [
-                    'action' => Url::to(['/voucher/update-editable-json']),
+                    'action' => Url::to(['/voucher/update-keterangan-editable-json']),
                 ],
             ],
         ],

@@ -140,6 +140,16 @@ AppAsset::register($this);
         ];
     }
 
+    if (Yii::$app->user->can('All Cicilan')) {
+        $menuItems[] =
+        [
+            'label' => 'Cicilan',
+            'items' => [
+                ['label' => 'List Cicilan', 'url' => ['/cicilan/index']],
+            ],
+        ];
+    }
+
     if (Yii::$app->user->can('All Transaksi')) {
         $menuItems[] =
         [
