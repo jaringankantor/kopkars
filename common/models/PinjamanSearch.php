@@ -59,27 +59,8 @@ class PinjamanSearch extends Pinjaman
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
             'anggota_id' => $this->anggota_id,
-            'saldo_pokok' => $this->saldo_pokok,
-            'saldo_jasa' => $this->saldo_jasa,
-            'total_pembayaran' => $this->total_pembayaran,
-            'mulai_tanggal_pembayaran' => $this->mulai_tanggal_pembayaran,
-            'rencana_tanggal_pelunasan' => $this->rencana_tanggal_pelunasan,
-            'aktual_tanggal_pelunasan' => $this->aktual_tanggal_pelunasan,
-            'waktu' => $this->waktu,
-            'last_waktu_update' => $this->last_waktu_update,
-            'is_deleted' => $this->is_deleted,
-            'deleted_at' => $this->deleted_at,
         ]);
-
-        $query->andFilterWhere(['ilike', 'kode_toko', $this->kode_toko])
-            ->andFilterWhere(['ilike', 'peruntukan', $this->peruntukan])
-            ->andFilterWhere(['ilike', 'keterangan', $this->keterangan])
-            ->andFilterWhere(['ilike', 'insert_by', $this->insert_by])
-            ->andFilterWhere(['ilike', 'last_update_by', $this->last_update_by])
-            ->andFilterWhere(['ilike', 'last_softdelete_by', $this->last_softdelete_by])
-            ->andFilterWhere(['ilike', 'nomor_referensi', $this->nomor_referensi]);
 
         return $dataProvider;
     }
