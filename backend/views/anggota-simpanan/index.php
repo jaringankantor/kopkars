@@ -43,14 +43,6 @@ $this->title = 'Simpanan Anggota';
                 return $historianggotasimpanan;
             },
         ],
-        //'last_waktu_update',
-        //'insert_by',
-        //'last_update_by',
-        //'is_deleted:boolean',
-        //'deleted_at',
-        //'last_softdelete_by',
-
-        ['class' => 'yii\grid\ActionColumn'],
     ];
 
     $customDropdown = [
