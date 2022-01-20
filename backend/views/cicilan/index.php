@@ -1,5 +1,6 @@
 <?php
 
+use common\models\HistoriCicilan;
 use kartik\export\ExportMenu;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -47,6 +48,21 @@ $this->title = 'Cicilan Anggota';
             ],
         ],
         'waktu:date',
+        [
+            'attribute'=>'Histori',
+            'format'=>'raw',
+            'value'=>function($model, $key, $index)
+            {
+                $query = HistoriCicilan::find()->where(['cicilan_id'=>$model->id])->all();
+                $historicicilan = NULL;
+                foreach ($query as $row) {
+                    $historicicilan .= $row['cicilan_kolom'].': '.$row['value_old'].' => '.$row['value_new'].' ('.$row['waktu'].'). <br>';
+                
+                }
+
+                return $historicicilan;
+            },
+        ],
 
         // ['class' => 'yii\grid\ActionColumn'],
     ];

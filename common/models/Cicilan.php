@@ -75,7 +75,7 @@ class Cicilan extends ActiveRecord
     {
         return [
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
-            [['kode_toko', 'anggota_id', 'kanal_cicilan', 'cicilan'], 'required'],
+            [['kode_toko', 'anggota_id', 'nomor_referensi', 'kanal_cicilan', 'cicilan'], 'required'],
             [['anggota_id', 'cicilan'], 'default', 'value' => null],
             [['anggota_id', 'cicilan'], 'integer'],
             [['waktu', 'last_waktu_update', 'deleted_at'], 'safe'],

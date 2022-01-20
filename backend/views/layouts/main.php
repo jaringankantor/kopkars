@@ -140,6 +140,16 @@ AppAsset::register($this);
         ];
     }
 
+    if (Yii::$app->user->can('All Pinjaman')) {
+        $menuItems[] =
+        [
+            'label' => 'Pinjaman',
+            'items' => [
+                ['label' => 'List Pinjaman', 'url' => ['/pinjaman/index']],
+            ],
+        ];
+    }
+
     if (Yii::$app->user->can('All Cicilan')) {
         $menuItems[] =
         [

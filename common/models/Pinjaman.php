@@ -13,6 +13,7 @@ use yii2tech\ar\softdelete\SoftDeleteBehavior;
  * @property int $id
  * @property string $kode_toko
  * @property int $anggota_id
+ * @property string|null $nomor_referensi
  * @property int $saldo_pokok
  * @property int $saldo_jasa
  * @property int $total_pembayaran
@@ -28,7 +29,6 @@ use yii2tech\ar\softdelete\SoftDeleteBehavior;
  * @property bool|null $is_deleted
  * @property string|null $deleted_at
  * @property string|null $last_softdelete_by
- * @property string|null $nomor_referensi
  *
  * @property Anggota $anggota
  * @property Toko $kodeToko
@@ -78,7 +78,7 @@ class Pinjaman extends ActiveRecord
     public function rules()
     {
         return [
-            [['kode_toko', 'anggota_id', 'saldo_pokok', 'saldo_jasa'], 'required'],
+            [['kode_toko', 'anggota_id', 'nomor_referensi', 'saldo_pokok', 'saldo_jasa'], 'required'],
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['anggota_id', 'saldo_pokok', 'saldo_jasa', 'total_pembayaran'], 'default', 'value' => null],
             [['anggota_id', 'saldo_pokok', 'saldo_jasa', 'total_pembayaran'], 'integer'],
@@ -91,6 +91,14 @@ class Pinjaman extends ActiveRecord
         ];
     }
 
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['default'] = [];
+        $scenarios['backend-keterangan-pinjaman'] = ['keterangan'];
+        return $scenarios;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -100,6 +108,7 @@ class Pinjaman extends ActiveRecord
             'id' => 'ID',
             'kode_toko' => 'Kode Toko',
             'anggota_id' => 'Anggota ID',
+            'nomor_referensi' => 'Nomor Referensi',
             'saldo_pokok' => 'Pokok Pinjaman',
             'saldo_jasa' => 'Jasa Pinjaman',
             'total_pembayaran' => 'Total Pinjaman',
@@ -115,7 +124,6 @@ class Pinjaman extends ActiveRecord
             'is_deleted' => 'Is Deleted',
             'deleted_at' => 'Deleted At',
             'last_softdelete_by' => 'Last Softdelete By',
-            'nomor_referensi' => 'Nomor Referensi',
         ];
     }
 
