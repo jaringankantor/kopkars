@@ -48,10 +48,7 @@ use kartik\widgets\ActiveForm;
     ]);
     ?>
 
-    <?= $form->field($model, 'simpanan')->dropDownList(ArrayHelper::map(VariabelSimpanan::find()->all(),'simpanan','simpanan'),['prompt'=>'--Semua--']) ?>
-
-    <?= $form->field($model, 'debitkredit')->dropDownList(['kredit' => 'Kredit', 'debit' => 'Debit'],['prompt'=>'--Semua--']) ?>
-    
+    <?= $form->field($model, 'simpanan')->dropDownList(ArrayHelper::map(VariabelSimpanan::find()->all(),'simpanan','simpanan'),['prompt'=>'--Semua--']) ?>    
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
