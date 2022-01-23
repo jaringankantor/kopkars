@@ -16,8 +16,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'simpanan')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'debitkredit')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'rupiah')->textInput() ?>
 
     <?= $form->field($model, 'keterangan')->textInput(['maxlength' => true]) ?>

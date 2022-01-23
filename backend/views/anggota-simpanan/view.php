@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'anggota_id',
             'simpanan',
-            'debitkredit',
             'rupiah',
             'keterangan',
             'waktu',

@@ -14,7 +14,6 @@ class m190150_000003_anggota_simpanan extends Migration
             'kode_toko' => $this->string(50)->notNull(),
             'anggota_id' => $this->integer()->notNull(),
             'simpanan' => $this->string(20)->notNull(),
-            'debitkredit' => $this->string(6)->notNull(),
             'rupiah' => $this->integer()->notNull(),
             'keterangan' => $this->string(),
             'waktu' => $this->dateTime()->notNull()->defaultExpression('now()'),

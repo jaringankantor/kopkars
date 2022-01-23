@@ -18,7 +18,7 @@ class AnggotaSimpananSearch extends AnggotaSimpanan
     {
         return [
             [['id', 'anggota_id', 'rupiah'], 'integer'],
-            [['kode_toko', 'simpanan', 'debitkredit', 'keterangan', 'waktu', 'last_waktu_update', 'insert_by', 'last_update_by', 'deleted_at', 'last_softdelete_by'], 'safe'],
+            [['kode_toko', 'simpanan', 'keterangan', 'waktu', 'last_waktu_update', 'insert_by', 'last_update_by', 'deleted_at', 'last_softdelete_by'], 'safe'],
             [['is_deleted'], 'boolean'],
         ];
     }
@@ -61,7 +61,6 @@ class AnggotaSimpananSearch extends AnggotaSimpanan
         $query->andFilterWhere([
             'anggota_id' => $this->anggota_id,
             'simpanan' => $this->simpanan,
-            'debitkredit' => $this->debitkredit,
             //'waktu' => $this->waktu,
         ]);
         

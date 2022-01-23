@@ -14,7 +14,6 @@ use yii2tech\ar\softdelete\SoftDeleteBehavior;
  * @property string $kode_toko
  * @property int $anggota_id
  * @property string $simpanan
- * @property string $debitkredit
  * @property int $rupiah
  * @property string|null $keterangan
  * @property string $waktu
@@ -75,13 +74,12 @@ class AnggotaSimpanan extends ActiveRecord
         return [
             ['kode_toko', 'string', 'max' => 50],
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
-            [['kode_toko', 'anggota_id', 'simpanan', 'debitkredit', 'rupiah'], 'required'],
+            [['kode_toko', 'anggota_id', 'simpanan', 'rupiah'], 'required'],
             [['anggota_id'], 'default', 'value' => null],
             [['anggota_id', 'rupiah'], 'integer'],
             [['waktu', 'last_waktu_update', 'deleted_at'], 'safe'],
             [['is_deleted'], 'boolean'],
             [['simpanan'], 'string', 'max' => 20],
-            [['debitkredit'], 'string', 'max' => 6],
             [['keterangan'], 'string', 'max' => 255],
             [['insert_by', 'last_update_by', 'last_softdelete_by'], 'string', 'max' => 50],
             [['anggota_id'], 'exist', 'skipOnError' => true, 'targetClass' => Anggota::className(), 'targetAttribute' => ['anggota_id' => 'id']],
@@ -107,7 +105,6 @@ class AnggotaSimpanan extends ActiveRecord
             'kode_toko' => 'Kode Toko',
             'anggota_id' => 'Anggota ID',
             'simpanan' => 'Jenis Simpanan',
-            'debitkredit' => 'Debit/Kredit',
             'rupiah' => 'Nominal Rupiah',
             'keterangan' => 'Keterangan',
             'waktu' => 'Waktu',
