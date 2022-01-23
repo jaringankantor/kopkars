@@ -17,9 +17,6 @@ BEGIN
       VALUES (OLD.anggota_id, OLD.id, 'simpanan', OLD.simpanan, null,'DELETE', last_time);
 
       INSERT INTO histori_anggota_simpanan (anggota_id,anggota_simpanan_id,anggota_simpanan_kolom,value_old,value_new,jenis_transaksi,waktu)
-      VALUES (OLD.anggota_id, OLD.id, 'debitkredit', OLD.debitkredit, null,'DELETE', last_time);
-
-      INSERT INTO histori_anggota_simpanan (anggota_id,anggota_simpanan_id,anggota_simpanan_kolom,value_old,value_new,jenis_transaksi,waktu)
       VALUES (OLD.anggota_id, OLD.id, 'rupiah', OLD.rupiah, null,'DELETE', last_time);
 
       IF (OLD.keterangan IS NOT NULL) THEN
@@ -44,12 +41,6 @@ BEGIN
       IF (NEW.simpanan != OLD.simpanan) THEN
          INSERT INTO histori_anggota_simpanan (anggota_id,anggota_simpanan_id,anggota_simpanan_kolom,value_old,value_new,jenis_transaksi,waktu,by)
          VALUES (OLD.anggota_id, OLD.id, 'simpanan', OLD.simpanan, NEW.simpanan, 'UPDATE', last_time, NEW.last_update_by);
-      END IF;
-
-      --Jika update data debitkredit berubah catat pada histori
-      IF (NEW.debitkredit != OLD.debitkredit) THEN
-         INSERT INTO histori_anggota_simpanan (anggota_id,anggota_simpanan_id,anggota_simpanan_kolom,value_old,value_new,jenis_transaksi,waktu,by)
-         VALUES (OLD.anggota_id, OLD.id, 'debitkredit', OLD.debitkredit, NEW.debitkredit, 'UPDATE', last_time, NEW.last_update_by);
       END IF;
 
       --Jika update data rupiah berubah catat pada histori

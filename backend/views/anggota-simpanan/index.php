@@ -27,7 +27,6 @@ $this->title = 'Simpanan Anggota';
 
         ['label'=>'Nama Anggota Kopkars', 'value'=>function ($model, $index, $widget) { return $model->anggota->nama_lengkap; }],
         'simpanan',
-        'debitkredit',
         //'rupiah:currency',
         [
             'attribute' => 'rupiah',
