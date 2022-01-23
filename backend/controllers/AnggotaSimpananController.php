@@ -7,9 +7,11 @@ use common\models\AnggotaSimpanan;
 use common\models\AnggotaSimpananSearch;
 //use yii\filters\AccessControl;
 use yii2mod\rbac\filters\AccessControl;
-use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+use yii\helpers\Json;
+use yii\web\Response;
 
 /**
  * AnggotaSimpananController implements the CRUD actions for AnggotaSimpanan model.
@@ -114,6 +116,32 @@ class AnggotaSimpananController extends Controller
 
     //     return $this->redirect(['index']);
     // }
+
+    public function actionUpdateKeteranganEditableJson() {
+        $model = AnggotaSimpanan::findOneAnggotaSimpanan(Json::decode(Yii::$app->request->post('editableKey'))['id']); // your model can be loaded here
+        $model->scenario = 'backend-keterangan-anggotasimpanan';
+        if (isset($_POST['hasEditable'])) {
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            
+            $posted = current(Yii::$app->request->post('AnggotaSimpanan'));
+            $post = ['AnggotaSimpanan' => $posted];
+
+            if ($model->load($post) && $model->save()) {
+                $field_name = Yii::$app->request->post('editableAttribute');
+                $output = $model->$field_name;
+
+                $errs = current($model->getErrors());
+                $message = $errs[0];
+                
+                return ['output'=>$output, 'message'=>$message];
+            } else {
+                return ['output'=>'', 'message'=>current($model->getErrors())[0]];
+            }
+        }
+        
+        return $this->render('view', ['model'=>$model]);
+    }
 
     /**
      * Finds the AnggotaSimpanan model based on its primary key value.

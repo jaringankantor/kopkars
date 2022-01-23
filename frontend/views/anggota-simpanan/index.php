@@ -19,7 +19,6 @@ $this->title = 'Dana Simpanan Anggota';
             ['class' => 'yii\grid\SerialColumn'],
 
             'simpanan',
-            'debitkredit',
             'rupiah:currency',
             'waktu:date',
         ],

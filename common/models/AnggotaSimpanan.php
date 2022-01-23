@@ -89,6 +89,14 @@ class AnggotaSimpanan extends ActiveRecord
         ];
     }
 
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['default'] = [];
+        $scenarios['backend-keterangan-anggotasimpanan'] = ['keterangan'];
+        return $scenarios;
+    }
+
     /**
      * {@inheritdoc}
      */

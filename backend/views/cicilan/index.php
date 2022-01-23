@@ -34,7 +34,12 @@ $this->title = 'Cicilan Anggota';
         ['label'=>'Nama Anggota Kopkars', 'value'=>function ($model, $index, $widget) { return $model->anggota->nama_lengkap; }],
         'kanal_cicilan',
         'nomor_referensi',
-        'cicilan:currency',
+        //'cicilan:currency',
+        [
+            'attribute' => 'cicilan',
+            'format' => 'currency',
+            'pageSummary' => true
+        ],
         [
             'class' => 'kartik\grid\EditableColumn',
             'attribute' => 'keterangan',
@@ -89,6 +94,14 @@ $this->title = 'Cicilan Anggota';
     echo GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => $gridColumns,
+        'headerContainer' => ['class' => 'kv-table-header'],
+        'containerOptions' => ['class' => 'kv-grid-wrapper'], // fixed height for floated header behavior
+        'floatHeader' => true, // table header floats when you scroll
+        'floatPageSummary' => true, // table page summary floats when you scroll
+        'showPageSummary' => true,
+        'responsive' => true,
+        'condensed' => true,
+        'hover' => true,
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<h3 class="panel-title"><i class="fas fa-book"></i> '.$this->title.'</h3>',
@@ -97,7 +110,12 @@ $this->title = 'Cicilan Anggota';
             'class' => 'btn-group mr-2 me-2'
         ],
         'toolbar' => [
+            '{toggleData}',
             '{export}',
+        ],
+        'exportConfig' => [
+            'xls' => [],
+            'pdf' => [],
         ],
         'export' => [
             'itemsAfter'=> [

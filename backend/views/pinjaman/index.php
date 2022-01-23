@@ -33,8 +33,18 @@ $this->title = 'Pinjaman Anggota';
 
         ['label'=>'Nama Anggota Kopkars', 'value'=>function ($model, $index, $widget) { return $model->anggota->nama_lengkap; }],
         'nomor_referensi',
-        'saldo_pokok:currency',
-        'saldo_jasa:currency',
+        //'saldo_pokok:currency',
+        [
+            'attribute' => 'saldo_pokok',
+            'format' => 'currency',
+            'pageSummary' => true
+        ],
+        //'saldo_jasa:currency',
+        [
+            'attribute' => 'saldo_jasa',
+            'format' => 'currency',
+            'pageSummary' => true
+        ],
         [
             'class' => 'kartik\grid\EditableColumn',
             'attribute' => 'keterangan',
@@ -87,6 +97,14 @@ $this->title = 'Pinjaman Anggota';
     echo GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => $gridColumns,
+        'headerContainer' => ['class' => 'kv-table-header'],
+        'containerOptions' => ['class' => 'kv-grid-wrapper'], // fixed height for floated header behavior
+        'floatHeader' => true, // table header floats when you scroll
+        'floatPageSummary' => true, // table page summary floats when you scroll
+        'showPageSummary' => true,
+        'responsive' => true,
+        'condensed' => true,
+        'hover' => true,
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<h3 class="panel-title"><i class="fas fa-book"></i> '.$this->title.'</h3>',
@@ -95,7 +113,12 @@ $this->title = 'Pinjaman Anggota';
             'class' => 'btn-group mr-2 me-2'
         ],
         'toolbar' => [
+            '{toggleData}',
             '{export}',
+        ],
+        'exportConfig' => [
+            'xls' => [],
+            'pdf' => [],
         ],
         'export' => [
             'itemsAfter'=> [
