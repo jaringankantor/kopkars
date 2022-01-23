@@ -48,6 +48,7 @@ class PinjamanController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Pinjaman::findFrontendPinjaman(),
+            'pagination' => false,
         ]);
 
         return $this->render('index', [

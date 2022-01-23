@@ -12,17 +12,6 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [
-        'gridview' =>  [
-            'class' => '\kartik\grid\Module'
-        ],
-        'rbac' => [
-            'class' => 'yii2mod\rbac\Module',
-        ],
-        'rbacconsole' => [
-            'class' => 'yii2mod\rbac\ConsoleModule'
-        ]
-    ],
     'components' => [
         'i18n' => [
             'translations' => [
@@ -79,6 +68,17 @@ return [
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
+    ],
+    'modules' => [
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ],
+        'rbac' => [
+            'class' => 'yii2mod\rbac\Module',
+        ],
+        'rbacconsole' => [
+            'class' => 'yii2mod\rbac\ConsoleModule'
+        ]
     ],
     'params' => $params,
 ];

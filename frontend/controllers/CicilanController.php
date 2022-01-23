@@ -48,6 +48,9 @@ class CicilanController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Cicilan::findFrontendCicilan(),
+            'pagination'=>[
+                'pageSize'=>5,
+            ]
         ]);
 
         return $this->render('index', [

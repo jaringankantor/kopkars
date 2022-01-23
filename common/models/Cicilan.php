@@ -187,4 +187,12 @@ class Cicilan extends ActiveRecord
             ->andWhere(['id'=>$id])
             ->one();
     }
+
+    public static function frontendTotalCicilan() {
+        return (integer)self::findFrontendCicilan()->sum('cicilan');
+    }
+
+    public static function frontendTanggalCicilanTerakhir() {
+        return self::findFrontendCicilan()->one()->waktu;
+    }
 }
