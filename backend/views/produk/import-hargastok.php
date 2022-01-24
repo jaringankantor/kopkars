@@ -11,6 +11,7 @@ use yii\web\UploadedFile;
 $worksheet_update = 'inventory';
 
 $column_harga = 'E';
+$column_harga_modal = 'F';
 $column_stok = 'G';
 $column_sku = 'I';
 
@@ -59,6 +60,7 @@ if (Yii::$app->request->isPost) {
                 }
                 $model->scenario = 'backend-import-hargastok';
                 $model->harga_async = $harga;
+                $model->harga_modal_async = $harga_modal;
                 $model->stok_async = $stok;
                 if (!$model->save()) $sum_error++;
             }

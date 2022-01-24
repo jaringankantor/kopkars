@@ -18,11 +18,12 @@ $column_brand = 'C';
 $column_warna = 'D';
 $column_deskripsi = 'E';
 $column_harga_async = 'F';
-$column_stok_async = 'G';
-$column_berat = 'H';
-$column_video_url_1 = 'I';
-$column_video_url_2 = 'J';
-$column_video_url_3 = 'K';
+$column_harga_modal_async = 'G';
+$column_stok_async = 'H';
+$column_berat = 'I';
+$column_video_url_1 = 'J';
+$column_video_url_2 = 'K';
+$column_video_url_3 = 'L';
 
 
 ?>
@@ -62,6 +63,7 @@ $column_video_url_3 = 'K';
                 $warna = $worksheet->getCell($column_warna.$row)->getValue();
                 $deskripsi = $worksheet->getCell($column_deskripsi.$row)->getValue();
                 $harga_async = $worksheet->getCell($column_harga_async.$row)->getValue();
+                $harga_modal_async = $worksheet->getCell($column_harga_modal_async.$row)->getValue();
                 $stok_async = $worksheet->getCell($column_stok_async.$row)->getValue();
                 $berat = $worksheet->getCell($column_berat.$row)->getValue();
                 $video_url_1 = $worksheet->getCell($column_video_url_1.$row)->getValue();
@@ -88,6 +90,7 @@ $column_video_url_3 = 'K';
                     $model->warna = $warna;
                     $model->deskripsi = $deskripsi;
                     $model->harga_async = $harga_async;
+                    $model->harga_modal_async = $harga_modal_async;
                     $model->stok_async = $stok_async;
                     $model->berat = $berat;
                     $model->video_url_1 = $video_url_1;
@@ -103,7 +106,7 @@ $column_video_url_3 = 'K';
     ?>
 
     <p>
-        <?= Html::a('Download Template', Url::to('@web/assets/public/docs/template-import-produk.xlsx'), ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Download Template', Url::to('@web/public/docs/template-import-produk.xlsx'), ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php $form = ActiveForm::begin(['type' => ActiveForm::TYPE_HORIZONTAL,'formConfig' => ['labelSpan' => 3, 'deviceSize' => ActiveForm::SIZE_SMALL],'options' => ['enctype' => 'multipart/form-data']]); ?>

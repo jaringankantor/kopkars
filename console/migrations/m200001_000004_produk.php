@@ -19,6 +19,7 @@ class m200001_000004_produk extends Migration
             'brand' => $this->string(70)->notNull(),
             'warna'  => $this->string(20)->notNull(),
             'deskripsi' => $this->string(2000),
+            'harga_modal_async' => $this->integer()->defaultValue(0)->notNull(),
             'harga_async' => $this->integer()->defaultValue(0)->notNull(),
             'stok_async' => $this->integer()->defaultValue(0)->notNull(),
             'berat' => $this->integer()->notNull(),

@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=>'raw',
                 'value'=>'<pre>'.$model->deskripsi.'</pre>',
             ],
+            'harga_modal_async',
             'harga_async',
             'stok_async',
             'berat',

@@ -17,6 +17,7 @@ $column_kategorikode = 'A';
 $column_nama = 'B';
 $column_sku = 'E';
 $column_harga = 'G';
+$column_harga_modal = 'H';
 $column_stok = 'I';
 $column_sku_subitem = 'K';
 
@@ -40,6 +41,7 @@ if(count($dataProvider->models)>0) {
         $worksheet->getCell($column_nama.$row_mulai)->setValue($model->nama_produk);
         $worksheet->getCell($column_sku.$row_mulai)->setValue($model->sku);
         $worksheet->getCell($column_harga.$row_mulai)->setValue($model->harga_async);
+        $worksheet->getCell($column_harga_modal.$row_mulai)->setValue($model->harga_modal_async);
         $worksheet->getCell($column_stok.$row_mulai)->setValue($model->stok_async);
         $worksheet->getCell($column_sku_subitem.$row_mulai)->setValue($model->sku);
 

@@ -17,6 +17,7 @@ use Yii;
  * @property string $brand
  * @property string $warna
  * @property string $deskripsi
+ * @property int $harga_modal_async
  * @property int $harga_async
  * @property int $stok_async
  * @property int $berat
@@ -84,12 +85,12 @@ class Produk extends \yii\db\ActiveRecord
         $text_skuprefix = rtrim($text_skuprefix,'|');
 
         return [
-            [['kode_toko','sku', 'nama_produk', 'nama_produk_pendek', 'brand', 'warna', 'deskripsi', 'harga_async', 'stok_async', 'berat'], 'required'],
+            [['kode_toko','sku', 'nama_produk', 'nama_produk_pendek', 'brand', 'warna', 'deskripsi', 'harga_modal_async', 'harga_async', 'stok_async', 'berat'], 'required'],
             ['kode_toko', 'string', 'max' => 50],
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['status_aktif'], 'boolean'],
-            [['harga_async', 'stok_async', 'berat'], 'default', 'value' => null],
-            [['harga_async', 'stok_async', 'berat'], 'integer'],
+            [['harga_modal_async','harga_async', 'stok_async', 'berat'], 'default', 'value' => null],
+            [['harga_modal_async','harga_async', 'stok_async', 'berat'], 'integer'],
             [['foto_1', 'foto_2', 'foto_3', 'foto_4', 'foto_5', 'foto_6', 'foto_7'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg', 'mimeTypes'=>'image/jpeg'],
             [['urlid_bli', 'urlid_bkl', 'urlid_fbc', 'urlid_fbm', 'urlid_jdi', 'urlid_lzd', 'urlid_shp', 'urlid_tkp'], 'string'],
             [['nama_produk_pendek','sku','warna','id_tkp'], 'string', 'max' => 20],
@@ -113,8 +114,8 @@ class Produk extends \yii\db\ActiveRecord
         $scenarios = parent::scenarios();
         $scenarios['backend-import-deskripsi'] = ['deskripsi'];
         $scenarios['backend-import-foto'] = ['foto_1','foto_2','foto_3','foto_4','foto_5','foto_6','foto_7'];
-        $scenarios['backend-import-hargastok'] = ['harga_async','stok_async'];
-        $scenarios['backend-import-tambah-produk'] = ['kode_toko','sku','nama_produk','brand','warna','deskripsi','harga_async','stok_async','berat','video_url_1','video_url_2','video_url_3'];
+        $scenarios['backend-import-hargastok'] = ['harga_modal_async','harga_async','stok_async'];
+        $scenarios['backend-import-tambah-produk'] = ['kode_toko','sku','nama_produk','brand','warna','deskripsi','harga_modal_async','harga_async','stok_async','berat','video_url_1','video_url_2','video_url_3'];
         $scenarios['backend-import-urlid'] = ['urlid_bli', 'urlid_bkl', 'urlid_fbc', 'urlid_fbm', 'urlid_jdi', 'urlid_lzd', 'urlid_shp', 'urlid_tkp','id_tkp'];
         return $scenarios;
     }
@@ -133,6 +134,7 @@ class Produk extends \yii\db\ActiveRecord
             'brand' => 'Brand',
             'warna' => 'Warna',
             'deskripsi' => 'Deskripsi',
+            'harga_modal_async' => 'Harga Modal',
             'harga_async' => 'Harga',
             'stok_async' => 'Stok',
             'berat' => 'Berat',

@@ -45,6 +45,8 @@ $text_skuprefix = rtrim($text_skuprefix,', ');
     <?= $form->field($model, 'warna')->dropDownList(['Multicolor' => 'Multicolor', 'Merah' => 'Merah', 'Kuning' => 'Kuning', 'Hijau' => 'Hijau', 'Biru' => 'Biru', 'Putih' => 'Putih', 'Hitam' => 'Hitam', 'Ungu' => 'Ungu']) ?>
 
     <?= $form->field($model, 'deskripsi')->textArea(['rows' => 6]) ?>
+    
+    <?= $form->field($model, 'harga_modal_async')->textInput() ?>
 
     <?= $form->field($model, 'harga_async')->textInput() ?>
 
