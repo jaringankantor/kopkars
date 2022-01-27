@@ -20,6 +20,8 @@ $this->title = 'Histori Anggota';
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <p><a href="https://datastudio.google.com/u/0/reporting/abd7a6c3-5062-4dc5-baf8-de8659532e00/page/p_lyvat87mrc" target="_blank">Rekapitulasi Perubahan Anggota</a></p>
+
     <?php echo $this->render('_search_histori', ['model' => $searchModel]); ?>
 
     <br>
