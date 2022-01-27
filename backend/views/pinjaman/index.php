@@ -18,6 +18,9 @@ $this->title = 'Pinjaman Anggota';
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <p><a href="https://datastudio.google.com/u/8/reporting/abd7a6c3-5062-4dc5-baf8-de8659532e00/page/p_zr2caurmrc" target="_blank">Rekapitulasi Pinjaman-Cicilan</a></p>
+
+
     <!-- <p>
         <?= Html::a('Create Pinjaman', ['create'], ['class' => 'btn btn-success']) ?>
     </p> -->
