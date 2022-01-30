@@ -3,20 +3,18 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Pinjaman;
-use common\models\PinjamanSearch;
+use common\models\PesananPinjaman;
+use common\models\PesananPinjamanSearch;
 //use yii\filters\AccessControl;
 use yii2mod\rbac\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\Json;
-use yii\web\Response;
 
 /**
- * PinjamanController implements the CRUD actions for Pinjaman model.
+ * PesananPinjamanController implements the CRUD actions for PesananPinjaman model.
  */
-class PinjamanController extends Controller
+class PesananPinjamanController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -38,12 +36,12 @@ class PinjamanController extends Controller
     }
 
     /**
-     * Lists all Pinjaman models.
+     * Lists all PesananPinjaman models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PinjamanSearch();
+        $searchModel = new PesananPinjamanSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -53,7 +51,7 @@ class PinjamanController extends Controller
     }
 
     /**
-     * Displays a single Pinjaman model.
+     * Displays a single PesananPinjaman model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -66,67 +64,67 @@ class PinjamanController extends Controller
     }
 
     /**
-     * Creates a new Pinjaman model.
+     * Creates a new PesananPinjaman model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    // public function actionCreate()
-    // {
-    //     $model = new Pinjaman();
+    public function actionCreate()
+    {
+        $model = new PesananPinjaman();
 
-    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['view', 'id' => $model->id]);
-    //     }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
 
-    //     return $this->render('create', [
-    //         'model' => $model,
-    //     ]);
-    // }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
 
     /**
-     * Updates an existing Pinjaman model.
+     * Updates an existing PesananPinjaman model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    // public function actionUpdate($id)
-    // {
-    //     $model = $this->findModel($id);
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
 
-    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['view', 'id' => $model->id]);
-    //     }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
 
-    //     return $this->render('update', [
-    //         'model' => $model,
-    //     ]);
-    // }
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
 
     /**
-     * Deletes an existing Pinjaman model.
+     * Deletes an existing PesananPinjaman model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    // public function actionDelete($id)
-    // {
-    //     $this->findModel($id)->delete();
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
 
-    //     return $this->redirect(['index']);
-    // }
+        return $this->redirect(['index']);
+    }
 
     /**
-     * Finds the Pinjaman model based on its primary key value.
+     * Finds the PesananPinjaman model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Pinjaman the loaded model
+     * @return PesananPinjaman the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Pinjaman::findOne($id)) !== null) {
+        if (($model = PesananPinjaman::findOne($id)) !== null) {
             return $model;
         }
 

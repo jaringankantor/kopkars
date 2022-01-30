@@ -13,7 +13,8 @@ use yii2tech\ar\softdelete\SoftDeleteBehavior;
  * @property int $id
  * @property string $kode_toko
  * @property int $anggota_id
- * @property string|null $nomor_referensi
+ * @property string $nomor_referensi
+ * @property int|null $pesanan_pinjaman_id 
  * @property int $saldo_pokok
  * @property int $saldo_jasa
  * @property int $total_pembayaran
@@ -32,6 +33,7 @@ use yii2tech\ar\softdelete\SoftDeleteBehavior;
  *
  * @property Anggota $anggota
  * @property Toko $kodeToko
+ * @property PesananPinjaman $pesananPinjaman
  */
 class Pinjaman extends ActiveRecord
 {
@@ -78,16 +80,17 @@ class Pinjaman extends ActiveRecord
     public function rules()
     {
         return [
-            [['kode_toko', 'anggota_id', 'nomor_referensi', 'saldo_pokok', 'saldo_jasa'], 'required'],
+            [['kode_toko', 'anggota_id', 'nomor_referensi', 'pesanan_pinjaman_id', 'saldo_pokok', 'saldo_jasa'], 'required'],
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
-            [['anggota_id', 'saldo_pokok', 'saldo_jasa', 'total_pembayaran'], 'default', 'value' => null],
-            [['anggota_id', 'saldo_pokok', 'saldo_jasa', 'total_pembayaran'], 'integer'],
+            [['anggota_id', 'pesanan_pinjaman_id','saldo_pokok', 'saldo_jasa', 'total_pembayaran'], 'default', 'value' => null],
+            [['anggota_id', 'pesanan_pinjaman_id','saldo_pokok', 'saldo_jasa', 'total_pembayaran'], 'integer'],
             [['mulai_tanggal_pembayaran', 'rencana_tanggal_pelunasan', 'aktual_tanggal_pelunasan', 'waktu', 'last_waktu_update', 'deleted_at'], 'safe'],
             [['is_deleted'], 'boolean'],
             [['kode_toko', 'insert_by', 'last_update_by', 'last_softdelete_by', 'nomor_referensi'], 'string', 'max' => 50],
             [['peruntukan', 'keterangan'], 'string', 'max' => 255],
             [['anggota_id'], 'exist', 'skipOnError' => true, 'targetClass' => Anggota::className(), 'targetAttribute' => ['anggota_id' => 'id']],
             [['kode_toko'], 'exist', 'skipOnError' => true, 'targetClass' => Toko::className(), 'targetAttribute' => ['kode_toko' => 'kode']],
+            [['pesanan_pinjaman_id'], 'exist', 'skipOnError' => true, 'targetClass' => PesananPinjaman::className(), 'targetAttribute' => ['pesanan_pinjaman_id' => 'id']],
         ];
     }
 
@@ -109,6 +112,7 @@ class Pinjaman extends ActiveRecord
             'kode_toko' => 'Kode Toko',
             'anggota_id' => 'Anggota ID',
             'nomor_referensi' => 'Nomor Referensi',
+            'pesanan_pinjaman_id' => 'Pesanan Pinjaman ID',
             'saldo_pokok' => 'Pokok Pinjaman',
             'saldo_jasa' => 'Jasa Pinjaman',
             'total_pembayaran' => 'Total Pinjaman',
@@ -145,6 +149,11 @@ class Pinjaman extends ActiveRecord
     public function getKodeToko()
     {
         return $this->hasOne(Toko::className(), ['kode' => 'kode_toko']);
+    }
+
+    public function getPesananPinjaman()
+    {
+        return $this->hasOne(PesananPinjaman::className(), ['id' => 'pesanan_pinjaman_id']);
     }
 
     /**
