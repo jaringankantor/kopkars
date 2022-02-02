@@ -135,6 +135,7 @@ class VoucherController extends Controller
 
     public function actionUpdateKeteranganEditableJson() {
         $model = Voucher::findOneVoucher(Json::decode(Yii::$app->request->post('editableKey'))['kode_voucher'],Json::decode(Yii::$app->request->post('editableKey'))['kode_koko']); // your model can be loaded here
+        $model->last_update_by = Yii::$app->user->identity->email;
         $model->scenario = 'backend-keterangan-voucher';
         if (isset($_POST['hasEditable'])) {
 

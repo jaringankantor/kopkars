@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "pesanan_pinjaman".
@@ -41,17 +43,32 @@ class PesananPinjaman extends \yii\db\ActiveRecord
         return 'pesanan_pinjaman';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['waktu'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['last_waktu_update'],
+                ],
+                 'value' => 'now()'
+            ],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
+            ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['kode_toko', 'anggota_id', 'saldo_pokok', 'saldo_jasa'], 'required'],
             [['anggota_id', 'saldo_pokok', 'saldo_jasa', 'total_pembayaran'], 'default', 'value' => null],
             [['anggota_id', 'saldo_pokok', 'saldo_jasa', 'total_pembayaran'], 'integer'],
             [['mulai_tanggal_pembayaran', 'rencana_tanggal_pelunasan', 'aktual_tanggal_pelunasan', 'waktu'], 'safe'],
-            [['lampiran'], 'string'],
+            [['lampiran'], 'file', 'extensions' => 'png,jpg,jpeg', 'mimeTypes'=>'image/jpeg,image/png','maxSize'=>2097152],
             [['is_approved_level1', 'is_approved_level2', 'is_processed'], 'boolean'],
             [['kode_toko', 'nomor_referensi', 'last_update_by'], 'string', 'max' => 50],
             [['peruntukan', 'keterangan'], 'string', 'max' => 255],

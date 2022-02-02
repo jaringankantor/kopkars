@@ -29,7 +29,17 @@ $this->title = 'List Produk';
 
             'sku',
             'status_aktif:boolean',
-            'nama_produk',
+            //'nama_produk',
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'nama_produk',
+                'editableOptions' => [
+                    'formOptions' => [
+                        'action' => Url::to(['/produk/update-editable-json']),
+                    ],
+                    'inputType' => Editable::INPUT_TEXT,
+                ],
+            ],
             [
                 'class' => 'kartik\grid\EditableColumn',
                 'attribute' => 'nama_produk_pendek',
@@ -38,6 +48,19 @@ $this->title = 'List Produk';
                         'action' => Url::to(['/produk/update-editable-json']),
                     ],
                     'inputType' => Editable::INPUT_TEXT,
+                ],
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'berat',
+                'editableOptions' => [
+                    'formOptions' => [
+                        'action' => Url::to(['/produk/update-editable-json']),
+                    ],
+                    'inputType' => Editable::INPUT_SPIN,
+                    'options' => [
+                        'pluginOptions' => ['min' => 1, 'max' => 10000],
+                    ],
                 ],
             ],
             [
