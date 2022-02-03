@@ -40,26 +40,10 @@ AppAsset::register($this);
 
     $menuItems = [];
 
-    if (Yii::$app->user->can('All Pengaturan Sistem')) {
-        $menuItems[] =
-        [
-            'label' => 'Sistem',
-            'items' => [
-                ['label' => 'GII', 'url' => ['/gii']],
-                ['label' => 'RBAC Rule', 'url' => ['/rbac/rule']],
-                ['label' => 'RBAC Route', 'url' => ['/rbac/route']],
-                ['label' => 'RBAC Permission', 'url' => ['/rbac/permission']],
-                ['label' => 'RBAC Role', 'url' => ['/rbac/role']],
-                ['label' => 'RBAC Assignment', 'url' => ['/rbac/assignment']],
-            ]
-        ];
-    }
-
-    if (Yii::$app->user->can('All Sistem Marketplace') OR Yii::$app->user->can('All Master Marketplace') OR 
-    Yii::$app->user->can('All Setting Marketplace') OR Yii::$app->user->can('All Export Marketplace')) {
+    if (Yii::$app->user->can('All Pengaturan Sistem') OR Yii::$app->user->can('All Sistem Marketplace')) {
         if(Yii::$app->user->can('All Sistem Marketplace')) {
-            $marketplace[] = [
-                'label' => 'Sistem',
+            $sistem[] = [
+                'label' => 'Marketplace',
                 'items' => [
                     ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
                     ['label' => 'Toko', 'url' => ['/toko']],
@@ -70,6 +54,24 @@ AppAsset::register($this);
                 ],
             ];
         }
+
+        $menuItems[] =
+        [
+            'label' => 'Sistem',
+            'items' => [
+                ['label' => 'GII', 'url' => ['/gii']],
+                ['label' => 'RBAC Rule', 'url' => ['/rbac/rule']],
+                ['label' => 'RBAC Route', 'url' => ['/rbac/route']],
+                ['label' => 'RBAC Permission', 'url' => ['/rbac/permission']],
+                ['label' => 'RBAC Role', 'url' => ['/rbac/role']],
+                ['label' => 'RBAC Assignment', 'url' => ['/rbac/assignment']],
+                $sistem
+            ]
+        ];
+    }
+
+    if (Yii::$app->user->can('All Master Marketplace') OR 
+    Yii::$app->user->can('All Setting Marketplace') OR Yii::$app->user->can('All Export Marketplace')) {
 
         if (Yii::$app->user->can('All Master Marketplace')) {
             $marketplace[] =
