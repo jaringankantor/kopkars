@@ -72,10 +72,7 @@ AppAsset::register($this);
         $menuItems[] =
         [
             'label' => 'Marketplace',
-            'items'=>
-            [
-                $marketplace
-            ],
+            'items'=>$marketplace
         ];
     }
 
