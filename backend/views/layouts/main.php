@@ -41,6 +41,17 @@ AppAsset::register($this);
     $menuItems = [];
 
     if (Yii::$app->user->can('All Pengaturan Sistem') OR Yii::$app->user->can('All Sistem Marketplace')) {
+        if(Yii::$app->user->can('All Pengaturan Sistem')) {
+            $sistem[] = [
+                ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
+                ['label' => 'Toko', 'url' => ['/toko']],
+                ['label' => 'User', 'url' => ['/user']],
+                ['label' => 'Field', 'url' => ['/field']],
+                ['label' => 'Form', 'url' => ['/form']],
+                ['label' => 'Form Field', 'url' => ['/form-field']],
+            ];
+        }
+        
         if(Yii::$app->user->can('All Sistem Marketplace')) {
             $sistem[] = [
                 'label' => 'Marketplace',
@@ -58,15 +69,7 @@ AppAsset::register($this);
         $menuItems[] =
         [
             'label' => 'Sistem',
-            'items' => [
-                ['label' => 'GII', 'url' => ['/gii']],
-                ['label' => 'RBAC Rule', 'url' => ['/rbac/rule']],
-                ['label' => 'RBAC Route', 'url' => ['/rbac/route']],
-                ['label' => 'RBAC Permission', 'url' => ['/rbac/permission']],
-                ['label' => 'RBAC Role', 'url' => ['/rbac/role']],
-                ['label' => 'RBAC Assignment', 'url' => ['/rbac/assignment']],
-                $sistem
-            ]
+            'items' => $sistem
         ];
     }
 
