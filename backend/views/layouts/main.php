@@ -76,8 +76,7 @@ AppAsset::register($this);
         ];
     }
 
-    if (Yii::$app->user->can('All Master Marketplace') OR 
-    Yii::$app->user->can('All Setting Marketplace') OR Yii::$app->user->can('All Export Marketplace')) {
+    if (Yii::$app->user->can('All Master Marketplace') OR Yii::$app->user->can('All Setting Marketplace') OR Yii::$app->user->can('All Export Marketplace')) {
 
         if (Yii::$app->user->can('All Master Marketplace')) {
             $marketplace[] =
@@ -94,7 +93,7 @@ AppAsset::register($this);
         if (Yii::$app->user->can('All Setting Marketplace')) {
             $marketplace[] =
             [
-                'label' => 'Setting Mkp',
+                'label' => 'Setting',
                 'items' => [
                     ['label' => 'Blibli', 'url' => ['/setting/blibli']],
                     ['label' => 'Bukalapak', 'url' => ['/setting/bukalapak']],
