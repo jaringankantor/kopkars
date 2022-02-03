@@ -61,7 +61,7 @@ AppAsset::register($this);
             [
                 [
                     'label' => 'Sistem Mkp',
-                    'options'=>['class'=>'dropdown'],
+                    'options'=>['class'=>'dropdown-menux'],
                     'template' => '<a href="{url}" class="href_class">{label}</a>',
                     'items' => [
                         ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
@@ -71,10 +71,8 @@ AppAsset::register($this);
                         ['label' => 'Form', 'url' => ['/form']],
                         ['label' => 'Form Field', 'url' => ['/form-field']],
                     ],
-                    'submenuTemplate' => "\n<ul class='dropdown-menux' role='menu'>\n{items}\n</ul>\n",
                 ]
             ],
-            'submenuTemplate' => "\n<ul class='dropdown-menu' role='menu'>\n{items}\n</ul>\n",
         ];
     }
 
