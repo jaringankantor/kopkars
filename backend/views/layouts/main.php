@@ -56,14 +56,18 @@ AppAsset::register($this);
     if (Yii::$app->user->can('All Sistem Marketplace')) {
         $menuItems[] =
         [
-            'label' => 'Sistem Mkp',
-            'items' => [
-                ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
-                ['label' => 'Toko', 'url' => ['/toko']],
-                ['label' => 'User', 'url' => ['/user']],
-                ['label' => 'Field', 'url' => ['/field']],
-                ['label' => 'Form', 'url' => ['/form']],
-                ['label' => 'Form Field', 'url' => ['/form-field']],
+            'label' => 'Test',
+            'items'=>
+            [
+                'label' => 'Sistem Mkp',
+                'items' => [
+                    ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
+                    ['label' => 'Toko', 'url' => ['/toko']],
+                    ['label' => 'User', 'url' => ['/user']],
+                    ['label' => 'Field', 'url' => ['/field']],
+                    ['label' => 'Form', 'url' => ['/form']],
+                    ['label' => 'Form Field', 'url' => ['/form-field']],
+                ]
             ]
         ];
     }
