@@ -61,6 +61,7 @@ AppAsset::register($this);
             [
                 [
                     'label' => 'Sistem Mkp',
+                    'options'=>['class'=>'dropdown'],
                     'template' => '<a href="{url}" class="href_class">{label}</a>',
                     'items' => [
                         ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
