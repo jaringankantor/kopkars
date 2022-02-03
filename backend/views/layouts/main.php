@@ -64,7 +64,6 @@ AppAsset::register($this);
                     'options'=>['class'=>'dropdown-menu'],
                     'template' => '<a href="{url}" class="href_class">{label}</a>',
                     'items' => [
-                        'options'=>['class'=>'dropdown-menu'],
                         ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
                         ['label' => 'Toko', 'url' => ['/toko']],
                         ['label' => 'User', 'url' => ['/user']],
