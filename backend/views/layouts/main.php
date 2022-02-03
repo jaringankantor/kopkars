@@ -57,6 +57,7 @@ AppAsset::register($this);
         $menuItems[] =
         [
             'label' => 'Test',
+            'items'=>
             [
                 'label' => 'Sistem Mkp',
                 'items' => [
