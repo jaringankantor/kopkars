@@ -56,7 +56,7 @@ AppAsset::register($this);
     }
 
     if (Yii::$app->user->can('All Sistem Marketplace')) {
-        $marketplace_setting = Yii::$app->user->can('All Sistem Marketplace')?
+        $marketplace[] = Yii::$app->user->can('All Sistem Marketplace')?
         [
             'label' => 'Sistem Mkp',
             'items' => [
@@ -74,7 +74,7 @@ AppAsset::register($this);
             'label' => 'Marketplace',
             'items'=>
             [
-                $marketplace_setting
+                $marketplace
             ],
         ];
     }
