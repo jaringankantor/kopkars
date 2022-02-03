@@ -57,6 +57,7 @@ AppAsset::register($this);
         $menuItems[] =
         [
             'label' => 'Test',
+            'options'=>['class'=>'dropdown'],
             'items'=>
             [
                 [
