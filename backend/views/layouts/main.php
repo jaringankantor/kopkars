@@ -54,23 +54,27 @@ AppAsset::register($this);
             ]
         ];
     }
+
     if (Yii::$app->user->can('All Sistem Marketplace')) {
+        $marketplace_setting = Yii::$app->user->can('All Sistem Marketplace')?
+        [
+            'label' => 'Sistem Mkp',
+            'items' => [
+                ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
+                ['label' => 'Toko', 'url' => ['/toko']],
+                ['label' => 'User', 'url' => ['/user']],
+                ['label' => 'Field', 'url' => ['/field']],
+                ['label' => 'Form', 'url' => ['/form']],
+                ['label' => 'Form Field', 'url' => ['/form-field']],
+            ],
+        ]:null;
+
         $menuItems[] =
         [
-            'label' => 'Test',
+            'label' => 'Marketplace',
             'items'=>
             [
-                [
-                    'label' => 'Sistem Mkp',
-                    'items' => [
-                        ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
-                        ['label' => 'Toko', 'url' => ['/toko']],
-                        ['label' => 'User', 'url' => ['/user']],
-                        ['label' => 'Field', 'url' => ['/field']],
-                        ['label' => 'Form', 'url' => ['/form']],
-                        ['label' => 'Form Field', 'url' => ['/form-field']],
-                    ],
-                ]
+                $marketplace_setting
             ],
         ];
     }
