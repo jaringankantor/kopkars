@@ -41,22 +41,20 @@ AppAsset::register($this);
     $menuItems = [];
 
     if (Yii::$app->user->can('All Pengaturan Sistem') OR Yii::$app->user->can('All Sistem Marketplace')) {
-        // if(Yii::$app->user->can('All Pengaturan Sistem')) {
-        //     $sistem[] = [
-        //         ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
-        //         ['label' => 'Toko', 'url' => ['/toko']],
-        //         ['label' => 'User', 'url' => ['/user']],
-        //         ['label' => 'Field', 'url' => ['/field']],
-        //         ['label' => 'Form', 'url' => ['/form']],
-        //         ['label' => 'Form Field', 'url' => ['/form-field']],
-        //     ];
-        // }
+        if(Yii::$app->user->can('All Pengaturan Sistem')) {
+            $sistem[] = ['label' => 'Market Place', 'url' => ['/variabel-marketplace']];
+            $sistem[] = ['label' => 'Toko', 'url' => ['/toko']];
+            $sistem[] = ['label' => 'User', 'url' => ['/user']];
+            $sistem[] = ['label' => 'Field', 'url' => ['/field']];
+            $sistem[] = ['label' => 'Form', 'url' => ['/form']];
+            $sistem[] = ['label' => 'Form Field', 'url' => ['/form-field']];
+        }
         
         if(Yii::$app->user->can('All Sistem Marketplace')) {
             $sistem[] = [
                 'label' => 'Marketplace',
                 'items' => [
-                    ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
+                    ['label' => 'Variabel', 'url' => ['/variabel-marketplace']],
                     ['label' => 'Toko', 'url' => ['/toko']],
                     ['label' => 'User', 'url' => ['/user']],
                     ['label' => 'Field', 'url' => ['/field']],
