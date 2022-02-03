@@ -72,7 +72,8 @@ AppAsset::register($this);
                         ['label' => 'Form Field', 'url' => ['/form-field']],
                     ]
                 ]
-            ]
+            ],
+            'submenuTemplate' => "\n<ul class='dropdown-menu' role='menu'>\n{items}\n</ul>\n",
         ];
     }
 
