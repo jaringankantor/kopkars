@@ -19,6 +19,7 @@
         "kartik-v/yii2-editable": "@dev",
         "kartik-v/yii2-export": "@dev",
         "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-nav-x": "dev-master",
         "kartik-v/yii2-number": "dev-master",
         "kartik-v/yii2-widgets": "*",
         "php": ">=5.6.0",
