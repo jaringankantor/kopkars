@@ -42,12 +42,17 @@ AppAsset::register($this);
 
     if (Yii::$app->user->can('All Pengaturan Sistem') OR Yii::$app->user->can('All Sistem Marketplace')) {
         if(Yii::$app->user->can('All Pengaturan Sistem')) {
-            $sistem[] = ['label' => 'Market Place', 'url' => ['/variabel-marketplace']];
-            $sistem[] = ['label' => 'Toko', 'url' => ['/toko']];
-            $sistem[] = ['label' => 'User', 'url' => ['/user']];
-            $sistem[] = ['label' => 'Field', 'url' => ['/field']];
-            $sistem[] = ['label' => 'Form', 'url' => ['/form']];
-            $sistem[] = ['label' => 'Form Field', 'url' => ['/form-field']];
+            $sistem[] = ['label' => 'GII', 'url' => ['/gii']];
+            $sistem[] = [
+                'label' => 'RBAC',
+                'items' => [
+                    ['label' => 'RBAC Rule', 'url' => ['/rbac/rule']],
+                    ['label' => 'RBAC Route', 'url' => ['/rbac/route']],
+                    ['label' => 'RBAC Permission', 'url' => ['/rbac/permission']],
+                    ['label' => 'RBAC Role', 'url' => ['/rbac/role']],
+                    ['label' => 'RBAC Assignment', 'url' => ['/rbac/assignment']],
+                ]
+            ];
         }
         
         if(Yii::$app->user->can('All Sistem Marketplace')) {
