@@ -57,12 +57,12 @@ AppAsset::register($this);
         $menuItems[] =
         [
             'label' => 'Test',
+            'options'=>['class'=>'dropdown-menu'],
             'items'=>
             [
                 [
                     'label' => 'Sistem Mkp',
                     'options'=>['class'=>'dropdown-menu'],
-                    'template' => '<a href="{url}" class="href_class">{label}</a>',
                     'items' => [
                         ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
                         ['label' => 'Toko', 'url' => ['/toko']],
