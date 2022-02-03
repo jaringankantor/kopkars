@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use kartik\nav\NavX;
 
 AppAsset::register($this);
 ?>
@@ -57,13 +58,10 @@ AppAsset::register($this);
         $menuItems[] =
         [
             'label' => 'Test',
-            'options'=>['class'=>'dropdown'],
             'items'=>
             [
                 [
                     'label' => 'Sistem Mkp',
-                    'options'=>['class'=>'dropdown'],
-                    'template' => '<a href="{url}" class="href_class">{label}</a>',
                     'items' => [
                         ['label' => 'Market Place', 'url' => ['/variabel-marketplace']],
                         ['label' => 'Toko', 'url' => ['/toko']],
@@ -205,7 +203,7 @@ AppAsset::register($this);
             . Html::endForm()
             . '</li>';
     }
-    echo Nav::widget([
+    echo NavX::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
