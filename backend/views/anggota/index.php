@@ -31,6 +31,7 @@ $this->title = 'Anggota';
 
         'nomor_anggota',
         'nama_lengkap',
+        'unit',
         'status',
         [
             'class' => 'kartik\grid\EditableColumn',
