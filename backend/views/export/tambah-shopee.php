@@ -53,7 +53,6 @@ $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
 
 $spreadsheet = $reader->load($spreadsheet);
 
-
 $worksheet = $spreadsheet->getSheetByName($worksheet_update);
 
 $requestPost = Produk::findRequestPost(Yii::$app->request->post('sku'));
