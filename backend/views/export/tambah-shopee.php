@@ -7,7 +7,7 @@ use common\models\SettingMarketplace;
 use common\models\SettingMarketplaceEtalase;
 use common\models\SettingMarketplaceKategori;
 
-$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-shopee/Shopee_mass_upload_27-05-2021_basic_template.xlsx';
+$spreadsheet = Yii::getAlias('@app').'/web/public/docs/hiiphooray-tani/template-export-shopee/Shopee_mass_upload_05-02-2022_basic_template.xlsx';
 
 $marketplace = 'shp';
 
@@ -103,11 +103,11 @@ if(count($dataProvider->models)>0) {
         //$worksheet->getCell($column_ekspedisi_pos_kilat_khusus.$row_mulai)->setValue(SettingMarketplace::parameter($marketplace)->ekspedisi_pos_kilat_khusus?'Aktif':'Nonaktif');
         $worksheet->getCell($column_ekspedisi_reguler_cashless.$row_mulai)->setValue(SettingMarketplace::parameter($marketplace)->ekspedisi_reguler_cashless?'Aktif':'Nonaktif');
         $worksheet->getCell($column_ekspedisi_hemat.$row_mulai)->setValue(SettingMarketplace::parameter($marketplace)->ekspedisi_hemat?'Aktif':'Nonaktif');
+        $worksheet->getCell($column_ekspedisi_kargo.$row_mulai)->setValue(SettingMarketplace::parameter($marketplace)->ekspedisi_kargo?'Aktif':'Nonaktif');
         $worksheet->getCell($column_ekspedisi_sameday.$row_mulai)->setValue(SettingMarketplace::parameter($marketplace)->ekspedisi_sameday?'Aktif':'Nonaktif');
         $worksheet->getCell($column_ekspedisi_instant.$row_mulai)->setValue(SettingMarketplace::parameter($marketplace)->ekspedisi_instant?'Aktif':'Nonaktif');
         $worksheet->getCell($column_ekspedisi_nextday.$row_mulai)->setValue(SettingMarketplace::parameter($marketplace)->ekspedisi_nextday?'Aktif':'Nonaktif');
         $worksheet->getCell($column_ekspedisi_jnt_jemari.$row_mulai)->setValue(SettingMarketplace::parameter($marketplace)->ekspedisi_jnt_jemari?'Aktif':'Nonaktif');
-        $worksheet->getCell($column_ekspedisi_jne_trucking.$row_mulai)->setValue(SettingMarketplace::parameter($marketplace)->ekspedisi_jnt_trucking?'Aktif':'Nonaktif');
 
         $row_mulai++;
     }

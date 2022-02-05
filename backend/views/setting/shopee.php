@@ -26,11 +26,11 @@ $this->title = 'Setting Shopee';
         <?= $form->field($model,'shp_idtoko')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model,'ekspedisi_reguler_cashless')->checkbox() ?>
         <?= $form->field($model,'ekspedisi_hemat')->checkbox() ?>
+        <?= $form->field($model,'ekspedisi_kargo')->checkbox() ?>
         <?= $form->field($model,'ekspedisi_sameday')->checkbox() ?>
         <?= $form->field($model,'ekspedisi_instant')->checkbox() ?>
         <?= $form->field($model,'ekspedisi_nextday')->checkbox() ?>
         <?= $form->field($model,'ekspedisi_jnt_jemari')->checkbox() ?>
-        <?= $form->field($model,'ekspedisi_jnt_trucking')->checkbox() ?>
 
         <div class="form-group">
             <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
