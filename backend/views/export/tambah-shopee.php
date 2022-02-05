@@ -43,11 +43,11 @@ $column_berat = 'X';
 //$column_ekspedisi_pos_kilat_khusus = 'AP';
 $column_ekspedisi_reguler_cashless = 'AB';
 $column_ekspedisi_hemat = 'AC';
-$column_ekspedisi_sameday = 'AD';
-$column_ekspedisi_instant = 'AE';
-$column_ekspedisi_nextday = 'AF';
-$column_ekspedisi_jnt_jemari = 'AG';
-$column_ekspedisi_jne_trucking = 'AH';
+$column_ekspedisi_jne_trucking = 'AD';
+$column_ekspedisi_sameday = 'AE';
+$column_ekspedisi_instant = 'AF';
+$column_ekspedisi_nextday = 'AG';
+$column_ekspedisi_jnt_jemari = 'AH';
 
 $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
 
