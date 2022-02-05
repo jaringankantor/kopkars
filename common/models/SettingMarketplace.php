@@ -20,6 +20,8 @@ use Yii;
  * @property bool $ekspedisi_grabexpress_sameday
  * @property bool $ekspedisi_gosend_instant
  * @property bool $ekspedisi_gosend_sameday
+ * @property bool $ekspedisi_hemat
+ * @property bool $ekspedisi_instant
  * @property bool $ekspedisi_jne_jtr_cashless
  * @property bool $ekspedisi_jne_reg
  * @property bool $ekspedisi_jne_reg_cashless
@@ -30,8 +32,11 @@ use Yii;
  * @property bool $ekspedisi_jnt_ekspress
  * @property bool $ekspedisi_jnt_jemari
  * @property bool $ekspedisi_jnt_reg
+ * @property bool $ekspedisi_jnt_trucking
+ * @property bool $ekspedisi_kargo
  * @property bool $ekspedisi_lionparcel_onepack
  * @property bool $ekspedisi_lionparcel_regpack
+ * @property bool $ekspedisi_nextday
  * @property bool $ekspedisi_ninja_fast
  * @property bool $ekspedisi_ninja_reg
  * @property bool $ekspedisi_ninja_xpress
@@ -40,8 +45,10 @@ use Yii;
  * @property bool $ekspedisi_pickup
  * @property bool $ekspedisi_pos_kilat_khusus
  * @property bool $ekspedisi_pos_nextday
+ * @property bool $ekspedisi_reguler_cashless
  * @property bool $ekspedisi_rpx_economy
  * @property bool $ekspedisi_rpx_nextday
+ * @property bool $ekspedisi_sameday
  * @property bool $ekspedisi_shopee_express_instant
  * @property bool $ekspedisi_shopee_express_standard
  * @property bool $ekspedisi_sicepat_best
@@ -79,7 +86,7 @@ class SettingMarketplace extends \yii\db\ActiveRecord
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['lzd_minimum_price'], 'default', 'value' => null],
             [['lzd_minimum_price'], 'integer'],
-            [['ekspedisi_alfatrex_nextday', 'ekspedisi_alfatrex_reg', 'ekspedisi_anteraja', 'ekspedisi_grabexpress_instant', 'ekspedisi_grabexpress_rush_delivery', 'ekspedisi_grabexpress_sameday', 'ekspedisi_gosend_instant', 'ekspedisi_gosend_sameday', 'ekspedisi_jne_jtr_cashless', 'ekspedisi_jne_reg', 'ekspedisi_jne_reg_cashless', 'ekspedisi_jne_trucking', 'ekspedisi_jne_yes', 'ekspedisi_jne_yes_cashless', 'ekspedisi_jnt_economy', 'ekspedisi_jnt_ekspress', 'ekspedisi_jnt_jemari', 'ekspedisi_jnt_reg', 'ekspedisi_lionparcel_onepack', 'ekspedisi_lionparcel_regpack', 'ekspedisi_ninja_fast', 'ekspedisi_ninja_reg', 'ekspedisi_ninja_xpress', 'ekspedisi_paxel_sameday', 'ekspedisi_pelapak', 'ekspedisi_pickup', 'ekspedisi_pos_kilat_khusus', 'ekspedisi_pos_nextday', 'ekspedisi_rpx_economy', 'ekspedisi_rpx_nextday', 'ekspedisi_shopee_express_instant', 'ekspedisi_shopee_express_standard', 'ekspedisi_sicepat_best', 'ekspedisi_sicepat_halu', 'ekspedisi_sicepat_reg', 'ekspedisi_tiki_ons', 'ekspedisi_tiki_reg', 'ekspedisi_wahana','ekspedisi_jnt_trucking','ekspedisi_reguler_cashless','ekspedisi_hemat','ekspedisi_sameday','ekspedisi_instant','ekspedisi_nextday'], 'boolean'],
+            [['ekspedisi_alfatrex_nextday', 'ekspedisi_alfatrex_reg', 'ekspedisi_anteraja', 'ekspedisi_grabexpress_instant', 'ekspedisi_grabexpress_rush_delivery', 'ekspedisi_grabexpress_sameday', 'ekspedisi_gosend_instant', 'ekspedisi_gosend_sameday', 'ekspedisi_jne_jtr_cashless', 'ekspedisi_jne_reg', 'ekspedisi_jne_reg_cashless', 'ekspedisi_jne_trucking', 'ekspedisi_jne_yes', 'ekspedisi_jne_yes_cashless', 'ekspedisi_jnt_economy', 'ekspedisi_jnt_ekspress', 'ekspedisi_jnt_jemari', 'ekspedisi_jnt_reg', 'ekspedisi_lionparcel_onepack', 'ekspedisi_lionparcel_regpack', 'ekspedisi_ninja_fast', 'ekspedisi_ninja_reg', 'ekspedisi_ninja_xpress', 'ekspedisi_paxel_sameday', 'ekspedisi_pelapak', 'ekspedisi_pickup', 'ekspedisi_pos_kilat_khusus', 'ekspedisi_pos_nextday', 'ekspedisi_rpx_economy', 'ekspedisi_rpx_nextday', 'ekspedisi_shopee_express_instant', 'ekspedisi_shopee_express_standard', 'ekspedisi_sicepat_best', 'ekspedisi_sicepat_halu', 'ekspedisi_sicepat_reg', 'ekspedisi_tiki_ons', 'ekspedisi_tiki_reg', 'ekspedisi_wahana','ekspedisi_jnt_trucking','ekspedisi_reguler_cashless','ekspedisi_hemat','ekspedisi_kargo','ekspedisi_sameday','ekspedisi_instant','ekspedisi_nextday'], 'boolean'],
             [['kode_variabel_marketplace'], 'string', 'max' => 3],
             [['bli_kodetokogudang','shp_idtoko','url_toko'], 'string', 'max' => 255],
             [['header_produk', 'footer_produk'], 'string'], 
@@ -143,6 +150,7 @@ class SettingMarketplace extends \yii\db\ActiveRecord
             'ekspedisi_jnt_trucking' => 'Ekspedisi JNT Trucking',
             'ekspedisi_reguler_cashless' => 'Ekspedisi Reguler (Cahsless)',
             'ekspedisi_hemat' => 'Ekspedisi Hemat',
+            'ekspedisi_kargo' => 'Ekspedisi Kargo',
             'ekspedisi_sameday' => 'Ekspedisi Sameday',
             'ekspedisi_instant' => 'Ekspedisi Instant',
             'ekspedisi_nextday' => 'Ekspedisi Nextday'
