@@ -242,7 +242,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['nomor_hp', 'match' ,'pattern'=>'/^(8)[1-9][0-9]{7,10}+$/u','message'=> 'Masukan nomor HP tanpa 0 atau 62 atau +62'],
+            ['nomor_hp', 'match' ,'pattern'=>'/^[1-9][0-9]{7,10}+$/u','message'=> 'Masukan nomor HP tanpa 0 atau 62 atau +62'],
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['nomor_ktp', 'nomor_npwp', 'nomor_hp'], 'match' ,'pattern'=>'/^[0-9]+$/u','message'=> 'Hanya boleh angka'],
             [['foto','foto_ktp'], 'file', 'extensions' => 'png,jpg,jpeg', 'mimeTypes'=>'image/jpeg,image/png','maxSize'=>2097152],
