@@ -29,9 +29,6 @@ return [
             'class' => 'yii\rbac\DbManager',
             'defaultRoles' => ['guest', 'user'],
         ],
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

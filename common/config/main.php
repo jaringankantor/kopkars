@@ -24,7 +24,8 @@ return [
             'defaultRoles' => ['guest', 'user'],
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\redis\Cache',
+            // 'redis' => 'redis' // id of the connection application component
         ],
         'formatter' => [
             'thousandSeparator' => '.',
