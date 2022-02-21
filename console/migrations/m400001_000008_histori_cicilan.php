@@ -10,7 +10,7 @@ class m400001_000008_histori_cicilan extends Migration
     public function safeUp()
     {
         $this->createTable('histori_cicilan', [
-            'id' => $this->primaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'anggota_id' => $this->integer()->notNull(),
             'cicilan_id' => $this->integer()->notNull(),
             'cicilan_kolom' => $this->string(50)->notNull(),

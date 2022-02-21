@@ -22,7 +22,7 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
-* @property string|null $skuprefix1
+ * @property string|null $skuprefix1
  * @property string|null $skuprefix2
  * @property string|null $skuprefix3
  * @property string|null $skuprefix4

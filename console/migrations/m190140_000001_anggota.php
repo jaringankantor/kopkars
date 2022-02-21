@@ -10,7 +10,7 @@ class m190140_000001_anggota extends Migration
     public function safeUp()
     {
         $this->createTable('anggota', [
-            'id' => $this->primaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'kode_toko' => $this->string(50)->notNull(),
             'status' => $this->string(20),
             'status_karyawan' => $this->string(20),

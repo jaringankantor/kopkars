@@ -40,7 +40,7 @@ class m130524_201442_init extends Migration
         }
 
         $this->createTable('{{%user}}', [
-            'id' => $this->primaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'kode_toko' => $this->string(50)->notNull(),
             'email' => $this->string(50)->notNull()->unique(),
             'auth_key' => $this->string(32)->notNull(),

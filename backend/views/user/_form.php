@@ -24,7 +24,7 @@ use yii\helpers\Html;
 
     <?= $form->field($model, 'email',['addon' => ['prepend' => ['content'=>'@']]])->textInput(['maxlength' => true])->textInput(['maxlength' => true,'placeholder' => 'Email pribadi aktif','disabled'=>($model->scenario == 'update')? TRUE : FALSE]) ?>
 
-    <?= $form->field($model, 'password_default',['addon' => ['prepend' => ['content'=>'*']]])->passwordInput(['maxlength' => true,'placeholder' => 'Password untuk login ke aplikasi APEI','disabled'=>($model->scenario == 'update')? TRUE : FALSE]) ?>
+    <?= $form->field($model, 'password_default',['addon' => ['prepend' => ['content'=>'*']]])->passwordInput(['maxlength' => true,'placeholder' => 'Password untuk login ke Admin Kopkars','disabled'=>($model->scenario == 'update')? TRUE : FALSE]) ?>
     
     <?= $form->field($model, 're_password',['addon' => ['prepend' => ['content'=>'*']]])->passwordInput(['maxlength' => true,'placeholder' => 'Ulangi password diatas','disabled'=>($model->scenario == 'update')? TRUE : FALSE]) ?>
 

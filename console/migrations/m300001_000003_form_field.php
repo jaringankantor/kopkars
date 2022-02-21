@@ -11,7 +11,7 @@ class m300001_000003_form_field extends Migration
     public function safeUp()
     {
         $this->createTable('form_field', [
-            'id' => $this->primaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'kode_form' => $this->string(50)->notNull(),
             'kode_field' => $this->string(50),
             'nama_field_excel' => $this->string(70)->notNull(),

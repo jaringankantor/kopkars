@@ -10,7 +10,7 @@ class m190150_000002_histori_anggota extends Migration
     public function safeUp()
     {
         $this->createTable('histori_anggota', [
-            'id' => $this->primaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'anggota_id' => $this->integer(),
             'anggota_kolom' => $this->string(50),
             'value_old' => $this->string(255),

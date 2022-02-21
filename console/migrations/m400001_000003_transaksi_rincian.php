@@ -10,7 +10,7 @@ class m400001_000003_transaksi_rincian extends Migration
     public function safeUp()
     {
         $this->createTable('transaksi_rincian', [
-            'id' => $this->primaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'transaksi_id' => $this->integer(),
             'kode_toko' => $this->string(50)->notNull(),
             'kanal_transaksi' => $this->string(20)->notNull(),

@@ -10,7 +10,7 @@ class m400001_000013_pinjaman extends Migration
     public function safeUp()
     {
         $this->createTable('pinjaman', [
-            'id' => $this->primaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'kode_toko' => $this->string(50)->notNull(),
             'anggota_id' => $this->integer()->notNull(),
             'nomor_referensi' => $this->string(50), //Misal nomor invoice atau kuitansi

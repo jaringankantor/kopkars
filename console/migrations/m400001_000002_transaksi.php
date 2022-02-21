@@ -10,7 +10,7 @@ class m400001_000002_transaksi extends Migration
     public function safeUp()
     {
         $this->createTable('transaksi', [
-            'id' => $this->primaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'kode_toko' => $this->string(50)->notNull(),
             'kanal_transaksi' => $this->string(20)->notNull(),
             'nomor_referensi' => $this->string(50)->notNull(), //Misal nomor invoice

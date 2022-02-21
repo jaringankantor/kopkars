@@ -10,7 +10,7 @@ class m400001_000012_histori_pesanan_pinjaman extends Migration
     public function safeUp()
     {
         $this->createTable('histori_pesanan_pinjaman', [
-            'id' => $this->primaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'anggota_id' => $this->integer()->notNull(),
             'pesanan_pinjaman_id' => $this->integer()->notNull(),
             'pesanan_pinjaman_kolom' => $this->string(50)->notNull(),
