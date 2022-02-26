@@ -65,10 +65,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            //if ($this->isNewRecord) {
+            if ($this->isNewRecord) {
                 $this->generateAuthKey();
                 $this->setPassword($this->password_default);
-            //}
+            }
             return true;
         }
         return false;
