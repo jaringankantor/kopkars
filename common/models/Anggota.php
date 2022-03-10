@@ -253,6 +253,7 @@ class Anggota extends \yii\db\ActiveRecord implements IdentityInterface
             [['password_default','re_password'], 'string', 'min' => 8],
             [['password_default','re_password'], 'string', 'max' => 150],
             [['kode_toko', 'foto', 'foto_ktp', 'email', 'nomor_hp', 'nomor_pegawai', 'unit', 'status_karyawan', 'nomor_ktp', 'nama_lengkap', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'agama', 'pendidikanterakhir', 'alamat_rumah','nomor_npwp'], 'required'],
+            [['email','email_last_lock_verified'], 'email'],
             [['password_default','re_password','captcha'], 'required','on' => 'frontend-create-anggota'],
             ['re_password', 'compare', 'compareAttribute'=>'password_default', 'skipOnEmpty' => false, 'message'=>'Re-Password aplikasi tidak sama'],
             [['unit'], 'string', 'max' => 100],

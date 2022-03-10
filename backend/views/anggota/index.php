@@ -53,6 +53,7 @@ $this->title = 'Anggota';
                     'action' => Url::to(['/anggota/updatehp-editable-json']),
                 ],
             ],
+            'refreshGrid' => TRUE,
         ],
         //[
         //    'attribute'=>'Informasi Kontak',
