@@ -13,13 +13,6 @@ return [
     //'bootstrap' => ['log'],
     'controllerNamespace' => 'api\controllers',
     'components' => [
-        // 'assetManager' => [
-        //     'bundles' => [
-        //         'yii\web\JqueryAsset' => [
-        //             'jsOptions' => [ 'position' => \yii\web\View::POS_HEAD ],
-        //         ],
-        //     ],
-        // ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

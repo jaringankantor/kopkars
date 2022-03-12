@@ -3,12 +3,8 @@ namespace api\controllers;
 
 use Yii;
 use api\models\Produk;
-use api\models\ProdukSearch;
 use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
-
-
-
 use yii\data\ActiveDataFilter;
 
 class ProdukController extends ActiveController {
