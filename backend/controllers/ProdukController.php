@@ -88,15 +88,15 @@ class ProdukController extends Controller
 
         $model->kode_toko=Yii::$app->user->identity->kode_toko;
 
+        $current_foto_1 = $model->foto_1;
+        $current_foto_2 = $model->foto_2;
+        $current_foto_3 = $model->foto_3;
+        $current_foto_4 = $model->foto_4;
+        $current_foto_5 = $model->foto_5;
+        $current_foto_6 = $model->foto_6;
+        $current_foto_7 = $model->foto_7;
+
         if ($model->load(Yii::$app->request->post())) {
-            $current_foto_1 = $model->foto_1;
-            $current_foto_2 = $model->foto_2;
-            $current_foto_3 = $model->foto_3;
-            $current_foto_4 = $model->foto_4;
-            $current_foto_5 = $model->foto_5;
-            $current_foto_6 = $model->foto_6;
-            $current_foto_7 = $model->foto_7;
-            
             $upload = UploadedFile::getInstance($model, 'foto_1');
             if(!empty($upload)){
                 $model->foto_1 = bin2hex(file_get_contents($upload->tempName));
@@ -175,15 +175,15 @@ class ProdukController extends Controller
     {
         $model = $this->findModelProduk($sku);
 
+        $current_foto_1 = $model->foto_1;
+        $current_foto_2 = $model->foto_2;
+        $current_foto_3 = $model->foto_3;
+        $current_foto_4 = $model->foto_4;
+        $current_foto_5 = $model->foto_5;
+        $current_foto_6 = $model->foto_6;
+        $current_foto_7 = $model->foto_7;
+
         if ($model->load(Yii::$app->request->post())) {
-            $current_foto_1 = $model->foto_1;
-            $current_foto_2 = $model->foto_2;
-            $current_foto_3 = $model->foto_3;
-            $current_foto_4 = $model->foto_4;
-            $current_foto_5 = $model->foto_5;
-            $current_foto_6 = $model->foto_6;
-            $current_foto_7 = $model->foto_7;
-            
             $upload = UploadedFile::getInstance($model, 'foto_1');
             if(!empty($upload)){
                 $model->foto_1 = bin2hex(file_get_contents($upload->tempName));
