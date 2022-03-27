@@ -88,8 +88,75 @@ class ProdukController extends Controller
 
         $model->kode_toko=Yii::$app->user->identity->kode_toko;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'sku' => $model->sku]);
+        if ($model->load(Yii::$app->request->post())) {
+            $current_foto_1 = $model->foto_1;
+            $current_foto_2 = $model->foto_2;
+            $current_foto_3 = $model->foto_3;
+            $current_foto_4 = $model->foto_4;
+            $current_foto_5 = $model->foto_5;
+            $current_foto_6 = $model->foto_6;
+            $current_foto_7 = $model->foto_7;
+            
+            $upload = UploadedFile::getInstance($model, 'foto_1');
+            if(!empty($upload)){
+                $model->foto_1 = bin2hex(file_get_contents($upload->tempName));
+            } else {
+				$model->foto_1 = $current_foto_1;
+			}
+            
+            $upload = UploadedFile::getInstance($model, 'foto_2');
+            if(!empty($upload)){
+                $model->foto_2 = bin2hex(file_get_contents($upload->tempName));
+            } else {
+				$model->foto_2 = $current_foto_2;
+            }
+            
+            $upload = UploadedFile::getInstance($model, 'foto_3');
+            if(!empty($upload)){
+                $model->foto_3 = bin2hex(file_get_contents($upload->tempName));
+            } else {
+				$model->foto_3 = $current_foto_3;
+            }
+            
+            $upload = UploadedFile::getInstance($model, 'foto_4');
+            if(!empty($upload)){
+                $model->foto_4 = bin2hex(file_get_contents($upload->tempName));
+            } else {
+				$model->foto_4 = $current_foto_4;
+            }
+            
+            $upload = UploadedFile::getInstance($model, 'foto_5');
+            if(!empty($upload)){
+                $model->foto_5 = bin2hex(file_get_contents($upload->tempName));
+            } else {
+				$model->foto_5 = $current_foto_5;
+            }
+            
+            $upload = UploadedFile::getInstance($model, 'foto_6');
+            if(!empty($upload)){
+                $model->foto_6 = bin2hex(file_get_contents($upload->tempName));
+            } else {
+				$model->foto_6 = $current_foto_6;
+            }
+            
+            $upload = UploadedFile::getInstance($model, 'foto_7');
+            if(!empty($upload)){
+                $model->foto_7 = bin2hex(file_get_contents($upload->tempName));
+            } else {
+				$model->foto_7 = $current_foto_7;
+			}
+
+            if ($model->validate() && $model->save()) {
+                return $this->redirect([
+                    'index'
+                ]);
+            } else {
+                $errors = $model->errors;
+            }
+
+            if ($model->validate() && $model->save()) {
+                return $this->redirect(['view', 'sku' => $model->sku]);
+            }
         }
 
         return $this->render('create', [
@@ -166,7 +233,7 @@ class ProdukController extends Controller
 				$model->foto_7 = $current_foto_7;
 			}
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->validate() && $model->save()) {
                 return $this->redirect([
                     'index'
                 ]);

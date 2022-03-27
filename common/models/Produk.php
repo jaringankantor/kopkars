@@ -89,7 +89,7 @@ class Produk extends \yii\db\ActiveRecord
             ['kode_toko', 'string', 'max' => 50],
             ['kode_toko', 'match' ,'pattern'=>'/^[A-Za-z0-9._-]+$/u','message'=> 'Only alphanumeric, dot(.), underscore(_), and hypen(-)'],
             [['status_aktif'], 'boolean'],
-            [['harga_modal_async','harga_async', 'stok_async', 'berat'], 'default', 'value' => null],
+            [['harga_modal_async','harga_async', 'stok_async', 'berat','foto_1', 'foto_2', 'foto_3', 'foto_4', 'foto_5', 'foto_6', 'foto_7'], 'default', 'value' => null],
             [['harga_modal_async','harga_async', 'stok_async', 'berat'], 'integer'],
             [['foto_1', 'foto_2', 'foto_3', 'foto_4', 'foto_5', 'foto_6', 'foto_7'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg', 'mimeTypes'=>'image/jpeg'],
             [['urlid_bli', 'urlid_bkl', 'urlid_fbc', 'urlid_fbm', 'urlid_jdi', 'urlid_lzd', 'urlid_shp', 'urlid_tkp'], 'string'],
