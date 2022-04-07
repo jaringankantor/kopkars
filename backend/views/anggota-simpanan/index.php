@@ -26,6 +26,7 @@ $this->title = 'Simpanan Anggota';
         ['class' => 'yii\grid\SerialColumn'],
 
         ['label'=>'Nama Anggota Kopkars', 'value'=>function ($model, $index, $widget) { return $model->anggota->nama_lengkap; }],
+        ['label'=>'Nomor Anggota Kopkars', 'value'=>function ($model, $index, $widget) { return $model->anggota->nomor_anggota; }],
         'simpanan',
         //'rupiah:currency',
         [
